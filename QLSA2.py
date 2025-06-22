@@ -3,11 +3,14 @@ from QLSA import runAlgo, TestsFilePath
 from compute import generate_tsp
 import multiprocessing
 import os
+import glob
 
 file_lock = multiprocessing.Lock()
 
 OUTPUT_FOLDER = "results"
 OUTPUT_FILE = f"{OUTPUT_FOLDER}/optimals.csv"
+NB_RUNS = 30
+NB_PROCESS = 3
 
 ALGO_MAPPING = {
     1 : "QLSA softmax",
@@ -53,12 +56,17 @@ def clean_up_output():
     if os.path.exists(OUTPUT_FILE):
         os.remove(OUTPUT_FILE)
 
+def get_list_problems(input_folder):
+    list_inputs = glob.glob(f"{input_folder}/*.tsp")
+    list_inputs = [r.replace(input_folder, "").replace(".tsp", "") for r in list_inputs]
+    return list_inputs
+
 def build_and_run_tasks():
 
     clean_up_output()
 
-    list_problems = ['berlin52','eil51','eil76']
-    nb_runs = 5
+    list_problems = get_list_problems(TestsFilePath)
+    nb_runs = NB_RUNS
     algos = range(1, 4)
 
     list_tasks = []
@@ -68,7 +76,7 @@ def build_and_run_tasks():
             for p in list_problems:
                 t = Task(p, i, j)
                 list_tasks.append(t)
-    pool = multiprocessing.Pool(5)
+    pool = multiprocessing.Pool(NB_PROCESS)
     pool.map(run_task, list_tasks)
 
     pool.close()

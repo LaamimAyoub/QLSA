@@ -69,7 +69,7 @@ def build_and_run_tasks():
 
     clean_up_output()
 
-    list_problems = ["dantzig42"]
+    list_problems = get_list_problems()
     nb_runs = NB_RUNS
     algos = range(1, 4)
 

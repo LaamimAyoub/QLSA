@@ -173,7 +173,6 @@ runs = 5
 TestsFilePath = 'inputs/'
 
 def runAlgo(params):
-    print("Running algorithm", params)
     problem, initial_solution=params[1:]
     param=params[0]
 

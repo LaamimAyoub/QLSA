@@ -50,6 +50,7 @@ class Task:
 
 def run_task(t :Task):
     try:
+        print("Running", t.task_id)
         t.run()
     except Exception as e:
         print(t.task_id, "Failed With exception", e)

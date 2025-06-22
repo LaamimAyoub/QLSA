@@ -6,7 +6,8 @@ import os
 
 file_lock = multiprocessing.Lock()
 
-OUTPUT_FILE = "results/optimals.csv"
+OUTPUT_FOLDER = "results"
+OUTPUT_FILE = f"{OUTPUT_FOLDER}/optimals.csv"
 
 ALGO_MAPPING = {
     1 : "QLSA softmax",
@@ -20,13 +21,14 @@ class Task:
         self.problem = problem
         self.run_number = run_number
         self.algo = algo
-        self.task_id = f"{problem}_{algo}_{run_number}"
+        self.task_id = f"{problem}_{ALGO_MAPPING[self.algo]}_{run_number}"
 
     def run(self):
         problem = tsplib95.load_problem(f"{TestsFilePath}/{self.problem}.tsp")
         initial_solution = generate_tsp(1, problem.dimension)[0]
         res = runAlgo([self.algo, problem, initial_solution])
         self.write_optimal(res[1])
+        self.write_all_results(res[2])
 
     def write_optimal(self, optimal):
         add_header = False
@@ -39,12 +41,22 @@ class Task:
                     f.write("Problem,run,Algo,Optimal\n")
                 f.write(f"{self.problem},{self.run_number},{ALGO_MAPPING[self.algo]},{optimal}\n")
 
+    def write_all_results(self, res):
+        with open(os.path.join(OUTPUT_FOLDER, f"{self.task_id}.txt"), "w") as f:
+            f.write(",".join([str(r) for r in res]))
 
 def run_task(t :Task):
     t.run()
 
 
+def clean_up_output():
+    if os.path.exists(OUTPUT_FILE):
+        os.remove(OUTPUT_FILE)
+
 def build_and_run_tasks():
+
+    clean_up_output()
+
     list_problems = ['berlin52','eil51','eil76']
     nb_runs = 5
     algos = range(1, 4)

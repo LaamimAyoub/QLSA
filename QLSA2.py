@@ -1,0 +1,67 @@
+import tsplib95
+from QLSA import runAlgo, TestsFilePath
+from compute import generate_tsp
+import multiprocessing
+import os
+
+file_lock = multiprocessing.Lock()
+
+OUTPUT_FILE = "results/optimals.csv"
+
+ALGO_MAPPING = {
+    1 : "QLSA softmax",
+    2: "SA",
+    3: "QLSA epsilon_greedy"
+}
+
+class Task:
+
+    def __init__(self, problem, run_number, algo):
+        self.problem = problem
+        self.run_number = run_number
+        self.algo = algo
+        self.task_id = f"{problem}_{algo}_{run_number}"
+
+    def run(self):
+        problem = tsplib95.load_problem(f"{TestsFilePath}/{self.problem}.tsp")
+        initial_solution = generate_tsp(1, problem.dimension)[0]
+        res = runAlgo([self.algo, problem, initial_solution])
+        self.write_optimal(res[1])
+
+    def write_optimal(self, optimal):
+        add_header = False
+        if not os.path.exists(OUTPUT_FILE):
+            add_header = True
+
+        with file_lock:
+            with open(OUTPUT_FILE, "a") as f:
+                if add_header:
+                    f.write("Problem,run,Algo,Optimal\n")
+                f.write(f"{self.problem},{self.run_number},{ALGO_MAPPING[self.algo]},{optimal}\n")
+
+
+def run_task(t :Task):
+    t.run()
+
+
+def build_and_run_tasks():
+    list_problems = ['berlin52','eil51','eil76']
+    nb_runs = 5
+    algos = range(1, 4)
+
+    list_tasks = []
+
+    for i in range(1, nb_runs+1):
+        for j in algos:
+            for p in list_problems:
+                t = Task(p, i, j)
+                list_tasks.append(t)
+    pool = multiprocessing.Pool(5)
+    pool.map(run_task, list_tasks)
+
+    pool.close()
+    pool.join()
+
+
+if __name__ == "__main__":
+    build_and_run_tasks()

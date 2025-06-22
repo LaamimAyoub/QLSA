@@ -28,7 +28,7 @@ class Task:
 
     def run(self):
         problem = tsplib95.load_problem(f"{TestsFilePath}/{self.problem}.tsp")
-        has_node_coords = problem.node_coords != {}
+        has_node_coords = (problem.node_coords != {} or problem.display_data != {})
         initial_solution = generate_tsp(1, problem.dimension, has_node_coords)[0]
         res = runAlgo([self.algo, problem, initial_solution])
         self.write_optimal(res[1])
@@ -50,11 +50,11 @@ class Task:
             f.write(",".join([str(r) for r in res]))
 
 def run_task(t :Task):
-    try:
-        print("Running", t.task_id)
-        t.run()
-    except Exception as e:
-        print(t.task_id, "Failed With exception", e)
+    # try:
+    print("Running", t.task_id)
+    t.run()
+    # except Exception as e:
+    #     print(t.task_id, "Failed With exception", e)
 
 def clean_up_output():
     if os.path.exists(OUTPUT_FILE):
@@ -69,7 +69,7 @@ def build_and_run_tasks():
 
     clean_up_output()
 
-    list_problems = get_list_problems(TestsFilePath)
+    list_problems = ["dantzig42"]
     nb_runs = NB_RUNS
     algos = range(1, 4)
 

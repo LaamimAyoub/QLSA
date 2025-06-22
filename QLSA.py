@@ -16,7 +16,7 @@ class SimulatedAnnealing_TSP_Logging:
         self.solution = deepcopy(initial_solution)
         self.gbest = deepcopy(initial_solution)
 
-        self.has_node_coords = self.problem.node_coords != {}
+        self.has_node_coords = (self.problem.node_coords != {} or self.problem.display_data != {})
 
         self.Fbest = compute_distance(initial_solution, self.problem)
         self.pbest = deepcopy(initial_solution)

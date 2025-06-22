@@ -23,10 +23,16 @@ cpdef double compute_distance(list sol, object problem):
 
 
 # generate_tsp population
-cpdef list generate_tsp(int n, int nbrville):
+cpdef list generate_tsp(int n, int nbrville, bint has_node_coords):
     cdef list pop = []
-    cdef list base = list(range(1, nbrville + 1))
+    cdef list base
     cdef int i
+
+    if has_node_coords:
+        base = list(range(1, nbrville+1))
+    else:
+        base = list(range(nbrville))
+
     for i in range(n):
         temp = base[:]
         shuffle(temp)

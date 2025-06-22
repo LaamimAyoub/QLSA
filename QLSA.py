@@ -15,6 +15,9 @@ class SimulatedAnnealing_TSP_Logging:
         self.problem = problem
         self.solution = deepcopy(initial_solution)
         self.gbest = deepcopy(initial_solution)
+
+        self.has_node_coords = self.problem.node_coords != {}
+
         self.Fbest = compute_distance(initial_solution, self.problem)
         self.pbest = deepcopy(initial_solution)
         self.Fpbest = compute_distance(initial_solution, self.problem)
@@ -24,7 +27,7 @@ class SimulatedAnnealing_TSP_Logging:
         self.cooling_rate = cooling_rate
         self.tempmin = tempmin
         self.fitness_history = []
-        random_sol=generate_tsp(1,len(self.solution))[0]
+        random_sol=generate_tsp(1,len(self.solution), self.has_node_coords)[0]
         self.setcandidat=[self.solution,self.gbest,self.pbest,random_sol]
         self.q_table = np.zeros((1, (len(self.setcandidat))))
         self.leader_count = np.zeros((1, (len(self.setcandidat))), dtype=int)
@@ -33,7 +36,7 @@ class SimulatedAnnealing_TSP_Logging:
         self.gamma = gamma
 
     def update_setcandidat(self):
-        random_sol=generate_tsp(1,len(self.solution))[0]
+        random_sol=generate_tsp(1,len(self.solution), self.has_node_coords)[0]
         self.setcandidat=[self.solution,self.gbest,self.pbest,random_sol]
 
     def two_opt(self,leader): #x une solution x=[(ci1,ci2),(),...]

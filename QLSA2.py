@@ -28,7 +28,8 @@ class Task:
 
     def run(self):
         problem = tsplib95.load_problem(f"{TestsFilePath}/{self.problem}.tsp")
-        initial_solution = generate_tsp(1, problem.dimension)[0]
+        has_node_coords = problem.node_coords != {}
+        initial_solution = generate_tsp(1, problem.dimension, has_node_coords)[0]
         res = runAlgo([self.algo, problem, initial_solution])
         self.write_optimal(res[1])
         self.write_all_results(res[2])

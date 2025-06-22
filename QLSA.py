@@ -1,8 +1,8 @@
 import pandas as pd
 from datetime import datetime
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
+# import matplotlib.pyplot as plt
+# import seaborn as sns
 from compute import compute_distance, softmax,generate_tsp,epsilon_greedy
 from copy import deepcopy
 import tsplib95

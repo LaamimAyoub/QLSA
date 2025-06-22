@@ -10,7 +10,7 @@ file_lock = multiprocessing.Lock()
 OUTPUT_FOLDER = "results"
 OUTPUT_FILE = f"{OUTPUT_FOLDER}/optimals.csv"
 NB_RUNS = 30
-NB_PROCESS = 40
+NB_PROCESS = 3
 
 ALGO_MAPPING = {
     1 : "QLSA softmax",
@@ -49,8 +49,10 @@ class Task:
             f.write(",".join([str(r) for r in res]))
 
 def run_task(t :Task):
-    t.run()
-
+    try:
+        t.run()
+    except Exception as e:
+        print(t.task_id, "Failed With exception", e)
 
 def clean_up_output():
     if os.path.exists(OUTPUT_FILE):

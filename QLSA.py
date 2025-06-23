@@ -8,7 +8,7 @@ from copy import deepcopy
 import tsplib95
 import multiprocessing
 
-NB_ITERATIONS = 500
+NB_ITERATIONS = 5000
 
 class SimulatedAnnealing_TSP_Logging:
     def __init__(self, problem, initial_solution, temperature=1.0, cooling_rate=0.99, tempmin=0.01, epsilon=0.1, alpha=0.1, gamma=0.9):
@@ -129,7 +129,7 @@ class SimulatedAnnealing_TSP_Logging:
 
     def step_greedy(self):
             old_score = compute_distance(self.solution, self.problem)
-            leader_idx = self.select_leader()
+            leader_idx = self.select_leader_epsilon()
             leader=self.setcandidat[leader_idx]
             candidate = self.two_opt_metropolis(leader)
             current_score = compute_distance(self.solution, self.problem)
@@ -150,21 +150,21 @@ class SimulatedAnnealing_TSP_Logging:
             self.update_q_table(0, leader_idx, reward)
             self.update_setcandidat()
 
-    def run(self, iterations=500):
+    def run(self, iterations=5000):
         for i in range(iterations):
             self.step()
             self.temperature =  (self.temperature_max-((self.temperature_max-self.tempmin)*((i+1))) /iterations  )
             #print(f"Iteration {i}, Temp: {self.temperature:.4f}, Best: {self.Fbest:.2f}")
         return self.gbest, self.Fbest, self.fitness_history
     
-    def run_SA(self, iterations=500):
+    def run_SA(self, iterations=5000):
         for i in range(iterations):
             self.step_SA()
             self.temperature =  (self.temperature_max-((self.temperature_max-self.tempmin)*((i+1))) /iterations  )
             #print(f"Iteration {i}, Temp: {self.temperature:.4f}, Best: {self.Fbest:.2f}")
         return self.gbest, self.Fbest, self.fitness_history
     
-    def run_greedy(self, iterations=500):
+    def run_greedy(self, iterations=5000):
         for i in range(iterations):
             self.step_greedy()
             self.temperature =  (self.temperature_max-((self.temperature_max-self.tempmin)*((i+1))) /iterations  )
@@ -172,7 +172,7 @@ class SimulatedAnnealing_TSP_Logging:
         return self.gbest, self.Fbest, self.fitness_history
 
 
-runs = 5
+runs = 1
 TestsFilePath = 'inputs/'
 
 def runAlgo(params):

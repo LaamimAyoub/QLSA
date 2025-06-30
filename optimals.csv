@@ -1,0 +1,1801 @@
+Problem,run,Algo,Optimal
+gr17,3,QLSA epsilon_greedy,2167.0
+gr17,7,QLSA epsilon_greedy,2090.0
+gr17,1,QLSA epsilon_greedy,2147.0
+gr17,8,QLSA epsilon_greedy,2103.0
+gr17,4,QLSA epsilon_greedy,2090.0
+gr17,2,QLSA epsilon_greedy,2120.0
+gr17,6,QLSA epsilon_greedy,2142.0
+gr17,5,QLSA epsilon_greedy,2182.0
+gr21,3,QLSA epsilon_greedy,3039.0
+gr21,8,QLSA epsilon_greedy,2915.0
+gr21,7,QLSA epsilon_greedy,3020.0
+gr21,1,QLSA epsilon_greedy,3007.0
+gr21,4,QLSA epsilon_greedy,2877.0
+gr21,6,QLSA epsilon_greedy,2707.0
+gr21,2,QLSA epsilon_greedy,2707.0
+bayg29,8,QLSA softmax,1759.0
+gr21,5,QLSA epsilon_greedy,3015.0
+bayg29,5,QLSA softmax,1662.0
+bayg29,2,QLSA softmax,1745.0
+bayg29,4,QLSA softmax,1649.0
+bayg29,6,QLSA softmax,1733.0
+bayg29,3,QLSA softmax,1680.0
+bayg29,7,QLSA softmax,1622.0
+bayg29,1,QLSA softmax,1695.0
+gr24,3,QLSA epsilon_greedy,1343.0
+gr24,8,QLSA epsilon_greedy,1302.0
+gr24,1,QLSA epsilon_greedy,1272.0
+gr24,7,QLSA epsilon_greedy,1322.0
+dantzig42,3,SA,750.0
+gr24,4,QLSA epsilon_greedy,1503.0
+gr24,2,QLSA epsilon_greedy,1455.0
+dantzig42,5,SA,740.0
+gr24,6,QLSA epsilon_greedy,1383.0
+dantzig42,6,SA,841.0
+gr24,5,QLSA epsilon_greedy,1370.0
+dantzig42,4,SA,781.0
+dantzig42,8,SA,753.0
+dantzig42,2,SA,745.0
+dantzig42,1,SA,749.0
+bays29,8,QLSA softmax,2074.0
+bays29,2,QLSA softmax,2245.0
+bays29,5,QLSA softmax,2132.0
+bays29,4,QLSA softmax,2221.0
+dantzig42,7,SA,797.0
+bays29,3,QLSA softmax,2036.0
+bays29,6,QLSA softmax,2116.0
+bays29,7,QLSA softmax,2068.0
+bays29,1,QLSA softmax,2275.0
+hk48,2,QLSA softmax,12897.0
+hk48,8,QLSA softmax,13434.0
+hk48,1,QLSA softmax,12495.0
+hk48,4,QLSA softmax,12032.0
+hk48,3,QLSA softmax,12210.0
+hk48,5,QLSA softmax,11712.0
+hk48,7,QLSA softmax,11461.0
+hk48,6,QLSA softmax,12336.0
+gr48,8,QLSA epsilon_greedy,5557.0
+gr48,1,QLSA epsilon_greedy,5481.0
+gr48,3,QLSA epsilon_greedy,5329.0
+gr48,6,QLSA epsilon_greedy,5611.0
+gr48,4,QLSA epsilon_greedy,5159.0
+gr48,7,QLSA epsilon_greedy,5151.0
+gr48,2,QLSA epsilon_greedy,5096.0
+gr48,5,QLSA epsilon_greedy,5137.0
+eil51,3,SA,480.0
+eil51,5,SA,507.0
+eil51,6,SA,513.0
+eil51,4,SA,479.0
+eil51,8,SA,480.0
+eil51,1,SA,474.0
+eil51,2,SA,467.0
+eil51,7,SA,523.0
+berlin52,2,QLSA softmax,7596.0
+berlin52,8,QLSA softmax,8129.0
+berlin52,4,QLSA softmax,7869.0
+berlin52,7,QLSA softmax,8098.0
+berlin52,3,QLSA softmax,8141.0
+berlin52,1,QLSA softmax,7900.0
+berlin52,5,QLSA softmax,8019.0
+berlin52,6,QLSA softmax,7968.0
+burma14,4,QLSA softmax,3323.0
+burma14,2,QLSA softmax,3551.0
+burma14,7,QLSA softmax,3371.0
+burma14,3,QLSA softmax,3390.0
+burma14,8,QLSA softmax,3323.0
+burma14,1,QLSA softmax,3323.0
+burma14,5,QLSA softmax,3466.0
+burma14,6,QLSA softmax,3323.0
+hk48,8,QLSA epsilon_greedy,12555.0
+hk48,2,QLSA epsilon_greedy,12262.0
+hk48,7,QLSA epsilon_greedy,12307.0
+hk48,1,QLSA epsilon_greedy,11598.0
+hk48,3,QLSA epsilon_greedy,12033.0
+hk48,6,QLSA epsilon_greedy,11966.0
+hk48,4,QLSA epsilon_greedy,12489.0
+hk48,5,QLSA epsilon_greedy,11565.0
+dantzig42,4,QLSA softmax,774.0
+dantzig42,7,QLSA softmax,758.0
+dantzig42,3,QLSA softmax,754.0
+dantzig42,8,QLSA softmax,821.0
+dantzig42,2,QLSA softmax,744.0
+dantzig42,1,QLSA softmax,828.0
+dantzig42,5,QLSA softmax,773.0
+dantzig42,6,QLSA softmax,747.0
+eil51,4,QLSA softmax,489.0
+eil51,8,QLSA softmax,503.0
+eil51,7,QLSA softmax,558.0
+eil51,3,QLSA softmax,477.0
+eil51,2,QLSA softmax,495.0
+eil51,1,QLSA softmax,453.0
+eil51,5,QLSA softmax,452.0
+eil51,6,QLSA softmax,461.0
+eil76,8,SA,591.0
+eil76,1,SA,661.0
+eil76,5,SA,608.0
+eil76,4,SA,595.0
+eil76,6,SA,590.0
+eil76,3,SA,666.0
+eil76,2,SA,637.0
+eil76,7,SA,634.0
+fri26,8,SA,1019.0
+fri26,1,SA,1027.0
+fri26,5,SA,1104.0
+fri26,6,SA,944.0
+fri26,4,SA,1042.0
+fri26,3,SA,956.0
+fri26,2,SA,1024.0
+gr17,8,SA,2134.0
+fri26,7,SA,1021.0
+gr17,1,SA,2151.0
+gr17,5,SA,2085.0
+gr17,4,SA,2085.0
+gr17,6,SA,2243.0
+gr17,3,SA,2243.0
+gr17,2,SA,2157.0
+gr17,7,SA,2085.0
+gr21,8,SA,2941.0
+gr21,1,SA,2707.0
+gr21,5,SA,2707.0
+gr21,6,SA,3057.0
+gr21,4,SA,3051.0
+gr21,3,SA,3073.0
+gr21,2,SA,3566.0
+gr21,7,SA,3102.0
+gr24,8,SA,1368.0
+gr24,1,SA,1331.0
+gr24,5,SA,1366.0
+gr24,6,SA,1492.0
+gr24,4,SA,1298.0
+gr24,3,SA,1318.0
+gr24,2,SA,1384.0
+gr24,7,SA,1272.0
+kroA100,2,QLSA softmax,22402.0
+kroA100,4,QLSA softmax,23246.0
+pr107,5,SA,46650.0
+kroA100,1,QLSA softmax,25299.0
+pr107,2,SA,46324.0
+pr107,8,SA,49155.0
+pr107,3,SA,47118.0
+kroA100,5,QLSA softmax,23388.0
+pr107,1,SA,50099.0
+kroA100,8,QLSA softmax,22396.0
+pr107,6,SA,46597.0
+gr48,8,SA,5652.0
+kroA100,6,QLSA softmax,24165.0
+gr48,1,SA,5651.0
+pr107,4,SA,46937.0
+pr107,7,SA,50193.0
+gr48,5,SA,5083.0
+gr48,4,SA,5518.0
+gr48,6,SA,5180.0
+gr48,2,SA,5489.0
+gr48,3,SA,5160.0
+gr48,7,SA,5088.0
+kroA100,3,QLSA softmax,25290.0
+swiss42,5,SA,1338.0
+swiss42,2,SA,1323.0
+swiss42,8,SA,1354.0
+swiss42,3,SA,1353.0
+swiss42,1,SA,1372.0
+swiss42,6,SA,1414.0
+ulysses16,5,SA,6895.0
+swiss42,7,SA,1312.0
+kroA100,7,QLSA softmax,22216.0
+swiss42,4,SA,1368.0
+ulysses16,8,SA,7233.0
+ulysses16,2,SA,6859.0
+ulysses16,1,SA,6889.0
+ulysses16,3,SA,7169.0
+ulysses16,6,SA,6909.0
+ulysses16,7,SA,7436.0
+ulysses16,4,SA,7419.0
+eil76,4,QLSA softmax,610.0
+eil76,3,QLSA softmax,620.0
+eil76,7,QLSA softmax,593.0
+eil76,8,QLSA softmax,609.0
+eil76,2,QLSA softmax,604.0
+hk48,1,SA,12383.0
+eil76,1,QLSA softmax,698.0
+ulysses22,5,SA,7146.0
+eil76,5,QLSA softmax,609.0
+hk48,8,SA,12671.0
+ulysses22,8,SA,7182.0
+ulysses22,2,SA,7701.0
+eil76,6,QLSA softmax,638.0
+hk48,7,SA,12197.0
+ulysses22,3,SA,7101.0
+hk48,2,SA,11508.0
+ulysses22,6,SA,7291.0
+hk48,6,SA,12805.0
+hk48,5,SA,13611.0
+ulysses22,1,SA,7289.0
+hk48,4,SA,12112.0
+fri26,4,QLSA softmax,985.0
+kroA100,1,QLSA epsilon_greedy,22814.0
+ulysses22,4,SA,7430.0
+fri26,3,QLSA softmax,1041.0
+ulysses22,7,SA,7091.0
+hk48,3,SA,11965.0
+fri26,8,QLSA softmax,955.0
+fri26,7,QLSA softmax,995.0
+fri26,2,QLSA softmax,1025.0
+fri26,1,QLSA softmax,974.0
+gr17,4,QLSA softmax,2095.0
+fri26,5,QLSA softmax,962.0
+kroA100,6,QLSA epsilon_greedy,21569.0
+kroA100,8,QLSA epsilon_greedy,22164.0
+kroA100,2,QLSA epsilon_greedy,22035.0
+kroA100,4,QLSA epsilon_greedy,24126.0
+gr17,3,QLSA softmax,2090.0
+fri26,6,QLSA softmax,962.0
+gr17,8,QLSA softmax,2152.0
+gr17,7,QLSA softmax,2090.0
+gr17,2,QLSA softmax,2085.0
+bayg29,5,QLSA epsilon_greedy,1779.0
+bayg29,8,QLSA epsilon_greedy,1736.0
+gr17,1,QLSA softmax,2294.0
+kroA100,5,QLSA epsilon_greedy,22897.0
+bayg29,2,QLSA epsilon_greedy,1628.0
+kroA100,3,QLSA epsilon_greedy,22513.0
+gr17,5,QLSA softmax,2200.0
+kroA100,7,QLSA epsilon_greedy,24742.0
+bayg29,3,QLSA epsilon_greedy,1641.0
+gr21,4,QLSA softmax,2945.0
+gr17,6,QLSA softmax,2151.0
+bayg29,1,QLSA epsilon_greedy,1699.0
+bayg29,6,QLSA epsilon_greedy,1680.0
+gr21,3,QLSA softmax,3018.0
+bayg29,4,QLSA epsilon_greedy,1656.0
+gr21,8,QLSA softmax,2845.0
+bayg29,7,QLSA epsilon_greedy,1635.0
+gr21,7,QLSA softmax,2758.0
+gr21,2,QLSA softmax,2754.0
+gr21,1,QLSA softmax,2754.0
+gr21,5,QLSA softmax,3158.0
+bays29,8,QLSA epsilon_greedy,2213.0
+bays29,2,QLSA epsilon_greedy,2102.0
+bays29,5,QLSA epsilon_greedy,2112.0
+gr21,6,QLSA softmax,3141.0
+gr24,4,QLSA softmax,1289.0
+bays29,3,QLSA epsilon_greedy,2061.0
+gr24,3,QLSA softmax,1462.0
+bays29,6,QLSA epsilon_greedy,2075.0
+gr24,8,QLSA softmax,1307.0
+gr24,7,QLSA softmax,1283.0
+bays29,4,QLSA epsilon_greedy,2130.0
+bays29,1,QLSA epsilon_greedy,2065.0
+bays29,7,QLSA epsilon_greedy,2105.0
+gr24,2,QLSA softmax,1419.0
+gr24,1,QLSA softmax,1417.0
+gr24,5,QLSA softmax,1337.0
+gr24,6,QLSA softmax,1360.0
+gr48,4,QLSA softmax,5083.0
+gr48,3,QLSA softmax,5236.0
+gr48,8,QLSA softmax,5473.0
+gr48,7,QLSA softmax,5394.0
+gr48,2,QLSA softmax,5549.0
+gr48,1,QLSA softmax,5454.0
+gr48,5,QLSA softmax,5675.0
+gr17,9,QLSA epsilon_greedy,2184.0
+gr48,6,QLSA softmax,5504.0
+bayg29,9,QLSA softmax,1661.0
+berlin52,8,QLSA epsilon_greedy,8172.0
+berlin52,2,QLSA epsilon_greedy,8195.0
+berlin52,5,QLSA epsilon_greedy,7728.0
+gr21,9,QLSA epsilon_greedy,2789.0
+bayg29,10,QLSA softmax,1710.0
+berlin52,6,QLSA epsilon_greedy,7860.0
+berlin52,1,QLSA epsilon_greedy,8118.0
+berlin52,3,QLSA epsilon_greedy,8290.0
+berlin52,7,QLSA epsilon_greedy,8255.0
+berlin52,4,QLSA epsilon_greedy,7543.0
+burma14,8,QLSA epsilon_greedy,3580.0
+burma14,2,QLSA epsilon_greedy,3323.0
+burma14,5,QLSA epsilon_greedy,3336.0
+bays29,9,QLSA softmax,2081.0
+dantzig42,9,SA,834.0
+gr24,9,QLSA epsilon_greedy,1344.0
+burma14,6,QLSA epsilon_greedy,3323.0
+burma14,1,QLSA epsilon_greedy,3346.0
+burma14,7,QLSA epsilon_greedy,3448.0
+burma14,4,QLSA epsilon_greedy,3336.0
+burma14,3,QLSA epsilon_greedy,3551.0
+bays29,10,QLSA softmax,2089.0
+dantzig42,10,SA,767.0
+hk48,9,QLSA softmax,13179.0
+dantzig42,8,QLSA epsilon_greedy,821.0
+hk48,10,QLSA softmax,11781.0
+dantzig42,2,QLSA epsilon_greedy,753.0
+dantzig42,5,QLSA epsilon_greedy,772.0
+dantzig42,1,QLSA epsilon_greedy,747.0
+dantzig42,6,QLSA epsilon_greedy,750.0
+dantzig42,7,QLSA epsilon_greedy,747.0
+dantzig42,3,QLSA epsilon_greedy,742.0
+dantzig42,4,QLSA epsilon_greedy,830.0
+gr48,9,QLSA epsilon_greedy,5115.0
+eil51,9,SA,444.0
+berlin52,9,QLSA softmax,7863.0
+kroB100,1,QLSA softmax,23831.0
+berlin52,10,QLSA softmax,8112.0
+kroB100,2,QLSA softmax,22866.0
+eil51,10,SA,482.0
+burma14,9,QLSA softmax,3323.0
+kroB100,4,QLSA softmax,23627.0
+burma14,10,QLSA softmax,3466.0
+kroB100,8,QLSA softmax,23875.0
+kroB100,6,QLSA softmax,23633.0
+eil51,8,QLSA epsilon_greedy,501.0
+eil51,2,QLSA epsilon_greedy,475.0
+kroB100,5,QLSA softmax,25028.0
+eil51,5,QLSA epsilon_greedy,455.0
+hk48,9,QLSA epsilon_greedy,11890.0
+eil51,7,QLSA epsilon_greedy,487.0
+eil51,1,QLSA epsilon_greedy,452.0
+eil51,3,QLSA epsilon_greedy,445.0
+eil51,6,QLSA epsilon_greedy,473.0
+kroB100,3,QLSA softmax,23437.0
+eil51,4,QLSA epsilon_greedy,451.0
+dantzig42,9,QLSA softmax,817.0
+kroB100,7,QLSA softmax,24292.0
+dantzig42,10,QLSA softmax,738.0
+kroA100,4,SA,22155.0
+kroA100,5,SA,24170.0
+kroA100,1,SA,23999.0
+kroB100,1,QLSA epsilon_greedy,23101.0
+kroA100,8,SA,22671.0
+kroA100,2,SA,23240.0
+kroA100,7,SA,23529.0
+kroB100,6,QLSA epsilon_greedy,24526.0
+kroA100,6,SA,21823.0
+kroB100,2,QLSA epsilon_greedy,24433.0
+kroA100,3,SA,22711.0
+kroB100,8,QLSA epsilon_greedy,24041.0
+kroB100,3,QLSA epsilon_greedy,24216.0
+kroB100,4,QLSA epsilon_greedy,23718.0
+kroB100,5,QLSA epsilon_greedy,23872.0
+kroB100,7,QLSA epsilon_greedy,23111.0
+eil51,9,QLSA softmax,478.0
+eil51,10,QLSA softmax,455.0
+eil76,9,SA,569.0
+eil76,10,SA,698.0
+fri26,9,SA,1055.0
+gr17,9,SA,2153.0
+fri26,10,SA,999.0
+eil76,2,QLSA epsilon_greedy,616.0
+gr21,9,SA,3090.0
+gr17,10,SA,2307.0
+eil76,8,QLSA epsilon_greedy,738.0
+eil76,5,QLSA epsilon_greedy,653.0
+eil76,3,QLSA epsilon_greedy,604.0
+eil76,7,QLSA epsilon_greedy,624.0
+eil76,1,QLSA epsilon_greedy,611.0
+eil76,6,QLSA epsilon_greedy,700.0
+gr21,10,SA,3103.0
+gr24,9,SA,1272.0
+fri26,2,QLSA epsilon_greedy,973.0
+fri26,8,QLSA epsilon_greedy,955.0
+fri26,5,QLSA epsilon_greedy,1096.0
+gr24,10,SA,1318.0
+fri26,3,QLSA epsilon_greedy,1015.0
+gr17,10,QLSA epsilon_greedy,2193.0
+fri26,7,QLSA epsilon_greedy,1032.0
+fri26,1,QLSA epsilon_greedy,1030.0
+fri26,6,QLSA epsilon_greedy,1039.0
+gr17,11,QLSA epsilon_greedy,2090.0
+gr21,10,QLSA epsilon_greedy,2707.0
+bayg29,11,QLSA softmax,1762.0
+eil76,4,QLSA epsilon_greedy,579.0
+gr21,11,QLSA epsilon_greedy,2930.0
+gr24,10,QLSA epsilon_greedy,1318.0
+kroA100,9,QLSA softmax,24443.0
+bays29,11,QLSA softmax,2140.0
+pr107,9,SA,45074.0
+gr24,11,QLSA epsilon_greedy,1358.0
+dantzig42,11,SA,718.0
+gr48,9,SA,5453.0
+kroA100,10,QLSA softmax,21688.0
+fri26,4,QLSA epsilon_greedy,978.0
+gr48,10,SA,5380.0
+hk48,11,QLSA softmax,12512.0
+bayg29,12,QLSA softmax,1644.0
+swiss42,9,SA,1431.0
+kroC100,1,QLSA softmax,22822.0
+eil76,9,QLSA softmax,607.0
+kroC100,2,QLSA softmax,22692.0
+gr48,10,QLSA epsilon_greedy,5336.0
+ulysses16,9,SA,6859.0
+eil76,10,QLSA softmax,586.0
+bays29,12,QLSA softmax,2090.0
+kroC100,4,QLSA softmax,22463.0
+gr48,11,QLSA epsilon_greedy,5432.0
+kroC100,6,QLSA softmax,21849.0
+fri26,9,QLSA softmax,979.0
+hk48,9,SA,12659.0
+kroC100,8,QLSA softmax,22974.0
+fri26,10,QLSA softmax,1002.0
+ulysses22,9,SA,7198.0
+kroC100,5,QLSA softmax,24276.0
+gr17,9,QLSA softmax,2275.0
+hk48,10,SA,11623.0
+gr17,10,QLSA softmax,2085.0
+eil51,11,SA,463.0
+kroA100,9,QLSA epsilon_greedy,23225.0
+gr21,9,QLSA softmax,3298.0
+berlin52,11,QLSA softmax,8271.0
+gr21,10,QLSA softmax,2707.0
+bayg29,9,QLSA epsilon_greedy,1744.0
+kroC100,3,QLSA softmax,23012.0
+burma14,11,QLSA softmax,3479.0
+gr24,9,QLSA softmax,1375.0
+gr24,10,QLSA softmax,1352.0
+hk48,10,QLSA epsilon_greedy,11906.0
+kroC100,7,QLSA softmax,24000.0
+bays29,9,QLSA epsilon_greedy,2269.0
+kroB100,1,SA,22504.0
+kroB100,2,SA,24834.0
+kroB100,5,SA,25626.0
+kroB100,8,SA,24073.0
+hk48,11,QLSA epsilon_greedy,12157.0
+kroB100,4,SA,22534.0
+kroC100,1,QLSA epsilon_greedy,22495.0
+kroC100,6,QLSA epsilon_greedy,22383.0
+kroC100,2,QLSA epsilon_greedy,23212.0
+kroB100,7,SA,24463.0
+kroB100,3,SA,23895.0
+kroC100,8,QLSA epsilon_greedy,22821.0
+kroB100,6,SA,23369.0
+kroC100,5,QLSA epsilon_greedy,24589.0
+dantzig42,11,QLSA softmax,833.0
+kroC100,3,QLSA epsilon_greedy,22489.0
+kroC100,4,QLSA epsilon_greedy,23265.0
+kroC100,7,QLSA epsilon_greedy,22234.0
+berlin52,12,QLSA softmax,7542.0
+gr48,9,QLSA softmax,5310.0
+burma14,12,QLSA softmax,3579.0
+gr48,10,QLSA softmax,5411.0
+berlin52,9,QLSA epsilon_greedy,7803.0
+dantzig42,12,QLSA softmax,715.0
+burma14,9,QLSA epsilon_greedy,3323.0
+dantzig42,12,SA,855.0
+hk48,12,QLSA softmax,11709.0
+eil51,11,QLSA softmax,440.0
+dantzig42,9,QLSA epsilon_greedy,772.0
+eil76,11,SA,637.0
+fri26,11,SA,1076.0
+gr17,11,SA,2131.0
+gr21,11,SA,3015.0
+eil51,12,QLSA softmax,512.0
+eil51,12,SA,466.0
+gr24,11,SA,1464.0
+kroB100,9,QLSA softmax,23541.0
+kroB100,10,QLSA softmax,25464.0
+eil51,9,QLSA epsilon_greedy,481.0
+pr107,10,SA,47653.0
+pr107,11,SA,48958.0
+kroA100,11,QLSA softmax,23941.0
+gr48,11,SA,5194.0
+swiss42,10,SA,1404.0
+kroA100,9,SA,21876.0
+ulysses16,10,SA,6998.0
+swiss42,11,SA,1443.0
+ulysses16,11,SA,7076.0
+kroB100,9,QLSA epsilon_greedy,23453.0
+ulysses22,10,SA,7085.0
+eil76,11,QLSA softmax,631.0
+kroA100,10,SA,23877.0
+ulysses22,11,SA,7188.0
+hk48,11,SA,12587.0
+kroC100,1,SA,21448.0
+fri26,11,QLSA softmax,985.0
+bayg29,10,QLSA epsilon_greedy,1658.0
+kroC100,5,SA,24780.0
+kroC100,4,SA,22748.0
+kroC100,8,SA,21617.0
+gr17,11,QLSA softmax,2198.0
+kroC100,2,SA,23074.0
+kroA100,11,QLSA epsilon_greedy,22948.0
+gr17,12,QLSA epsilon_greedy,2178.0
+kroA100,10,QLSA epsilon_greedy,22159.0
+pr107,2,QLSA softmax,50166.0
+bayg29,11,QLSA epsilon_greedy,1726.0
+pr107,1,QLSA softmax,46597.0
+bays29,10,QLSA epsilon_greedy,2200.0
+gr21,11,QLSA softmax,3003.0
+pr107,4,QLSA softmax,45078.0
+kroC100,7,SA,21013.0
+kroC100,3,SA,22846.0
+kroC100,6,SA,24395.0
+gr21,12,QLSA epsilon_greedy,3182.0
+bayg29,13,QLSA softmax,1665.0
+pr107,6,QLSA softmax,46262.0
+bays29,11,QLSA epsilon_greedy,2206.0
+gr17,13,QLSA epsilon_greedy,2085.0
+pr107,5,QLSA softmax,47354.0
+gr24,11,QLSA softmax,1290.0
+pr107,8,QLSA softmax,50075.0
+gr24,12,QLSA epsilon_greedy,1309.0
+eil76,12,QLSA softmax,637.0
+bays29,13,QLSA softmax,2152.0
+gr21,13,QLSA epsilon_greedy,2707.0
+bayg29,14,QLSA softmax,1703.0
+swiss42,2,QLSA softmax,1325.0
+dantzig42,13,SA,814.0
+swiss42,1,QLSA softmax,1426.0
+swiss42,4,QLSA softmax,1335.0
+fri26,12,QLSA softmax,1039.0
+gr24,13,QLSA epsilon_greedy,1316.0
+hk48,13,QLSA softmax,12661.0
+ulysses16,2,QLSA softmax,6972.0
+swiss42,6,QLSA softmax,1433.0
+bays29,14,QLSA softmax,2273.0
+gr17,12,QLSA softmax,2090.0
+ulysses16,1,QLSA softmax,6941.0
+pr107,1,QLSA epsilon_greedy,44438.0
+swiss42,5,QLSA softmax,1338.0
+ulysses16,4,QLSA softmax,6870.0
+pr107,3,QLSA softmax,45592.0
+swiss42,8,QLSA softmax,1462.0
+eil76,12,SA,586.0
+ulysses16,6,QLSA softmax,6909.0
+gr21,12,QLSA softmax,2968.0
+eil76,9,QLSA epsilon_greedy,702.0
+pr107,7,QLSA softmax,48098.0
+pr107,2,QLSA epsilon_greedy,49923.0
+ulysses22,2,QLSA softmax,7047.0
+ulysses16,5,QLSA softmax,6889.0
+pr107,6,QLSA epsilon_greedy,49792.0
+ulysses16,8,QLSA softmax,6859.0
+fri26,12,SA,1029.0
+ulysses22,1,QLSA softmax,7176.0
+gr48,12,QLSA epsilon_greedy,5412.0
+gr48,11,QLSA softmax,5548.0
+gr24,12,QLSA softmax,1485.0
+ulysses22,4,QLSA softmax,7092.0
+gr17,12,SA,2085.0
+fri26,9,QLSA epsilon_greedy,955.0
+ulysses22,6,QLSA softmax,7089.0
+pr107,5,QLSA epsilon_greedy,44702.0
+berlin52,10,QLSA epsilon_greedy,8583.0
+swiss42,1,QLSA epsilon_greedy,1359.0
+pr107,8,QLSA epsilon_greedy,48103.0
+bayg29,2,SA,1790.0
+pr107,3,QLSA epsilon_greedy,50205.0
+swiss42,3,QLSA softmax,1315.0
+pr107,7,QLSA epsilon_greedy,48765.0
+gr21,12,SA,3182.0
+ulysses22,5,QLSA softmax,7315.0
+pr107,4,QLSA epsilon_greedy,45422.0
+ulysses22,8,QLSA softmax,7271.0
+burma14,10,QLSA epsilon_greedy,3446.0
+bayg29,1,SA,1610.0
+berlin52,11,QLSA epsilon_greedy,7865.0
+gr48,13,QLSA epsilon_greedy,5540.0
+ulysses16,1,QLSA epsilon_greedy,6912.0
+bayg29,4,SA,1788.0
+swiss42,7,QLSA softmax,1361.0
+kroA100,12,QLSA softmax,21913.0
+bayg29,6,SA,1647.0
+swiss42,2,QLSA epsilon_greedy,1407.0
+swiss42,6,QLSA epsilon_greedy,1395.0
+gr24,12,SA,1484.0
+bays29,2,SA,2197.0
+ulysses16,3,QLSA softmax,6859.0
+eil51,13,SA,518.0
+burma14,11,QLSA epsilon_greedy,3323.0
+berlin52,13,QLSA softmax,7870.0
+bays29,1,SA,2131.0
+bayg29,5,SA,1633.0
+bayg29,8,SA,1700.0
+ulysses16,7,QLSA softmax,6930.0
+ulysses16,2,QLSA epsilon_greedy,6870.0
+bays29,4,SA,2080.0
+dantzig42,14,SA,728.0
+swiss42,5,QLSA epsilon_greedy,1330.0
+ulysses16,6,QLSA epsilon_greedy,6870.0
+bays29,6,SA,2026.0
+ulysses22,1,QLSA epsilon_greedy,7188.0
+burma14,13,QLSA softmax,3371.0
+swiss42,8,QLSA epsilon_greedy,1440.0
+swiss42,3,QLSA epsilon_greedy,1423.0
+swiss42,7,QLSA epsilon_greedy,1273.0
+swiss42,4,QLSA epsilon_greedy,1316.0
+ulysses22,3,QLSA softmax,7013.0
+bays29,5,SA,2108.0
+ulysses16,5,QLSA epsilon_greedy,6930.0
+berlin52,14,QLSA softmax,7856.0
+bays29,8,SA,2095.0
+hk48,12,QLSA epsilon_greedy,11802.0
+gr48,12,QLSA softmax,5377.0
+dantzig42,10,QLSA epsilon_greedy,764.0
+ulysses16,3,QLSA epsilon_greedy,6859.0
+ulysses22,2,QLSA epsilon_greedy,7013.0
+ulysses16,8,QLSA epsilon_greedy,6912.0
+ulysses16,7,QLSA epsilon_greedy,6900.0
+ulysses22,7,QLSA softmax,7195.0
+ulysses22,6,QLSA epsilon_greedy,7089.0
+ulysses16,4,QLSA epsilon_greedy,6976.0
+gr17,14,QLSA epsilon_greedy,2123.0
+burma14,14,QLSA softmax,3669.0
+dantzig42,11,QLSA epsilon_greedy,732.0
+bayg29,3,SA,1725.0
+hk48,14,QLSA softmax,12145.0
+ulysses22,5,QLSA epsilon_greedy,7157.0
+gr21,14,QLSA epsilon_greedy,3033.0
+gr48,12,SA,5152.0
+hk48,13,QLSA epsilon_greedy,11919.0
+bayg29,7,SA,1871.0
+ulysses22,7,QLSA epsilon_greedy,7733.0
+ulysses22,8,QLSA epsilon_greedy,7189.0
+ulysses22,3,QLSA epsilon_greedy,7114.0
+bayg29,15,QLSA softmax,1705.0
+dantzig42,13,QLSA softmax,755.0
+ulysses22,4,QLSA epsilon_greedy,7013.0
+bays29,3,SA,2139.0
+gr24,14,QLSA epsilon_greedy,1362.0
+gr17,15,QLSA epsilon_greedy,2090.0
+kroC100,9,QLSA softmax,24965.0
+bays29,7,SA,2224.0
+bays29,15,QLSA softmax,2133.0
+gr21,15,QLSA epsilon_greedy,2907.0
+dantzig42,14,QLSA softmax,740.0
+berlin52,2,SA,8444.0
+bayg29,16,QLSA softmax,1739.0
+kroC100,10,QLSA softmax,23776.0
+berlin52,1,SA,7900.0
+dantzig42,15,SA,749.0
+eil51,14,SA,474.0
+burma14,2,SA,3346.0
+berlin52,4,SA,7786.0
+gr24,15,QLSA epsilon_greedy,1272.0
+berlin52,6,SA,8267.0
+hk48,15,QLSA softmax,12222.0
+burma14,1,SA,3690.0
+bays29,16,QLSA softmax,2190.0
+burma14,4,SA,3770.0
+berlin52,5,SA,7831.0
+burma14,6,SA,3607.0
+eil51,10,QLSA epsilon_greedy,470.0
+berlin52,8,SA,8333.0
+hk48,12,SA,12088.0
+kroB100,11,QLSA softmax,23403.0
+gr17,16,QLSA epsilon_greedy,2103.0
+burma14,5,SA,3585.0
+burma14,8,SA,3323.0
+gr48,14,QLSA epsilon_greedy,5120.0
+eil51,11,QLSA epsilon_greedy,462.0
+gr21,16,QLSA epsilon_greedy,2933.0
+hk48,16,QLSA softmax,13164.0
+bayg29,17,QLSA softmax,1714.0
+dantzig42,16,SA,740.0
+kroB100,9,SA,24382.0
+eil51,13,QLSA softmax,552.0
+gr24,16,QLSA epsilon_greedy,1391.0
+berlin52,3,SA,7998.0
+bays29,17,QLSA softmax,2145.0
+gr48,15,QLSA epsilon_greedy,5121.0
+berlin52,7,SA,7849.0
+kroC100,9,QLSA epsilon_greedy,22756.0
+burma14,3,SA,3545.0
+kroB100,10,SA,24671.0
+dantzig42,17,SA,770.0
+eil51,14,QLSA softmax,487.0
+berlin52,15,QLSA softmax,7869.0
+burma14,7,SA,3607.0
+eil51,15,SA,472.0
+eil76,13,SA,680.0
+burma14,15,QLSA softmax,3403.0
+gr17,17,QLSA epsilon_greedy,2090.0
+hk48,17,QLSA softmax,11914.0
+fri26,13,SA,1087.0
+hk48,14,QLSA epsilon_greedy,11690.0
+kroA100,11,SA,24101.0
+berlin52,16,QLSA softmax,7648.0
+gr21,17,QLSA epsilon_greedy,2803.0
+kroB100,11,QLSA epsilon_greedy,23325.0
+gr17,13,SA,2281.0
+gr48,16,QLSA epsilon_greedy,5419.0
+burma14,16,QLSA softmax,3336.0
+kroB100,10,QLSA epsilon_greedy,22816.0
+gr24,17,QLSA epsilon_greedy,1272.0
+gr21,13,SA,2968.0
+eil51,16,SA,453.0
+hk48,15,QLSA epsilon_greedy,13262.0
+dantzig42,15,QLSA softmax,781.0
+gr24,13,SA,1343.0
+berlin52,17,QLSA softmax,7565.0
+eil51,17,SA,496.0
+dantzig42,16,QLSA softmax,864.0
+burma14,17,QLSA softmax,3531.0
+kroA100,13,QLSA softmax,23496.0
+eil76,14,SA,606.0
+pr107,12,SA,44684.0
+hk48,16,QLSA epsilon_greedy,11939.0
+gr48,17,QLSA epsilon_greedy,5399.0
+pr107,13,SA,52628.0
+fri26,14,SA,987.0
+gr48,13,SA,5643.0
+gr17,14,SA,2216.0
+eil76,10,QLSA epsilon_greedy,608.0
+dantzig42,17,QLSA softmax,780.0
+swiss42,12,SA,1493.0
+gr21,14,SA,2998.0
+eil51,15,QLSA softmax,455.0
+kroB100,12,QLSA softmax,24903.0
+fri26,10,QLSA epsilon_greedy,992.0
+eil76,11,QLSA epsilon_greedy,696.0
+ulysses16,12,SA,7562.0
+swiss42,13,SA,1488.0
+gr24,14,SA,1355.0
+eil76,13,QLSA softmax,616.0
+fri26,11,QLSA epsilon_greedy,990.0
+ulysses16,13,SA,7511.0
+eil51,16,QLSA softmax,484.0
+bayg29,18,QLSA softmax,1695.0
+hk48,17,QLSA epsilon_greedy,13185.0
+ulysses22,12,SA,7013.0
+kroA100,12,QLSA epsilon_greedy,22680.0
+fri26,13,QLSA softmax,1067.0
+eil76,14,QLSA softmax,637.0
+eil76,15,SA,600.0
+hk48,13,SA,11867.0
+gr17,13,QLSA softmax,2210.0
+ulysses22,13,SA,7013.0
+bays29,18,QLSA softmax,2026.0
+bayg29,12,QLSA epsilon_greedy,1697.0
+fri26,14,QLSA softmax,937.0
+gr21,13,QLSA softmax,3087.0
+fri26,15,SA,937.0
+gr17,15,SA,2085.0
+gr48,14,SA,5498.0
+gr17,14,QLSA softmax,2090.0
+bayg29,13,QLSA epsilon_greedy,1827.0
+bays29,12,QLSA epsilon_greedy,2341.0
+eil51,17,QLSA softmax,448.0
+gr24,13,QLSA softmax,1476.0
+gr21,15,SA,2897.0
+gr21,14,QLSA softmax,3008.0
+hk48,18,QLSA softmax,11949.0
+bays29,13,QLSA epsilon_greedy,2028.0
+eil76,16,SA,586.0
+kroA100,13,QLSA epsilon_greedy,24112.0
+gr24,15,SA,1289.0
+pr107,14,SA,50028.0
+gr24,14,QLSA softmax,1272.0
+kroA100,14,QLSA softmax,24466.0
+fri26,16,SA,940.0
+gr17,16,SA,2210.0
+eil76,17,SA,605.0
+gr21,16,SA,3443.0
+hk48,14,SA,12128.0
+kroC100,11,QLSA softmax,23278.0
+fri26,17,SA,987.0
+gr48,13,QLSA softmax,5466.0
+swiss42,14,SA,1426.0
+kroA100,15,QLSA softmax,22252.0
+berlin52,18,QLSA softmax,7841.0
+gr17,17,SA,2090.0
+gr24,16,SA,1272.0
+kroA100,12,SA,21853.0
+kroC100,9,SA,21895.0
+burma14,18,QLSA softmax,3371.0
+gr48,15,SA,5380.0
+ulysses16,14,SA,7562.0
+gr21,17,SA,2782.0
+pr107,15,SA,45532.0
+gr48,14,QLSA softmax,5308.0
+kroA100,16,QLSA softmax,23866.0
+berlin52,12,QLSA epsilon_greedy,7908.0
+gr24,17,SA,1449.0
+gr17,18,QLSA epsilon_greedy,2120.0
+ulysses22,14,SA,7304.0
+kroC100,10,SA,22414.0
+burma14,12,QLSA epsilon_greedy,3548.0
+dantzig42,18,SA,797.0
+pr107,9,QLSA softmax,49028.0
+berlin52,13,QLSA epsilon_greedy,7965.0
+gr21,18,QLSA epsilon_greedy,2707.0
+eil76,15,QLSA softmax,605.0
+pr107,16,SA,50041.0
+swiss42,15,SA,1386.0
+dantzig42,18,QLSA softmax,786.0
+pr107,10,QLSA softmax,46917.0
+burma14,13,QLSA epsilon_greedy,3323.0
+bayg29,14,QLSA epsilon_greedy,1851.0
+gr24,18,QLSA epsilon_greedy,1352.0
+gr48,16,SA,5095.0
+bayg29,19,QLSA softmax,1862.0
+fri26,15,QLSA softmax,1027.0
+ulysses16,15,SA,6878.0
+eil76,16,QLSA softmax,618.0
+kroB100,11,SA,23980.0
+gr17,15,QLSA softmax,2085.0
+hk48,15,SA,12490.0
+kroC100,11,QLSA epsilon_greedy,23068.0
+swiss42,9,QLSA softmax,1389.0
+bays29,14,QLSA epsilon_greedy,2055.0
+dantzig42,12,QLSA epsilon_greedy,841.0
+kroC100,10,QLSA epsilon_greedy,23644.0
+bays29,19,QLSA softmax,2137.0
+kroA100,14,QLSA epsilon_greedy,23734.0
+fri26,16,QLSA softmax,986.0
+gr21,15,QLSA softmax,2707.0
+gr48,17,SA,5260.0
+kroA100,17,QLSA softmax,21878.0
+ulysses22,15,SA,7019.0
+swiss42,16,SA,1382.0
+ulysses16,9,QLSA softmax,7496.0
+swiss42,10,QLSA softmax,1369.0
+gr17,16,QLSA softmax,2129.0
+dantzig42,13,QLSA epsilon_greedy,744.0
+gr24,15,QLSA softmax,1328.0
+ulysses16,16,SA,7229.0
+gr21,16,QLSA softmax,2935.0
+ulysses16,10,QLSA softmax,6963.0
+bayg29,15,QLSA epsilon_greedy,1684.0
+ulysses22,9,QLSA softmax,7468.0
+pr107,17,SA,44765.0
+eil76,17,QLSA softmax,636.0
+gr48,18,QLSA epsilon_greedy,5462.0
+eil51,18,SA,465.0
+kroA100,15,QLSA epsilon_greedy,23536.0
+gr24,16,QLSA softmax,1375.0
+hk48,16,SA,12045.0
+ulysses22,16,SA,7665.0
+pr107,9,QLSA epsilon_greedy,46561.0
+ulysses22,10,QLSA softmax,7092.0
+bays29,15,QLSA epsilon_greedy,2170.0
+fri26,17,QLSA softmax,971.0
+eil51,18,QLSA softmax,514.0
+bayg29,9,SA,1691.0
+gr17,17,QLSA softmax,2142.0
+kroB100,13,QLSA softmax,24560.0
+bayg29,16,QLSA epsilon_greedy,1703.0
+swiss42,17,SA,1367.0
+hk48,17,SA,13082.0
+kroA100,16,QLSA epsilon_greedy,22075.0
+bayg29,10,SA,1710.0
+bays29,9,SA,2080.0
+gr48,15,QLSA softmax,5074.0
+gr21,17,QLSA softmax,2788.0
+eil51,12,QLSA epsilon_greedy,478.0
+ulysses16,17,SA,6875.0
+berlin52,14,QLSA epsilon_greedy,7805.0
+berlin52,19,QLSA softmax,8245.0
+bays29,16,QLSA epsilon_greedy,2248.0
+swiss42,9,QLSA epsilon_greedy,1316.0
+bays29,10,SA,2127.0
+gr24,17,QLSA softmax,1320.0
+burma14,14,QLSA epsilon_greedy,3452.0
+hk48,18,QLSA epsilon_greedy,12011.0
+burma14,19,QLSA softmax,3323.0
+gr48,16,QLSA softmax,5546.0
+ulysses16,9,QLSA epsilon_greedy,6972.0
+ulysses22,17,SA,7188.0
+eil51,13,QLSA epsilon_greedy,498.0
+kroC100,12,QLSA softmax,24559.0
+ulysses22,9,QLSA epsilon_greedy,7013.0
+bayg29,17,QLSA epsilon_greedy,1704.0
+dantzig42,14,QLSA epsilon_greedy,779.0
+kroA100,17,QLSA epsilon_greedy,23560.0
+berlin52,15,QLSA epsilon_greedy,8056.0
+dantzig42,19,SA,734.0
+dantzig42,19,QLSA softmax,748.0
+hk48,19,QLSA softmax,11872.0
+kroB100,12,QLSA epsilon_greedy,23297.0
+bays29,17,QLSA epsilon_greedy,2243.0
+kroA100,13,SA,23749.0
+burma14,15,QLSA epsilon_greedy,3323.0
+gr48,17,QLSA softmax,5188.0
+berlin52,9,SA,8073.0
+gr17,19,QLSA epsilon_greedy,2123.0
+burma14,9,SA,3642.0
+berlin52,16,QLSA epsilon_greedy,8356.0
+gr21,19,QLSA epsilon_greedy,3063.0
+berlin52,10,SA,9036.0
+kroB100,13,QLSA epsilon_greedy,24333.0
+burma14,16,QLSA epsilon_greedy,3386.0
+burma14,10,SA,3417.0
+gr24,19,QLSA epsilon_greedy,1310.0
+bayg29,20,QLSA softmax,1695.0
+dantzig42,15,QLSA epsilon_greedy,826.0
+kroA100,18,QLSA softmax,23013.0
+kroB100,14,QLSA softmax,23827.0
+eil76,18,SA,583.0
+bays29,20,QLSA softmax,2164.0
+kroA100,14,SA,22737.0
+eil51,14,QLSA epsilon_greedy,453.0
+eil51,19,SA,444.0
+eil51,19,QLSA softmax,468.0
+dantzig42,16,QLSA epsilon_greedy,825.0
+fri26,18,SA,1006.0
+kroB100,12,SA,24891.0
+eil76,18,QLSA softmax,648.0
+kroB100,15,QLSA softmax,23669.0
+gr17,18,SA,2203.0
+berlin52,17,QLSA epsilon_greedy,8173.0
+gr21,18,SA,3246.0
+gr48,19,QLSA epsilon_greedy,5736.0
+burma14,17,QLSA epsilon_greedy,3336.0
+fri26,18,QLSA softmax,968.0
+eil76,12,QLSA epsilon_greedy,608.0
+hk48,20,QLSA softmax,11883.0
+kroB100,16,QLSA softmax,22634.0
+gr17,18,QLSA softmax,2085.0
+gr24,18,SA,1525.0
+fri26,12,QLSA epsilon_greedy,993.0
+gr21,18,QLSA softmax,2851.0
+eil51,15,QLSA epsilon_greedy,459.0
+eil76,13,QLSA epsilon_greedy,691.0
+dantzig42,17,QLSA epsilon_greedy,736.0
+gr24,18,QLSA softmax,1451.0
+kroC100,11,SA,23278.0
+berlin52,20,QLSA softmax,8652.0
+fri26,13,QLSA epsilon_greedy,967.0
+pr107,11,QLSA softmax,46828.0
+eil51,16,QLSA epsilon_greedy,517.0
+dantzig42,20,SA,809.0
+kroA100,15,SA,23123.0
+pr107,18,SA,49646.0
+hk48,19,QLSA epsilon_greedy,11788.0
+gr17,20,QLSA epsilon_greedy,2182.0
+kroB100,14,QLSA epsilon_greedy,25126.0
+gr48,18,SA,5498.0
+burma14,20,QLSA softmax,3346.0
+kroB100,17,QLSA softmax,22840.0
+gr21,20,QLSA epsilon_greedy,3195.0
+gr24,20,QLSA epsilon_greedy,1427.0
+swiss42,11,QLSA softmax,1410.0
+gr48,18,QLSA softmax,5284.0
+swiss42,18,SA,1342.0
+kroA100,16,SA,22789.0
+kroB100,15,QLSA epsilon_greedy,23875.0
+ulysses16,11,QLSA softmax,6935.0
+dantzig42,20,QLSA softmax,778.0
+ulysses16,18,SA,7506.0
+bayg29,21,QLSA softmax,1626.0
+eil51,17,QLSA epsilon_greedy,486.0
+kroC100,13,QLSA softmax,23930.0
+hk48,18,SA,12863.0
+ulysses22,11,QLSA softmax,7719.0
+kroB100,16,QLSA epsilon_greedy,23703.0
+ulysses22,18,SA,7167.0
+pr107,11,QLSA epsilon_greedy,45602.0
+bays29,21,QLSA softmax,2082.0
+eil76,19,SA,652.0
+eil51,20,SA,462.0
+pr107,10,QLSA epsilon_greedy,47771.0
+eil76,14,QLSA epsilon_greedy,668.0
+kroA100,17,SA,23154.0
+gr48,20,QLSA epsilon_greedy,5612.0
+eil76,19,QLSA softmax,621.0
+bayg29,11,SA,1762.0
+fri26,19,SA,1046.0
+bayg29,18,QLSA epsilon_greedy,1728.0
+fri26,14,QLSA epsilon_greedy,955.0
+gr17,19,SA,2224.0
+kroA100,18,QLSA epsilon_greedy,23279.0
+fri26,19,QLSA softmax,986.0
+swiss42,11,QLSA epsilon_greedy,1411.0
+bays29,11,SA,2133.0
+bays29,18,QLSA epsilon_greedy,2295.0
+gr21,19,SA,3009.0
+gr17,19,QLSA softmax,2085.0
+swiss42,10,QLSA epsilon_greedy,1505.0
+ulysses16,11,QLSA epsilon_greedy,7013.0
+gr21,19,QLSA softmax,2801.0
+gr24,19,SA,1499.0
+eil51,20,QLSA softmax,433.0
+ulysses16,10,QLSA epsilon_greedy,7026.0
+kroB100,17,QLSA epsilon_greedy,23149.0
+eil76,15,QLSA epsilon_greedy,592.0
+kroB100,13,SA,23290.0
+gr24,19,QLSA softmax,1375.0
+ulysses22,11,QLSA epsilon_greedy,7494.0
+hk48,20,QLSA epsilon_greedy,12777.0
+kroA100,19,QLSA softmax,22547.0
+fri26,15,QLSA epsilon_greedy,978.0
+ulysses22,10,QLSA epsilon_greedy,7013.0
+gr17,21,QLSA epsilon_greedy,2103.0
+berlin52,21,QLSA softmax,7871.0
+kroC100,12,QLSA epsilon_greedy,21635.0
+hk48,21,QLSA softmax,13215.0
+eil76,16,QLSA epsilon_greedy,600.0
+gr21,21,QLSA epsilon_greedy,2801.0
+burma14,21,QLSA softmax,3323.0
+gr48,19,SA,5448.0
+kroC100,13,QLSA epsilon_greedy,22190.0
+pr107,12,QLSA softmax,52244.0
+fri26,16,QLSA epsilon_greedy,989.0
+dantzig42,21,SA,847.0
+gr24,21,QLSA epsilon_greedy,1424.0
+kroB100,18,QLSA softmax,23644.0
+berlin52,11,SA,8080.0
+berlin52,18,QLSA epsilon_greedy,8129.0
+pr107,19,SA,47572.0
+burma14,11,SA,3484.0
+gr48,19,QLSA softmax,5138.0
+burma14,18,QLSA epsilon_greedy,3346.0
+bayg29,22,QLSA softmax,1676.0
+kroC100,14,QLSA softmax,21840.0
+kroB100,14,SA,25633.0
+dantzig42,21,QLSA softmax,780.0
+kroC100,12,SA,21140.0
+swiss42,12,QLSA softmax,1410.0
+bays29,22,QLSA softmax,2199.0
+kroC100,15,QLSA softmax,23071.0
+eil76,17,QLSA epsilon_greedy,587.0
+swiss42,19,SA,1410.0
+ulysses16,12,QLSA softmax,6994.0
+hk48,19,SA,13227.0
+dantzig42,22,SA,837.0
+gr48,21,QLSA epsilon_greedy,5199.0
+ulysses16,19,SA,6935.0
+dantzig42,18,QLSA epsilon_greedy,810.0
+eil76,20,SA,666.0
+fri26,17,QLSA epsilon_greedy,1045.0
+kroC100,16,QLSA softmax,21890.0
+kroA100,20,QLSA softmax,25208.0
+ulysses22,12,QLSA softmax,7405.0
+gr17,22,QLSA epsilon_greedy,2200.0
+eil51,21,SA,521.0
+hk48,22,QLSA softmax,12177.0
+fri26,20,SA,975.0
+ulysses22,19,SA,7269.0
+gr21,22,QLSA epsilon_greedy,3090.0
+gr17,20,SA,2090.0
+bayg29,12,SA,1828.0
+gr24,22,QLSA epsilon_greedy,1289.0
+gr21,20,SA,3058.0
+bayg29,19,QLSA epsilon_greedy,1763.0
+bays29,12,SA,2145.0
+eil51,21,QLSA softmax,461.0
+gr24,20,SA,1286.0
+eil76,20,QLSA softmax,720.0
+hk48,21,QLSA epsilon_greedy,13192.0
+bays29,19,QLSA epsilon_greedy,2312.0
+kroC100,14,QLSA epsilon_greedy,22097.0
+kroA100,19,QLSA epsilon_greedy,22400.0
+kroB100,15,SA,23203.0
+berlin52,22,QLSA softmax,7900.0
+fri26,20,QLSA softmax,953.0
+eil51,22,SA,469.0
+kroC100,17,QLSA softmax,24192.0
+burma14,22,QLSA softmax,3584.0
+eil51,18,QLSA epsilon_greedy,508.0
+gr17,20,QLSA softmax,2090.0
+gr21,20,QLSA softmax,2707.0
+gr48,22,QLSA epsilon_greedy,5276.0
+kroC100,15,QLSA epsilon_greedy,22747.0
+gr48,20,SA,5156.0
+gr24,20,QLSA softmax,1356.0
+kroB100,16,SA,22977.0
+pr107,20,SA,50225.0
+dantzig42,22,QLSA softmax,723.0
+berlin52,12,SA,7870.0
+kroA100,18,SA,23127.0
+kroB100,17,SA,24036.0
+kroC100,16,QLSA epsilon_greedy,21682.0
+burma14,12,SA,3323.0
+berlin52,19,QLSA epsilon_greedy,7845.0
+swiss42,20,SA,1416.0
+hk48,22,QLSA epsilon_greedy,12117.0
+burma14,19,QLSA epsilon_greedy,3455.0
+kroB100,18,QLSA epsilon_greedy,24925.0
+ulysses16,20,SA,6930.0
+bayg29,23,QLSA softmax,1747.0
+gr48,20,QLSA softmax,5370.0
+hk48,20,SA,12739.0
+eil76,21,SA,687.0
+bays29,23,QLSA softmax,2113.0
+ulysses22,20,SA,7660.0
+kroC100,17,QLSA epsilon_greedy,21421.0
+kroC100,13,SA,21535.0
+pr107,13,QLSA softmax,49857.0
+kroA100,20,QLSA epsilon_greedy,22278.0
+fri26,21,SA,1056.0
+dantzig42,19,QLSA epsilon_greedy,840.0
+eil51,22,QLSA softmax,457.0
+kroB100,19,QLSA softmax,24107.0
+gr17,21,SA,2142.0
+bayg29,20,QLSA epsilon_greedy,1625.0
+gr21,21,SA,2923.0
+eil76,21,QLSA softmax,609.0
+bays29,20,QLSA epsilon_greedy,2111.0
+hk48,23,QLSA softmax,11651.0
+gr24,21,SA,1396.0
+swiss42,13,QLSA softmax,1417.0
+dantzig42,23,SA,788.0
+kroA100,21,QLSA softmax,24326.0
+fri26,21,QLSA softmax,983.0
+eil76,22,SA,619.0
+ulysses16,13,QLSA softmax,6976.0
+gr17,21,QLSA softmax,2131.0
+eil76,18,QLSA epsilon_greedy,639.0
+kroC100,18,QLSA softmax,22299.0
+fri26,22,SA,1093.0
+gr21,21,QLSA softmax,3020.0
+berlin52,23,QLSA softmax,8658.0
+fri26,18,QLSA epsilon_greedy,1095.0
+ulysses22,13,QLSA softmax,7563.0
+gr17,22,SA,2149.0
+kroC100,14,SA,23152.0
+eil51,19,QLSA epsilon_greedy,469.0
+burma14,23,QLSA softmax,3346.0
+gr24,21,QLSA softmax,1348.0
+gr17,23,QLSA epsilon_greedy,2198.0
+gr48,21,SA,5102.0
+gr21,22,SA,3353.0
+pr107,12,QLSA epsilon_greedy,47453.0
+bayg29,13,SA,1745.0
+gr21,23,QLSA epsilon_greedy,2707.0
+kroA100,19,SA,23480.0
+gr24,22,SA,1328.0
+bays29,13,SA,2197.0
+eil51,23,SA,484.0
+gr24,23,QLSA epsilon_greedy,1311.0
+pr107,13,QLSA epsilon_greedy,47259.0
+kroB100,20,QLSA softmax,24245.0
+berlin52,20,QLSA epsilon_greedy,8638.0
+dantzig42,23,QLSA softmax,753.0
+swiss42,12,QLSA epsilon_greedy,1493.0
+kroA100,22,QLSA softmax,21822.0
+burma14,20,QLSA epsilon_greedy,3323.0
+pr107,21,SA,49285.0
+ulysses16,12,QLSA epsilon_greedy,6980.0
+gr48,21,QLSA softmax,5600.0
+pr107,22,SA,49451.0
+hk48,21,SA,12794.0
+swiss42,13,QLSA epsilon_greedy,1388.0
+pr107,14,QLSA softmax,48719.0
+gr48,22,SA,5592.0
+kroA100,21,QLSA epsilon_greedy,23337.0
+ulysses22,12,QLSA epsilon_greedy,7387.0
+bayg29,24,QLSA softmax,1875.0
+ulysses16,13,QLSA epsilon_greedy,6870.0
+kroC100,15,SA,22626.0
+gr48,23,QLSA epsilon_greedy,5768.0
+dantzig42,20,QLSA epsilon_greedy,764.0
+pr107,15,QLSA softmax,46923.0
+swiss42,21,SA,1471.0
+swiss42,22,SA,1455.0
+kroB100,19,QLSA epsilon_greedy,24782.0
+eil76,22,QLSA softmax,603.0
+bays29,24,QLSA softmax,2020.0
+ulysses16,21,SA,7171.0
+ulysses16,22,SA,7026.0
+ulysses22,13,QLSA epsilon_greedy,7029.0
+swiss42,14,QLSA softmax,1297.0
+berlin52,13,SA,8064.0
+fri26,22,QLSA softmax,1014.0
+pr107,16,QLSA softmax,48220.0
+eil51,23,QLSA softmax,476.0
+ulysses16,14,QLSA softmax,7019.0
+dantzig42,24,SA,798.0
+burma14,13,SA,3551.0
+swiss42,15,QLSA softmax,1362.0
+ulysses22,21,SA,7375.0
+ulysses22,22,SA,7173.0
+gr17,22,QLSA softmax,2090.0
+gr17,24,QLSA epsilon_greedy,2153.0
+gr21,22,QLSA softmax,2801.0
+ulysses16,15,QLSA softmax,6859.0
+hk48,22,SA,11873.0
+ulysses22,14,QLSA softmax,7367.0
+hk48,24,QLSA softmax,12381.0
+gr21,24,QLSA epsilon_greedy,2968.0
+bayg29,22,QLSA epsilon_greedy,1658.0
+bayg29,21,QLSA epsilon_greedy,1781.0
+hk48,23,QLSA epsilon_greedy,13346.0
+kroC100,17,SA,25598.0
+kroC100,16,SA,23688.0
+gr24,22,QLSA softmax,1304.0
+swiss42,16,QLSA softmax,1340.0
+gr24,24,QLSA epsilon_greedy,1346.0
+kroB100,18,SA,23433.0
+ulysses22,15,QLSA softmax,7255.0
+pr107,14,QLSA epsilon_greedy,45635.0
+bayg29,14,SA,1752.0
+bays29,21,QLSA epsilon_greedy,2034.0
+bays29,22,QLSA epsilon_greedy,2166.0
+eil51,20,QLSA epsilon_greedy,468.0
+ulysses16,16,QLSA softmax,6950.0
+eil76,19,QLSA epsilon_greedy,580.0
+pr107,17,QLSA softmax,44685.0
+bayg29,25,QLSA softmax,1631.0
+berlin52,24,QLSA softmax,8097.0
+bayg29,15,SA,1647.0
+bays29,14,SA,2119.0
+kroA100,22,QLSA epsilon_greedy,24044.0
+kroC100,18,QLSA epsilon_greedy,23164.0
+fri26,19,QLSA epsilon_greedy,1038.0
+pr107,15,QLSA epsilon_greedy,47284.0
+burma14,24,QLSA softmax,3390.0
+ulysses22,16,QLSA softmax,7494.0
+eil76,23,SA,627.0
+kroA100,20,SA,23209.0
+bays29,25,QLSA softmax,2064.0
+bays29,15,SA,2240.0
+eil51,24,SA,469.0
+swiss42,14,QLSA epsilon_greedy,1437.0
+swiss42,17,QLSA softmax,1396.0
+fri26,23,SA,1066.0
+kroB100,20,QLSA epsilon_greedy,23576.0
+gr48,22,QLSA softmax,5311.0
+ulysses16,14,QLSA epsilon_greedy,7062.0
+hk48,25,QLSA softmax,12408.0
+bayg29,16,SA,1637.0
+gr48,24,QLSA epsilon_greedy,5561.0
+gr17,23,SA,2168.0
+ulysses16,17,QLSA softmax,6939.0
+dantzig42,25,SA,830.0
+swiss42,15,QLSA epsilon_greedy,1498.0
+gr21,23,SA,2933.0
+bays29,16,SA,2089.0
+dantzig42,24,QLSA softmax,819.0
+ulysses22,14,QLSA epsilon_greedy,7227.0
+kroC100,19,QLSA softmax,22725.0
+pr107,16,QLSA epsilon_greedy,44810.0
+ulysses16,15,QLSA epsilon_greedy,6895.0
+gr24,23,SA,1304.0
+gr17,25,QLSA epsilon_greedy,2090.0
+ulysses22,17,QLSA softmax,7326.0
+berlin52,21,QLSA epsilon_greedy,8208.0
+berlin52,22,QLSA epsilon_greedy,7902.0
+gr21,25,QLSA epsilon_greedy,2707.0
+kroB100,21,QLSA softmax,23557.0
+burma14,21,QLSA epsilon_greedy,3323.0
+kroA100,23,QLSA softmax,24980.0
+berlin52,14,SA,7919.0
+burma14,22,QLSA epsilon_greedy,3550.0
+ulysses22,15,QLSA epsilon_greedy,7013.0
+bayg29,17,SA,1777.0
+gr24,25,QLSA epsilon_greedy,1424.0
+swiss42,16,QLSA epsilon_greedy,1424.0
+burma14,14,SA,3725.0
+berlin52,25,QLSA softmax,8024.0
+hk48,24,QLSA epsilon_greedy,11963.0
+berlin52,15,SA,8205.0
+bays29,17,SA,2074.0
+bayg29,26,QLSA softmax,1643.0
+ulysses16,16,QLSA epsilon_greedy,7013.0
+eil76,23,QLSA softmax,587.0
+burma14,25,QLSA softmax,3336.0
+pr107,17,QLSA epsilon_greedy,47828.0
+burma14,15,SA,3655.0
+gr48,23,SA,5262.0
+dantzig42,21,QLSA epsilon_greedy,760.0
+dantzig42,22,QLSA epsilon_greedy,800.0
+eil51,25,SA,453.0
+fri26,23,QLSA softmax,1055.0
+bays29,26,QLSA softmax,2034.0
+ulysses22,16,QLSA epsilon_greedy,7253.0
+berlin52,16,SA,7946.0
+eil51,24,QLSA softmax,487.0
+gr17,23,QLSA softmax,2085.0
+kroB100,19,SA,23498.0
+burma14,16,SA,3484.0
+swiss42,17,QLSA epsilon_greedy,1377.0
+gr48,25,QLSA epsilon_greedy,5296.0
+gr21,23,QLSA softmax,2707.0
+gr17,26,QLSA epsilon_greedy,2277.0
+dantzig42,25,QLSA softmax,727.0
+dantzig42,26,SA,793.0
+hk48,26,QLSA softmax,11767.0
+kroC100,20,QLSA softmax,21074.0
+ulysses16,17,QLSA epsilon_greedy,6859.0
+eil76,20,QLSA epsilon_greedy,578.0
+gr24,23,QLSA softmax,1347.0
+gr21,26,QLSA epsilon_greedy,3255.0
+kroB100,22,QLSA softmax,22970.0
+hk48,23,SA,13392.0
+fri26,20,QLSA epsilon_greedy,1048.0
+gr24,26,QLSA epsilon_greedy,1424.0
+ulysses22,17,QLSA epsilon_greedy,7271.0
+eil76,24,SA,602.0
+berlin52,17,SA,8416.0
+kroA100,21,SA,23567.0
+pr107,18,QLSA softmax,46918.0
+kroB100,21,QLSA epsilon_greedy,23182.0
+bayg29,27,QLSA softmax,1765.0
+burma14,17,SA,3359.0
+eil51,21,QLSA epsilon_greedy,488.0
+fri26,24,SA,1045.0
+eil51,22,QLSA epsilon_greedy,467.0
+hk48,25,QLSA epsilon_greedy,11725.0
+kroC100,19,QLSA epsilon_greedy,23004.0
+gr17,24,SA,2252.0
+pr107,23,SA,46651.0
+berlin52,26,QLSA softmax,8074.0
+bays29,27,QLSA softmax,2170.0
+gr48,23,QLSA softmax,5457.0
+gr21,24,SA,3022.0
+burma14,26,QLSA softmax,3323.0
+eil51,26,SA,461.0
+swiss42,18,QLSA softmax,1399.0
+eil51,25,QLSA softmax,458.0
+gr48,26,QLSA epsilon_greedy,5177.0
+gr24,24,SA,1414.0
+dantzig42,27,SA,730.0
+hk48,27,QLSA softmax,12086.0
+swiss42,23,SA,1375.0
+ulysses16,18,QLSA softmax,7082.0
+ulysses16,23,SA,6890.0
+dantzig42,26,QLSA softmax,860.0
+kroA100,22,SA,24034.0
+ulysses22,18,QLSA softmax,7446.0
+kroA100,23,QLSA epsilon_greedy,22305.0
+kroC100,18,SA,22137.0
+ulysses22,23,SA,7232.0
+kroA100,24,QLSA softmax,22729.0
+gr17,27,QLSA epsilon_greedy,2090.0
+gr48,24,SA,5325.0
+bayg29,18,SA,1772.0
+eil76,25,SA,617.0
+gr21,27,QLSA epsilon_greedy,2782.0
+hk48,26,QLSA epsilon_greedy,12130.0
+pr107,24,SA,49640.0
+bayg29,23,QLSA epsilon_greedy,1675.0
+kroB100,22,QLSA epsilon_greedy,23575.0
+berlin52,27,QLSA softmax,7813.0
+eil76,24,QLSA softmax,592.0
+fri26,25,SA,1072.0
+gr24,27,QLSA epsilon_greedy,1311.0
+bays29,18,SA,2033.0
+burma14,27,QLSA softmax,3578.0
+eil51,27,SA,498.0
+gr17,25,SA,2090.0
+kroB100,20,SA,23328.0
+bays29,23,QLSA epsilon_greedy,2218.0
+fri26,24,QLSA softmax,1016.0
+gr21,25,SA,2758.0
+kroC100,20,QLSA epsilon_greedy,21855.0
+swiss42,24,SA,1423.0
+gr17,24,QLSA softmax,2090.0
+hk48,24,SA,13001.0
+gr24,25,SA,1313.0
+gr21,24,QLSA softmax,2707.0
+ulysses16,24,SA,7298.0
+eil51,26,QLSA softmax,455.0
+dantzig42,27,QLSA softmax,782.0
+gr24,24,QLSA softmax,1279.0
+gr48,27,QLSA epsilon_greedy,5350.0
+ulysses22,24,SA,7223.0
+eil76,22,QLSA epsilon_greedy,578.0
+eil76,21,QLSA epsilon_greedy,571.0
+kroB100,23,QLSA softmax,23525.0
+kroA100,25,QLSA softmax,21990.0
+kroC100,21,QLSA softmax,24185.0
+fri26,22,QLSA epsilon_greedy,976.0
+bayg29,24,QLSA epsilon_greedy,1622.0
+fri26,21,QLSA epsilon_greedy,989.0
+berlin52,18,SA,8347.0
+gr48,25,SA,5484.0
+eil76,26,SA,568.0
+pr107,18,QLSA epsilon_greedy,47031.0
+burma14,18,SA,3346.0
+berlin52,23,QLSA epsilon_greedy,8232.0
+pr107,25,SA,46022.0
+kroA100,24,QLSA epsilon_greedy,22176.0
+eil76,25,QLSA softmax,604.0
+bays29,24,QLSA epsilon_greedy,2191.0
+fri26,26,SA,983.0
+burma14,23,QLSA epsilon_greedy,3460.0
+bayg29,28,QLSA softmax,1729.0
+gr48,24,QLSA softmax,5425.0
+gr17,26,SA,2277.0
+fri26,25,QLSA softmax,1028.0
+hk48,27,QLSA epsilon_greedy,13097.0
+kroC100,19,SA,21558.0
+bays29,28,QLSA softmax,2309.0
+swiss42,18,QLSA epsilon_greedy,1349.0
+gr21,26,SA,2912.0
+gr17,25,QLSA softmax,2090.0
+gr17,28,QLSA epsilon_greedy,2185.0
+eil51,27,QLSA softmax,509.0
+swiss42,25,SA,1428.0
+pr107,19,QLSA softmax,50269.0
+dantzig42,28,SA,721.0
+ulysses16,18,QLSA epsilon_greedy,7117.0
+gr24,26,SA,1485.0
+gr21,25,QLSA softmax,2707.0
+hk48,25,SA,12544.0
+gr21,28,QLSA epsilon_greedy,3039.0
+hk48,28,QLSA softmax,12010.0
+ulysses16,25,SA,7515.0
+dantzig42,23,QLSA epsilon_greedy,748.0
+gr24,25,QLSA softmax,1290.0
+gr24,28,QLSA epsilon_greedy,1336.0
+ulysses22,18,QLSA epsilon_greedy,7173.0
+kroA100,26,QLSA softmax,24075.0
+kroC100,22,QLSA softmax,21285.0
+swiss42,19,QLSA softmax,1429.0
+ulysses22,25,SA,7248.0
+eil76,27,SA,626.0
+kroA100,23,SA,24088.0
+ulysses16,19,QLSA softmax,6972.0
+bayg29,29,QLSA softmax,1728.0
+berlin52,24,QLSA epsilon_greedy,7948.0
+kroB100,21,SA,23779.0
+bayg29,25,QLSA epsilon_greedy,1696.0
+gr48,26,SA,5580.0
+kroC100,21,QLSA epsilon_greedy,21663.0
+fri26,27,SA,1079.0
+burma14,24,QLSA epsilon_greedy,3386.0
+kroA100,25,QLSA epsilon_greedy,21650.0
+pr107,26,SA,48348.0
+gr17,27,SA,2225.0
+bays29,29,QLSA softmax,2172.0
+ulysses22,19,QLSA softmax,7414.0
+berlin52,28,QLSA softmax,7989.0
+eil76,26,QLSA softmax,687.0
+bays29,25,QLSA epsilon_greedy,2206.0
+eil51,28,SA,464.0
+gr21,27,SA,3015.0
+gr48,25,QLSA softmax,5246.0
+gr48,28,QLSA epsilon_greedy,5397.0
+burma14,28,QLSA softmax,3390.0
+gr24,27,SA,1493.0
+fri26,26,QLSA softmax,1008.0
+eil51,23,QLSA epsilon_greedy,456.0
+bayg29,19,SA,1737.0
+swiss42,26,SA,1313.0
+gr17,26,QLSA softmax,2184.0
+dantzig42,24,QLSA epsilon_greedy,776.0
+bays29,19,SA,2067.0
+pr107,20,QLSA softmax,49351.0
+ulysses16,26,SA,7053.0
+gr21,26,QLSA softmax,2707.0
+kroA100,27,QLSA softmax,22380.0
+hk48,26,SA,11735.0
+kroB100,22,SA,24306.0
+dantzig42,28,QLSA softmax,746.0
+kroB100,23,QLSA epsilon_greedy,23438.0
+gr24,26,QLSA softmax,1318.0
+ulysses22,26,SA,7287.0
+hk48,28,QLSA epsilon_greedy,11926.0
+pr107,19,QLSA epsilon_greedy,45916.0
+hk48,29,QLSA softmax,12567.0
+gr48,27,SA,5241.0
+swiss42,20,QLSA softmax,1431.0
+berlin52,29,QLSA softmax,8557.0
+berlin52,25,QLSA epsilon_greedy,7975.0
+bayg29,26,QLSA epsilon_greedy,1679.0
+ulysses16,20,QLSA softmax,7276.0
+pr107,27,SA,46514.0
+kroC100,22,QLSA epsilon_greedy,22204.0
+kroB100,24,QLSA softmax,23502.0
+burma14,29,QLSA softmax,3442.0
+burma14,25,QLSA epsilon_greedy,3551.0
+eil76,27,QLSA softmax,632.0
+kroC100,20,SA,21291.0
+kroA100,26,QLSA epsilon_greedy,21966.0
+swiss42,19,QLSA epsilon_greedy,1380.0
+bays29,26,QLSA epsilon_greedy,2028.0
+eil51,24,QLSA epsilon_greedy,459.0
+ulysses22,20,QLSA softmax,7261.0
+fri26,27,QLSA softmax,937.0
+ulysses16,19,QLSA epsilon_greedy,6870.0
+gr48,26,QLSA softmax,5426.0
+berlin52,19,SA,8220.0
+swiss42,27,SA,1406.0
+gr17,27,QLSA softmax,2133.0
+kroA100,24,SA,23645.0
+burma14,19,SA,3381.0
+hk48,27,SA,12204.0
+bayg29,20,SA,1657.0
+dantzig42,29,QLSA softmax,774.0
+ulysses16,27,SA,6900.0
+eil51,28,QLSA softmax,490.0
+gr21,27,QLSA softmax,3116.0
+gr17,29,QLSA epsilon_greedy,2095.0
+dantzig42,25,QLSA epsilon_greedy,787.0
+dantzig42,29,SA,822.0
+ulysses22,19,QLSA epsilon_greedy,7496.0
+bays29,20,SA,2034.0
+gr21,29,QLSA epsilon_greedy,2825.0
+gr24,27,QLSA softmax,1328.0
+ulysses22,27,SA,7410.0
+bayg29,30,QLSA softmax,1785.0
+gr24,29,QLSA epsilon_greedy,1440.0
+kroC100,23,QLSA softmax,24538.0
+eil76,28,SA,607.0
+bayg29,27,QLSA epsilon_greedy,1643.0
+bays29,30,QLSA softmax,2186.0
+berlin52,26,QLSA epsilon_greedy,8354.0
+kroB100,25,QLSA softmax,23844.0
+fri26,28,SA,1009.0
+eil76,23,QLSA epsilon_greedy,599.0
+kroB100,24,QLSA epsilon_greedy,24430.0
+bays29,27,QLSA epsilon_greedy,2144.0
+pr107,20,QLSA epsilon_greedy,47945.0
+gr17,28,SA,2185.0
+burma14,26,QLSA epsilon_greedy,3346.0
+fri26,23,QLSA epsilon_greedy,960.0
+gr21,28,SA,2787.0
+gr48,27,QLSA softmax,5631.0
+eil51,29,QLSA softmax,471.0
+eil51,29,SA,483.0
+eil51,25,QLSA epsilon_greedy,491.0
+gr48,29,QLSA epsilon_greedy,5669.0
+gr24,28,SA,1485.0
+swiss42,20,QLSA epsilon_greedy,1394.0
+berlin52,20,SA,7903.0
+dantzig42,26,QLSA epsilon_greedy,738.0
+kroA100,28,QLSA softmax,22801.0
+kroA100,27,QLSA epsilon_greedy,24111.0
+burma14,20,SA,3718.0
+ulysses16,20,QLSA epsilon_greedy,6859.0
+kroA100,25,SA,22739.0
+dantzig42,30,SA,796.0
+pr107,21,QLSA softmax,46122.0
+kroB100,26,QLSA softmax,23482.0
+hk48,30,QLSA softmax,13114.0
+berlin52,30,QLSA softmax,8380.0
+ulysses22,20,QLSA epsilon_greedy,7654.0
+kroC100,21,SA,23798.0
+kroB100,23,SA,24660.0
+gr48,28,SA,5454.0
+gr17,30,QLSA epsilon_greedy,2208.0
+burma14,30,QLSA softmax,3607.0
+pr107,28,SA,47850.0
+eil76,24,QLSA epsilon_greedy,641.0
+hk48,29,QLSA epsilon_greedy,12195.0
+berlin52,27,QLSA epsilon_greedy,8073.0
+swiss42,21,QLSA softmax,1316.0
+burma14,27,QLSA epsilon_greedy,3336.0
+gr21,30,QLSA epsilon_greedy,2788.0
+fri26,24,QLSA epsilon_greedy,984.0
+kroB100,25,QLSA epsilon_greedy,23040.0
+ulysses16,21,QLSA softmax,7500.0
+eil76,28,QLSA softmax,602.0
+gr24,30,QLSA epsilon_greedy,1286.0
+swiss42,28,SA,1375.0
+eil51,26,QLSA epsilon_greedy,468.0
+dantzig42,30,QLSA softmax,791.0
+fri26,28,QLSA softmax,937.0
+ulysses16,28,SA,7005.0
+eil51,30,SA,470.0
+ulysses22,21,QLSA softmax,7199.0
+dantzig42,27,QLSA epsilon_greedy,793.0
+gr17,28,QLSA softmax,2115.0
+hk48,28,SA,11993.0
+pr107,22,QLSA softmax,46558.0
+gr21,28,QLSA softmax,3104.0
+kroB100,27,QLSA softmax,24744.0
+ulysses22,28,SA,7128.0
+bayg29,21,SA,1727.0
+pr107,21,QLSA epsilon_greedy,44581.0
+gr24,28,QLSA softmax,1377.0
+gr48,30,QLSA epsilon_greedy,5330.0
+kroC100,22,SA,24406.0
+kroC100,23,QLSA epsilon_greedy,22104.0
+bays29,21,SA,2261.0
+kroA100,28,QLSA epsilon_greedy,22791.0
+kroA100,26,SA,22603.0
+bayg29,28,QLSA epsilon_greedy,1763.0
+swiss42,22,QLSA softmax,1369.0
+eil76,29,QLSA softmax,601.0
+eil76,29,SA,625.0
+ulysses16,22,QLSA softmax,6951.0
+eil76,25,QLSA epsilon_greedy,605.0
+bays29,28,QLSA epsilon_greedy,2160.0
+kroC100,24,QLSA softmax,21212.0
+kroA100,29,QLSA softmax,21851.0
+swiss42,21,QLSA epsilon_greedy,1392.0
+kroB100,26,QLSA epsilon_greedy,23703.0
+fri26,29,SA,1041.0
+fri26,29,QLSA softmax,1119.0
+eil51,30,QLSA softmax,488.0
+fri26,25,QLSA epsilon_greedy,974.0
+gr17,29,SA,2165.0
+ulysses16,21,QLSA epsilon_greedy,6969.0
+gr17,29,QLSA softmax,2090.0
+ulysses22,22,QLSA softmax,7665.0
+eil51,27,QLSA epsilon_greedy,464.0
+gr21,29,SA,3182.0
+gr48,28,QLSA softmax,5753.0
+hk48,30,QLSA epsilon_greedy,12269.0
+gr21,29,QLSA softmax,2707.0
+kroB100,24,SA,23540.0
+bayg29,22,SA,1669.0
+ulysses22,21,QLSA epsilon_greedy,7097.0
+kroA100,27,SA,22320.0
+gr24,29,SA,1393.0
+gr24,29,QLSA softmax,1354.0
+berlin52,21,SA,8464.0
+bays29,22,SA,2180.0
+burma14,21,SA,3632.0
+pr107,22,QLSA epsilon_greedy,51478.0
+berlin52,28,QLSA epsilon_greedy,7851.0
+burma14,28,QLSA epsilon_greedy,3336.0
+eil76,26,QLSA epsilon_greedy,634.0
+gr48,29,SA,5704.0
+kroC100,25,QLSA softmax,23104.0
+eil76,30,SA,614.0
+gr48,29,QLSA softmax,5537.0
+pr107,29,SA,49915.0
+swiss42,22,QLSA epsilon_greedy,1408.0
+kroC100,24,QLSA epsilon_greedy,22125.0
+fri26,26,QLSA epsilon_greedy,1077.0
+fri26,30,SA,1026.0
+ulysses16,22,QLSA epsilon_greedy,6971.0
+gr17,30,SA,2306.0
+dantzig42,28,QLSA epsilon_greedy,781.0
+gr21,30,SA,2849.0
+swiss42,29,SA,1375.0
+berlin52,22,SA,7752.0
+ulysses22,22,QLSA epsilon_greedy,7039.0
+pr107,23,QLSA softmax,44509.0
+burma14,22,SA,3336.0
+kroB100,27,QLSA epsilon_greedy,23332.0
+kroB100,28,QLSA softmax,25213.0
+ulysses16,29,SA,6859.0
+gr24,30,SA,1316.0
+kroB100,25,SA,24625.0
+hk48,29,SA,13817.0
+ulysses22,29,SA,7296.0
+kroC100,26,QLSA softmax,21976.0
+kroC100,23,SA,24078.0
+eil76,30,QLSA softmax,632.0
+swiss42,23,QLSA softmax,1346.0
+eil76,27,QLSA epsilon_greedy,593.0
+bayg29,29,QLSA epsilon_greedy,1706.0
+kroA100,29,QLSA epsilon_greedy,23079.0
+ulysses16,23,QLSA softmax,6859.0
+fri26,30,QLSA softmax,1003.0
+gr48,30,SA,5499.0
+fri26,27,QLSA epsilon_greedy,1003.0
+kroA100,30,QLSA softmax,22777.0
+gr17,30,QLSA softmax,2085.0
+eil51,28,QLSA epsilon_greedy,454.0
+bays29,29,QLSA epsilon_greedy,2186.0
+kroC100,25,QLSA epsilon_greedy,25062.0
+ulysses22,23,QLSA softmax,7496.0
+pr107,30,SA,48427.0
+gr21,30,QLSA softmax,2707.0
+gr24,30,QLSA softmax,1272.0
+kroA100,28,SA,22703.0
+bayg29,23,SA,1641.0
+swiss42,30,SA,1340.0
+bays29,23,SA,2193.0
+kroC100,27,QLSA softmax,21203.0
+hk48,30,SA,12198.0
+ulysses16,30,SA,7207.0
+kroB100,26,SA,23041.0
+kroB100,28,QLSA epsilon_greedy,24231.0
+ulysses22,30,SA,7195.0
+gr48,30,QLSA softmax,5272.0
+kroB100,29,QLSA softmax,23757.0
+kroC100,26,QLSA epsilon_greedy,25001.0
+bayg29,30,QLSA epsilon_greedy,1672.0
+berlin52,29,QLSA epsilon_greedy,8062.0
+burma14,29,QLSA epsilon_greedy,3323.0
+bays29,30,QLSA epsilon_greedy,2100.0
+kroC100,24,SA,21181.0
+kroB100,27,SA,25272.0
+berlin52,23,SA,8224.0
+kroA100,30,QLSA epsilon_greedy,23324.0
+pr107,23,QLSA epsilon_greedy,49104.0
+burma14,23,SA,3585.0
+dantzig42,29,QLSA epsilon_greedy,719.0
+swiss42,23,QLSA epsilon_greedy,1285.0
+pr107,24,QLSA softmax,49349.0
+eil76,28,QLSA epsilon_greedy,667.0
+ulysses16,23,QLSA epsilon_greedy,6950.0
+fri26,28,QLSA epsilon_greedy,971.0
+berlin52,30,QLSA epsilon_greedy,8288.0
+swiss42,24,QLSA softmax,1337.0
+ulysses22,23,QLSA epsilon_greedy,7223.0
+burma14,30,QLSA epsilon_greedy,3323.0
+ulysses16,24,QLSA softmax,7008.0
+eil51,29,QLSA epsilon_greedy,470.0
+kroC100,28,QLSA softmax,21730.0
+kroC100,27,QLSA epsilon_greedy,22339.0
+ulysses22,24,QLSA softmax,7256.0
+kroC100,25,SA,22443.0
+dantzig42,30,QLSA epsilon_greedy,778.0
+kroA100,29,SA,25837.0
+bayg29,24,SA,1815.0
+pr107,25,QLSA softmax,46254.0
+pr107,24,QLSA epsilon_greedy,49439.0
+kroB100,29,QLSA epsilon_greedy,24232.0
+bays29,24,SA,2028.0
+kroB100,30,QLSA softmax,23945.0
+swiss42,24,QLSA epsilon_greedy,1406.0
+swiss42,25,QLSA softmax,1423.0
+ulysses16,24,QLSA epsilon_greedy,6870.0
+ulysses16,25,QLSA softmax,7053.0
+kroB100,28,SA,23113.0
+eil51,30,QLSA epsilon_greedy,471.0
+ulysses22,24,QLSA epsilon_greedy,7013.0
+ulysses22,25,QLSA softmax,7105.0
+pr107,26,QLSA softmax,49446.0
+berlin52,24,SA,8220.0
+kroC100,26,SA,24275.0
+kroA100,30,SA,22950.0
+bayg29,25,SA,1925.0
+burma14,24,SA,3359.0
+kroC100,28,QLSA epsilon_greedy,24309.0
+pr107,25,QLSA epsilon_greedy,47098.0
+bays29,25,SA,2122.0
+swiss42,26,QLSA softmax,1398.0
+eil76,29,QLSA epsilon_greedy,646.0
+ulysses16,26,QLSA softmax,6875.0
+kroC100,29,QLSA softmax,21469.0
+swiss42,25,QLSA epsilon_greedy,1369.0
+fri26,29,QLSA epsilon_greedy,994.0
+kroC100,27,SA,24075.0
+pr107,27,QLSA softmax,44676.0
+ulysses16,25,QLSA epsilon_greedy,6859.0
+ulysses22,26,QLSA softmax,7077.0
+kroB100,30,QLSA epsilon_greedy,23480.0
+ulysses22,25,QLSA epsilon_greedy,7468.0
+bayg29,26,SA,1634.0
+swiss42,27,QLSA softmax,1321.0
+bays29,26,SA,2255.0
+berlin52,25,SA,8228.0
+ulysses16,27,QLSA softmax,7204.0
+burma14,25,SA,3336.0
+pr107,26,QLSA epsilon_greedy,51598.0
+ulysses22,27,QLSA softmax,7155.0
+eil76,30,QLSA epsilon_greedy,574.0
+bayg29,27,SA,1678.0
+swiss42,26,QLSA epsilon_greedy,1523.0
+fri26,30,QLSA epsilon_greedy,978.0
+ulysses16,26,QLSA epsilon_greedy,6865.0
+bays29,27,SA,2224.0
+berlin52,26,SA,8054.0
+ulysses22,26,QLSA epsilon_greedy,7410.0
+kroB100,29,SA,24126.0
+burma14,26,SA,3323.0
+kroC100,29,QLSA epsilon_greedy,21232.0
+berlin52,27,SA,8072.0
+burma14,27,SA,3671.0
+pr107,27,QLSA epsilon_greedy,45470.0
+kroC100,28,SA,22340.0
+pr107,28,QLSA softmax,48835.0
+kroC100,30,QLSA softmax,22538.0
+swiss42,27,QLSA epsilon_greedy,1398.0
+kroB100,30,SA,23358.0
+ulysses16,27,QLSA epsilon_greedy,6870.0
+swiss42,28,QLSA softmax,1435.0
+ulysses16,28,QLSA softmax,6944.0
+ulysses22,27,QLSA epsilon_greedy,7189.0
+ulysses22,28,QLSA softmax,7284.0
+kroC100,30,QLSA epsilon_greedy,21950.0
+bayg29,28,SA,1650.0
+pr107,28,QLSA epsilon_greedy,49868.0
+bays29,28,SA,2060.0
+swiss42,28,QLSA epsilon_greedy,1302.0
+ulysses16,28,QLSA epsilon_greedy,6859.0
+pr107,29,QLSA softmax,45705.0
+ulysses22,28,QLSA epsilon_greedy,7375.0
+berlin52,28,SA,8855.0
+swiss42,29,QLSA softmax,1365.0
+burma14,28,SA,3690.0
+ulysses16,29,QLSA softmax,7153.0
+kroC100,29,SA,24262.0
+ulysses22,29,QLSA softmax,7207.0
+bayg29,29,SA,1615.0
+bays29,29,SA,2104.0
+pr107,29,QLSA epsilon_greedy,48178.0
+kroC100,30,SA,21989.0
+swiss42,29,QLSA epsilon_greedy,1325.0
+ulysses16,29,QLSA epsilon_greedy,6865.0
+berlin52,29,SA,7721.0
+burma14,29,SA,3466.0
+pr107,30,QLSA softmax,48678.0
+ulysses22,29,QLSA epsilon_greedy,7013.0
+swiss42,30,QLSA softmax,1311.0
+ulysses16,30,QLSA softmax,7101.0
+ulysses22,30,QLSA softmax,7198.0
+pr107,30,QLSA epsilon_greedy,47293.0
+bayg29,30,SA,1718.0
+bays29,30,SA,2163.0
+swiss42,30,QLSA epsilon_greedy,1326.0
+ulysses16,30,QLSA epsilon_greedy,6859.0
+ulysses22,30,QLSA epsilon_greedy,7496.0
+berlin52,30,SA,8431.0
+burma14,30,SA,3754.0

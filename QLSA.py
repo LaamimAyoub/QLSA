@@ -11,7 +11,7 @@ import multiprocessing
 NB_ITERATIONS = 5000
 
 class SimulatedAnnealing_TSP_Logging:
-    def __init__(self, problem, initial_solution, temperature=1.0, cooling_rate=0.99, tempmin=0.01, epsilon=0.1, alpha=0.1, gamma=0.9):
+    def __init__(self, problem, initial_solution, temperature=1.0, cooling_rate=0.99, tempmin=0.01, epsilon=0.1, alpha=0.1, gamma=0.9, stagnation_window=100, stagnation_threshold=1e-6):
         self.problem = problem
         self.solution = deepcopy(initial_solution)
         self.gbest = deepcopy(initial_solution)
@@ -34,6 +34,8 @@ class SimulatedAnnealing_TSP_Logging:
         self.epsilon=epsilon
         self.alpha = alpha
         self.gamma = gamma
+        self.stagnation_window = stagnation_window
+        self.stagnation_threshold = stagnation_threshold
 
     def update_setcandidat(self):
         random_sol=generate_tsp(1,len(self.solution), self.has_node_coords)[0]
@@ -151,8 +153,15 @@ class SimulatedAnnealing_TSP_Logging:
             self.update_setcandidat()
 
     def run(self, iterations=5000):
+        use_qlsa = False
         for i in range(iterations):
-            self.step()
+            if use_qlsa:
+                self.step()
+            else:
+                self.step_SA()
+                if i > self.stagnation_window and (self.fitness_history[-self.stagnation_window] - self.Fbest) < self.stagnation_threshold:
+                    use_qlsa = True
+
             self.temperature =  (self.temperature_max-((self.temperature_max-self.tempmin)*((i+1))) /iterations  )
             #print(f"Iteration {i}, Temp: {self.temperature:.4f}, Best: {self.Fbest:.2f}")
         return self.gbest, self.Fbest, self.fitness_history
@@ -165,14 +174,21 @@ class SimulatedAnnealing_TSP_Logging:
         return self.gbest, self.Fbest, self.fitness_history
     
     def run_greedy(self, iterations=5000):
+        use_qlsa = False
         for i in range(iterations):
-            self.step_greedy()
+            if use_qlsa:
+                self.step_greedy()
+            else:
+                self.step_SA()
+                if i > self.stagnation_window and (self.fitness_history[-self.stagnation_window] - self.Fbest) < self.stagnation_threshold:
+                    use_qlsa = True
+
             self.temperature =  (self.temperature_max-((self.temperature_max-self.tempmin)*((i+1))) /iterations  )
             #print(f"Iteration {i}, Temp: {self.temperature:.4f}, Best: {self.Fbest:.2f}")
         return self.gbest, self.Fbest, self.fitness_history
 
 
-runs = 1
+runs = 
 TestsFilePath = 'inputs/'
 
 def runAlgo(params):

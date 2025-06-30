@@ -188,7 +188,7 @@ class SimulatedAnnealing_TSP_Logging:
         return self.gbest, self.Fbest, self.fitness_history
 
 
-runs = 
+runs = 1
 TestsFilePath = 'inputs/'
 
 def runAlgo(params):

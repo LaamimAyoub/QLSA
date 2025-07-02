@@ -11,6 +11,7 @@ import plotly.io as pio
 class SimulatedAnnealing_TSP_Logging:
     def __init__(self,TestsFilePath, problem, initial_solution, temperature=1.0, cooling_rate=0.99, tempmin=0.01, epsilon=0.1, alpha=0.1, gamma=0.9,des=0.001,gamma1=0.9,rp=0.4):
         self.problem = tsplib95.load(TestsFilePath + problem + '.tsp')
+        self.has_node_coords = (self.problem.node_coords != {} or self.problem.display_data != {})
         self.solution = deepcopy(initial_solution)
         self.gbest = deepcopy(initial_solution)
         self.Fbest = compute_distance(initial_solution, self.problem)
@@ -24,7 +25,7 @@ class SimulatedAnnealing_TSP_Logging:
         self.cooling_rate = cooling_rate
         self.tempmin = tempmin
         self.fitness_history = []
-        random_sol=generate_tsp(1,len(self.solution))[0]
+        random_sol=generate_tsp(1,len(self.solution), self.has_node_coords)[0]
         self.setcandidat=[self.solution,self.gbest,self.pbest,random_sol]
         self.q_table = np.zeros((1, (len(self.setcandidat))))
         self.leader_count = np.zeros((1, (len(self.setcandidat))), dtype=int)
@@ -40,7 +41,7 @@ class SimulatedAnnealing_TSP_Logging:
         self.nbrville=len(self.solution)
 
     def update_setcandidat(self):
-        random_sol=generate_tsp(1,len(self.solution))[0]
+        random_sol=generate_tsp(1,len(self.solution), self.has_node_coords)[0]
         self.setcandidat=[self.solution,self.gbest,self.pbest,random_sol]#,random_sol
 
     def reset_q_table(self):
@@ -149,7 +150,7 @@ class SimulatedAnnealing_TSP_Logging:
 
     def dataBat(self, NPop):
         v = [0]*NPop  #velocity
-        X = generate_tsp(NPop,len(self.solution))
+        X = generate_tsp(NPop,len(self.solution), self.has_node_coords)
         fitness=[compute_distance(X[i],self.problem) for i in range(NPop)]
         return X,v,fitness
     
@@ -428,13 +429,12 @@ class SimulatedAnnealing_TSP_Logging:
 
 
 runs = 5
-TestsFilePath = 'DATA_INPUT/'
+TestsFilePath = 'inputs/'
 
 def runAlgo(params):
     #print("Running algorithm", params)
-    TestsFilePath,problem, initial_solution=params[1:]
-    param=params[0]
-    Iter=1000
+    param,TestsFilePath,problem, initial_solution=params
+    Iter=1
     episodes=50
 
     if param==1:
@@ -492,7 +492,8 @@ def DF_results(nbrville, problem,runs,TestsFilePath):
         l=[]
         lPOP=[]
         Time=[]
-        initial_solution = generate_tsp(1,nbrville)[0]
+        has_node_coords = (problem.node_coords != {} or problem.display_data != {})
+        initial_solution = generate_tsp(1,nbrville, has_node_coords)[0]
         params=[(p,TestsFilePath,problem.name, initial_solution)for p in range(1, 7)]
         pool = multiprocessing.Pool()
         zres=pool.map(runAlgo, params)

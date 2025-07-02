@@ -216,10 +216,6 @@ class SimulatedAnnealing_TSP_Logging:
                 self.pbest = deepcopy(candidate)
                 self.Fpbest = candidate_score
 
-        self.fitness_history.append(self.Fbest)
-        self.fitness_evolution.append(current_score)
-        self.temperature_evolution.append(self.temperature)
-
         reward = (old_score - candidate_score)/old_score
         self.update_q_table(0, leader_idx, reward)
 
@@ -268,10 +264,6 @@ class SimulatedAnnealing_TSP_Logging:
             if candidate_score < self.Fpbest:
                 self.pbest = deepcopy(candidate)
                 self.Fpbest = candidate_score
-
-        self.fitness_history.append(self.Fbest)
-        self.fitness_evolution.append(current_score)
-        self.temperature_evolution.append(self.temperature)
 
         reward = (old_score - candidate_score)/old_score
         self.update_q_table(0, leader_idx, reward)

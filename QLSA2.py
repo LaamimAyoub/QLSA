@@ -1,5 +1,6 @@
 import tsplib95
-from QLSA import runAlgo, TestsFilePath
+#from QLSA import runAlgo, TestsFilePath
+from QLNISA import runAlgo, TestsFilePath
 from compute import generate_tsp
 import multiprocessing
 import os
@@ -9,13 +10,16 @@ file_lock = multiprocessing.Lock()
 
 OUTPUT_FOLDER = "results"
 OUTPUT_FILE = f"{OUTPUT_FOLDER}/optimals.csv"
-NB_RUNS = 30
+NB_RUNS = 1
 NB_PROCESS = 3
 
 ALGO_MAPPING = {
     1 : "QLSA softmax",
     2: "SA",
-    3: "QLSA epsilon_greedy"
+    3: "QLSA epsilon_greedy",
+    4: "NISA",
+    5: "greedy QLNISA",
+    6: "SOFTMAX QLNISA"
 }
 
 class Task:
@@ -30,7 +34,7 @@ class Task:
         problem = tsplib95.load_problem(f"{TestsFilePath}/{self.problem}.tsp")
         has_node_coords = (problem.node_coords != {} or problem.display_data != {})
         initial_solution = generate_tsp(1, problem.dimension, has_node_coords)[0]
-        res = runAlgo([self.algo, problem, initial_solution])
+        res = runAlgo((self.algo, TestsFilePath, self.problem, initial_solution))
         self.write_optimal(res[1])
         self.write_all_results(res[2])
 
@@ -62,16 +66,17 @@ def clean_up_output():
 
 def get_list_problems(input_folder):
     list_inputs = glob.glob(f"{input_folder}/*.tsp")
-    list_inputs = [r.replace(input_folder, "").replace(".tsp", "") for r in list_inputs]
+
+    list_inputs = [os.path.basename(r).replace(".tsp", "") for r in list_inputs]
     return list_inputs
 
 def build_and_run_tasks():
 
     clean_up_output()
 
-    list_problems = get_list_problems()
+    list_problems = get_list_problems("inputs")
     nb_runs = NB_RUNS
-    algos = range(1, 4)
+    algos = range(1, 7)
 
     list_tasks = []
 

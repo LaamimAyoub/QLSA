@@ -434,7 +434,7 @@ def runAlgo(params):
     #print("Running algorithm", params)
     TestsFilePath,problem, initial_solution=params[1:]
     param=params[0]
-    Iter=1000
+    Iter=300
     episodes=50
 
     if param==1:
@@ -475,6 +475,7 @@ def DF_results(nbrville, problem,runs,TestsFilePath):
     convSA=[]
     convQLSA=[]
     convQLSAg=[]
+
     convQLSA_vals = []      # best-so-far
     fitQLSA_vals = []       # accepted
     tempQLSA_vals = []      # temperature
@@ -486,6 +487,21 @@ def DF_results(nbrville, problem,runs,TestsFilePath):
     convQLSAg_vals = []
     fitQLSAg_vals = []
     tempQLSAg_vals = []
+
+    convQLNISA_vals = []      # best-so-far
+    fitQLNISA_vals = []       # accepted
+    tempQLNISA_vals = [] 
+
+    convNISA_vals = []
+    fitNISA_vals = []
+    tempNISA_vals = []
+
+    convQLNISAg_vals = []
+    fitQLNISAg_vals = []
+    tempQLNISAg_vals = []
+
+    
+
     print(problem.name)
     for k in range(ktest):
         #print('k: ',k)
@@ -504,13 +520,13 @@ def DF_results(nbrville, problem,runs,TestsFilePath):
         Zsa=zres[1]
         zQLSAg=zres[2]
 
-        zQLNISA=zres[3]
-        ZNIsa=zres[4]
-        zQLNISAg=zres[5]
+        zNISA=zres[3]
+        ZNIsaG=zres[4]
+        zNISAsof=zres[5]
         
 
-        l=[float(Zsa[1])]+[float(zQLSA[1])]+[float(zQLSAg[1])]+[float(ZNIsa[1])]+[float(zQLNISA[1])]+[float(zQLNISAg[1])]
-        lPOP=[Zsa[0]]+[zQLSA[0]]+[zQLSAg[0]]+[ZNIsa[0]]+[zQLNISA[0]]+[zQLNISAg[0]]
+        l=[float(Zsa[1])]+[float(zQLSA[1])]+[float(zQLSAg[1])]+[float(zNISA[1])]+[float(ZNIsaG[1])]+[float(zNISAsof[1])]
+        lPOP=[Zsa[0]]+[zQLSA[0]]+[zQLSAg[0]]+[zNISA[0]]+[ZNIsaG[0]]+[zNISAsof[0]]
 
         df2=pd.DataFrame([l],columns=MM)
         df = pd.concat([df, df2], ignore_index=True)
@@ -535,6 +551,18 @@ def DF_results(nbrville, problem,runs,TestsFilePath):
         convQLSAg_vals.append(zQLSAg[2])
         fitQLSAg_vals.append(zQLSAg[3])
         tempQLSAg_vals.append(zQLSAg[4])
+
+        convQLNISA_vals.append(zNISAsof[2]) 
+        fitQLNISA_vals.append(zNISAsof[3])
+        tempQLNISA_vals.append(zNISAsof[4])
+
+        convNISA_vals.append(zNISA[2])
+        fitNISA_vals.append(zNISA[3])
+        tempNISA_vals.append(zNISA[4])
+
+        convQLNISAg_vals.append(ZNIsaG[2])
+        fitQLNISAg_vals.append(ZNIsaG[3])
+        tempQLNISAg_vals.append(ZNIsaG[4])
 
         
 
@@ -574,7 +602,7 @@ def DF_results(nbrville, problem,runs,TestsFilePath):
     # f.close()
     # f1.close()
     date = datetime.now().strftime('%Y%m%d_%H%M%S')
-    df.describe().to_csv("./New_Results/SA_TSP_Results_" + date + "_" + problem.name +".csv", index=False)
+    df.describe().to_csv("./New_Results/SA_TSP_Results_" + date + "_" + problem.name +".csv")
     # Create folder for plots
     plot_dir = "./New_Results/Plots"
     #os.makedirs(plot_dir, exist_ok=True)
@@ -596,6 +624,15 @@ def DF_results(nbrville, problem,runs,TestsFilePath):
 
     fit_QLSAg = np.array([x[1:min_len] for x in fitQLSAg_vals])
     conv_QLSAg = np.array([x[1:min_len] for x in convQLSAg_vals])
+
+    fit_NISA = np.array([x[1:min_len] for x in fitNISA_vals])
+    conv_NISA = np.array([x[1:min_len] for x in convNISA_vals])
+
+    fit_QLNISA = np.array([x[1:min_len] for x in fitQLNISA_vals])
+    conv_QLNISA = np.array([x[1:min_len] for x in convQLNISA_vals])
+
+    fit_QLNISAg = np.array([x[1:min_len] for x in fitQLNISAg_vals])
+    conv_QLNISAg = np.array([x[1:min_len] for x in convQLNISAg_vals])
     # x-axis: iterations
     iterations = list(range(conv_SA.shape[1]))
 
@@ -609,6 +646,15 @@ def DF_results(nbrville, problem,runs,TestsFilePath):
     mean_conv_QLSAg = np.mean(conv_QLSAg, axis=0)
     mean_fit_QLSAg = np.mean(fit_QLSAg, axis=0)
 
+    mean_conv_NISA = np.mean(conv_NISA, axis=0)
+    mean_fit_NISA = np.mean(fit_NISA, axis=0)
+
+    mean_conv_QLNISA = np.mean(conv_QLNISA, axis=0)
+    mean_fit_QLNISA = np.mean(fit_QLNISA, axis=0)
+
+    mean_conv_QLNISAg = np.mean(conv_QLNISAg, axis=0)
+    mean_fit_QLNISAg = np.mean(fit_QLNISAg, axis=0)
+
     # Mean temperature (SA only)
     mean_temp_SA = np.mean(temp_SA, axis=0)
 
@@ -618,6 +664,9 @@ def DF_results(nbrville, problem,runs,TestsFilePath):
     fig1.add_trace(go.Scatter(x=iterations, y=mean_conv_SA, name="SA", mode='lines'))
     fig1.add_trace(go.Scatter(x=iterations, y=mean_conv_QLSA, name="QLSA Softmax", mode='lines'))
     fig1.add_trace(go.Scatter(x=iterations, y=mean_conv_QLSAg, name="QLSA Epsilon-Greedy", mode='lines'))
+    fig1.add_trace(go.Scatter(x=iterations, y=mean_conv_NISA, name="NISA", mode='lines'))
+    fig1.add_trace(go.Scatter(x=iterations, y=mean_conv_QLNISA, name="QLNISA Softmax", mode='lines'))
+    fig1.add_trace(go.Scatter(x=iterations, y=mean_conv_QLNISAg, name="QLNISA Epsilon-Greedy", mode='lines'))
     # Temperature on secondary y-axis
     fig1.add_trace(go.Scatter(
         x=iterations, y=mean_temp_SA,
@@ -653,6 +702,9 @@ def DF_results(nbrville, problem,runs,TestsFilePath):
     fig2.add_trace(go.Scatter(x=iterations, y=mean_fit_SA, name="SA", mode='lines'))
     fig2.add_trace(go.Scatter(x=iterations, y=mean_fit_QLSA, name="QLSA Softmax", mode='lines'))
     fig2.add_trace(go.Scatter(x=iterations, y=mean_fit_QLSAg, name="QLSA Epsilon-Greedy", mode='lines'))
+    fig2.add_trace(go.Scatter(x=iterations, y=mean_fit_NISA, name="NISA", mode='lines'))
+    fig2.add_trace(go.Scatter(x=iterations, y=mean_fit_QLNISA, name="QLNISA Softmax", mode='lines'))
+    fig2.add_trace(go.Scatter(x=iterations, y=mean_fit_QLNISAg, name="QLNISA Epsilon-Greedy", mode='lines'))
 
     # Temperature on secondary y-axis
     fig2.add_trace(go.Scatter(
@@ -702,6 +754,11 @@ if __name__ == "__main__":
         print(a)
 
     
+
+
+
+
+
 
 
 

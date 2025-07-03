@@ -425,14 +425,9 @@ TestsFilePath = 'inputs/'
 
 def runAlgo(params):
     #print("Running algorithm", params)
-<<<<<<< HEAD
     TestsFilePath,problem, initial_solution=params[1:]
     param=params[0]
-    Iter=300
-=======
-    param,TestsFilePath,problem, initial_solution=params
-    Iter=1
->>>>>>> c5f1af96d2723c8c3abc2a5b4e699217b1b07f33
+    Iter=1000
     episodes=50
 
     if param==1:

@@ -22,3 +22,4 @@ tsplib95==0.7.1
 tzdata==2025.2
 wheel==0.45.1
 wrapt==1.17.2
+plotly==6.1.2

@@ -127,8 +127,8 @@ class SimulatedAnnealing_TSP_Logging:
         return leader
     
     def update_q_table(self, i, leader_idx, reward):
-        max_future_q = np.max(self.q_table[i])
-        self.q_table[i][leader_idx] += self.alpha * (reward + self.gamma * max_future_q - self.q_table[i][leader_idx])
+        #max_future_q = np.max(self.q_table[i])
+        self.q_table[i][leader_idx] += self.alpha * (reward  - self.q_table[i][leader_idx])
 
     def step_SA(self):
         candidate = self.two_opt_metropolis(self.solution)
@@ -427,7 +427,7 @@ def runAlgo(params):
     #print("Running algorithm", params)
     TestsFilePath,problem, initial_solution=params[1:]
     param=params[0]
-    Iter=1000
+    Iter=500
     episodes=50
 
     if param==1:
@@ -444,20 +444,20 @@ def runAlgo(params):
         zsag=sag.run_greedy(iterations=Iter, episodes=episodes)
         return zsag
     
-    if param==4:
-        qlnisa = SimulatedAnnealing_TSP_Logging(TestsFilePath,problem, initial_solution, temperature=1000.0, cooling_rate=0.99, tempmin=0.001,epsilon=0.6, alpha=0.1, gamma=0.95 ,des=0.001,gamma1=0.9,rp=0.4)
-        zqlnisa=qlnisa.run_NISA(iterations=Iter)
-        return zqlnisa
+    # if param==4:
+    #     qlnisa = SimulatedAnnealing_TSP_Logging(TestsFilePath,problem, initial_solution, temperature=1000.0, cooling_rate=0.99, tempmin=0.001,epsilon=0.6, alpha=0.1, gamma=0.95 ,des=0.001,gamma1=0.9,rp=0.4)
+    #     zqlnisa=qlnisa.run_NISA(iterations=Iter)
+    #     return zqlnisa
     
-    elif param==5:
-        nisa = SimulatedAnnealing_TSP_Logging(TestsFilePath,problem, initial_solution, temperature=1000.0, cooling_rate=0.99, tempmin=0.001,epsilon=0.6, alpha=0.1, gamma=0.95,des=0.001,gamma1=0.9,rp=0.4)
-        znisa=nisa.run_greedy_NISA(iterations=Iter, episodes=episodes)
-        return znisa
+    # elif param==5:
+    #     nisa = SimulatedAnnealing_TSP_Logging(TestsFilePath,problem, initial_solution, temperature=1000.0, cooling_rate=0.99, tempmin=0.001,epsilon=0.6, alpha=0.1, gamma=0.95,des=0.001,gamma1=0.9,rp=0.4)
+    #     znisa=nisa.run_greedy_NISA(iterations=Iter, episodes=episodes)
+    #     return znisa
     
-    elif param==6:
-        nisag = SimulatedAnnealing_TSP_Logging(TestsFilePath,problem, initial_solution, temperature=1000.0, cooling_rate=0.99, tempmin=0.001,epsilon=0.6, alpha=0.1, gamma=0.95,des=0.001,gamma1=0.9,rp=0.4)
-        znisag=nisag.run_Soft_NISA(iterations=Iter, episodes=episodes)
-        return znisag
+    # elif param==6:
+    #     nisag = SimulatedAnnealing_TSP_Logging(TestsFilePath,problem, initial_solution, temperature=1000.0, cooling_rate=0.99, tempmin=0.001,epsilon=0.6, alpha=0.1, gamma=0.95,des=0.001,gamma1=0.9,rp=0.4)
+    #     znisag=nisag.run_Soft_NISA(iterations=Iter, episodes=episodes)
+    #     return znisag
     
 def DF_results(nbrville, problem,runs,TestsFilePath):
     
@@ -503,7 +503,7 @@ def DF_results(nbrville, problem,runs,TestsFilePath):
         Time=[]
         has_node_coords = (problem.node_coords != {} or problem.display_data != {})
         initial_solution = generate_tsp(1,nbrville, has_node_coords)[0]
-        params=[(p,TestsFilePath,problem.name, initial_solution)for p in range(1, 7)]
+        params=[(p,TestsFilePath,problem.name, initial_solution)for p in range(1, 4)]
         pool = multiprocessing.Pool()
         zres=pool.map(runAlgo, params)
         #zres = [runAlgo(p) for p in params]

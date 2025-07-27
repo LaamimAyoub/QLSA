@@ -10,16 +10,17 @@ file_lock = multiprocessing.Lock()
 
 OUTPUT_FOLDER = "results"
 OUTPUT_FILE = f"{OUTPUT_FOLDER}/optimals.csv"
-NB_RUNS = 1
+NB_RUNS =10
 NB_PROCESS = 3
 
 ALGO_MAPPING = {
     1 : "QLSA softmax",
     2: "SA",
-    3: "QLSA epsilon_greedy",
-    4: "NISA",
-    5: "greedy QLNISA",
-    6: "SOFTMAX QLNISA"
+    3: "QLSA epsilon_greedy"
+    # ,
+    # 4: "NISA",
+    # 5: "greedy QLNISA",
+    # 6: "SOFTMAX QLNISA"
 }
 
 class Task:
@@ -76,7 +77,7 @@ def build_and_run_tasks():
 
     list_problems = get_list_problems("inputs")
     nb_runs = NB_RUNS
-    algos = range(1, 7)
+    algos = range(1, 4)
 
     list_tasks = []
 

@@ -11,8 +11,8 @@ file_lock = multiprocessing.Lock()
 
 OUTPUT_FOLDER = "results"
 OUTPUT_FILE = f"{OUTPUT_FOLDER}/optimals.csv"
-NB_RUNS = 1
-NB_PROCESS = multiprocessing.cpu_count() * 0.9
+NB_RUNS = 30
+NB_PROCESS = 3
 
 ALGO_MAPPING = {
     1 : "QLSA softmax",

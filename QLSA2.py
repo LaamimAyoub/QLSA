@@ -1,6 +1,6 @@
 import tsplib95
 #from QLSA import runAlgo, TestsFilePath
-from QLNISA import runAlgo, TestsFilePath
+from QLSA import runAlgo, TestsFilePath
 from compute import generate_tsp
 import multiprocessing
 import os
@@ -14,13 +14,16 @@ NB_RUNS =10
 NB_PROCESS = 3
 
 ALGO_MAPPING = {
-    1 : "QLSA softmax",
+    1: "QL-SA_softmax",
     2: "SA",
-    3: "QLSA epsilon_greedy"
-    # ,
-    # 4: "NISA",
-    # 5: "greedy QLNISA",
-    # 6: "SOFTMAX QLNISA"
+    3: "Greedy",
+    4: "Uniform",
+    5: "QL-SA_softmax_without_reset",
+    6: "Greedy_without_reset",
+    7: "QL-SA_softmax_state",
+    8: "Greedy_state",
+    9: "Greedy_state_without_reset",
+    10: "QL-SA_softmax_state_without_reset"
 }
 
 class Task:

@@ -9,3 +9,4 @@ setup(
 
 
 #from qlpso import compute_distance, softmax
+#python setup.py build_ext --inplace

@@ -11,7 +11,11 @@ file_lock = multiprocessing.Lock()
 OUTPUT_FOLDER = "results"
 OUTPUT_FILE = f"{OUTPUT_FOLDER}/optimals.csv"
 NB_RUNS =10
-NB_PROCESS = 3
+NB_PROCESS = 10
+# Hyperparameters
+Iter, episodes = 1000, 50
+# Iter, episodes = 300000, 100
+epsilon, alpha, gamma, des, tempmin = 0.6, 0.1, 0.95, 0.001, 0.001
 
 ALGO_MAPPING = {
     1: "QL-SA_softmax",
@@ -38,7 +42,8 @@ class Task:
         problem = tsplib95.load_problem(f"{TestsFilePath}/{self.problem}.tsp")
         has_node_coords = (problem.node_coords != {} or problem.display_data != {})
         initial_solution = generate_tsp(1, problem.dimension, has_node_coords)[0]
-        res = runAlgo((self.algo, TestsFilePath, self.problem, initial_solution))
+        res = runAlgo((TestsFilePath, self.problem, initial_solution, self.algo, self.run_number, Iter, episodes,
+     epsilon, alpha, gamma, des, tempmin))
         self.write_optimal(res[1])
         self.write_all_results(res[2])
 
@@ -56,6 +61,8 @@ class Task:
     def write_all_results(self, res):
         with open(os.path.join(OUTPUT_FOLDER, f"{self.task_id}.txt"), "w") as f:
             f.write(",".join([str(r) for r in res]))
+
+
 
 def run_task(t :Task):
     # try:
@@ -80,7 +87,7 @@ def build_and_run_tasks():
 
     list_problems = get_list_problems("inputs")
     nb_runs = NB_RUNS
-    algos = range(1, 4)
+    algos = range(1, 11)
 
     list_tasks = []
 

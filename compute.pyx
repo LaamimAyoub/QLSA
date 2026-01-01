@@ -50,7 +50,7 @@ from libc.stdlib cimport rand, RAND_MAX
 DTYPE = np.int32
 ctypedef np.int32_t DTYPE_t
 
-def double_bridge_kick_cy(np.ndarray[DTYPE_t, ndim=1] tour):
+cpdef double_bridge_kick_cy(np.ndarray[DTYPE_t, ndim=1] tour):
     """
     Performs a high-speed Double-Bridge Kick (4-change) perturbation
     on a TSP tour using Cython.

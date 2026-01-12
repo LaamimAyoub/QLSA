@@ -11,7 +11,7 @@ file_lock = multiprocessing.Lock()
 OUTPUT_FOLDER = "results"
 OUTPUT_FILE = f"{OUTPUT_FOLDER}/optimals.csv"
 NB_RUNS =10
-NB_PROCESS = os.getenv("nb_proc", 60)
+NB_PROCESS = int(os.getenv("nb_proc", 60))
 # Hyperparameters
 Iter, episodes = 1000, 50
 # Iter, episodes = 300000, 100

@@ -606,7 +606,7 @@ def prepare_tasks(ListProb, TestsFilePath, runs, Iter, episodes, epsilon, alpha,
 # ===============================
 def parallel_run(tasks, max_workers=None):
     if max_workers is None:
-        max_workers = max(1, int(multiprocessing.cpu_count() * 0.1))
+        max_workers = int(os.getenv("nb_proc", 10))
     results = []
     with ProcessPoolExecutor(max_workers=max_workers) as executor:
         future_to_task = {executor.submit(runAlgo, t): t for t in tasks}

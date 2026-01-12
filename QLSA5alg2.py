@@ -22,8 +22,8 @@ class SimulatedAnnealing_TSP_Logging:
         self.solution = deepcopy(initial_solution)
         self.gbest = deepcopy(initial_solution)
         self.Fbest = compute_distance(initial_solution, self.problem)
-        self.pbest = deepcopy(initial_solution)
-        self.Fpbest = compute_distance(initial_solution, self.problem)
+        #self.pbest = deepcopy(initial_solution)
+        #self.Fpbest = compute_distance(initial_solution, self.problem)
         ###print ('Fbest',self.Fbest)
         self.state = 0
         self.stateAlgo = 0
@@ -37,7 +37,7 @@ class SimulatedAnnealing_TSP_Logging:
         self.fitness_history = []
         random_sol = generate_tsp(1, len(self.solution), self.has_node_coords)[0]
         double_bridge_sol = double_bridge_kick_cy(np.array(self.solution, dtype=np.int32)).tolist()
-        self.setcandidat = [self.solution, self.gbest, self.pbest, random_sol, double_bridge_sol]  # ,random_sol
+        self.setcandidat = [self.solution, self.gbest, random_sol, double_bridge_sol]  # ,random_sol
         # self.setcandidat=[self.solution,self.gbest,self.pbest,random_sol]
         self.q_table = np.zeros((2, (len(self.setcandidat))))
         self.leader_count = np.zeros((2, (len(self.setcandidat))), dtype=int)
@@ -55,7 +55,7 @@ class SimulatedAnnealing_TSP_Logging:
     def update_setcandidat(self):
         random_sol = generate_tsp(1, len(self.solution), self.has_node_coords)[0]
         double_bridge_sol = double_bridge_kick_cy(np.array(self.solution, dtype=np.int32)).tolist()
-        self.setcandidat = [self.solution, self.gbest, self.pbest, random_sol, double_bridge_sol]  # ,random_sol
+        self.setcandidat = [self.solution, self.gbest, random_sol, double_bridge_sol]  # ,random_sol
         # self.setcandidat=[self.solution,self.gbest,self.pbest,random_sol]#,random_sol
 
     def reset_q_table(self, nbr_states):
@@ -646,12 +646,10 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
     results = parallel_run(tasks)
 
     # Algorithm names
-    MM = ['QLSA_s', 'SA', 'QLSA_e', 'SA_UNIFORM', 'QLSA_s_without_reset', 'QLSA_e_without_reset',
-          'QLSA_s_state', 'QLSA_e_state', 'QLSA_s_state_sans_reset',
+    MM = [ 'SA', 'QLSA_s_without_reset', 'QLSA_e_without_reset',  'QLSA_s_state_sans_reset',
           'QLSA_e_state_sans_reset']  # Internal names for CSVs
-    pretty_names = {'QLSA_s': 'QLSA_s', 'SA': 'SA', 'QLSA_e': 'QLSA_ε', 'SA_UNIFORM': 'SA_U',
+    pretty_names = {'SA': 'SA', 
                     'QLSA_s_without_reset': 'QLSA_s_without_reset', 'QLSA_e_without_reset': 'QLSA_ε_without_reset',
-                    'QLSA_s_state': 'QLSA_s_state', 'QLSA_e_state': 'QLSA_e_state',
                     'QLSA_s_state_sans_reset': 'QLSA_s_state_sans_reset',
                     'QLSA_e_state_sans_reset': 'QLSA_e_state_sans_reset'}  # For plots
 
@@ -668,7 +666,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
                           for algo in MM} for prob in ListProb}
 
     # Output dirs
-    base_dir = "./New_Results_23_12_2025"
+    base_dir = "./New_Results_07_01_2026"
     os.makedirs(base_dir, exist_ok=True)
     plot_dir = f"{base_dir}/Plots"
     os.makedirs(plot_dir, exist_ok=True)
@@ -900,8 +898,8 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
 # ===============================
 if __name__ == "__main__":
     TestsFilePath = "inputs/"  # adjust path
-    runs = 5
-    ListProb = ['bays29', 'eil51', 'berlin52']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
+    runs = 10
+    ListProb = ['kroA100','eil101']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
     # ListProb = ['bayg29','hk48','berlin52','eil101']#,'dantzig42','swiss42','gr48','hk48']  # add more instances
     # ListProb = ['st70','pr76','eil76','rat99']#,'kroA100','kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150','tsp225']  # add more instances
     # ListProb = ['eil101']#,'kroA100']#,'kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150']#,'lin105','pr124','ch150','tsp225']

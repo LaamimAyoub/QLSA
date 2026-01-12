@@ -1,6 +1,6 @@
 import tsplib95
 #from QLSA import runAlgo, TestsFilePath
-from QLSA import runAlgo, TestsFilePath
+from QLSA5alg2_reset import runAlgo, TestsFilePath
 from compute import generate_tsp
 import multiprocessing
 import os
@@ -13,7 +13,7 @@ OUTPUT_FILE = f"{OUTPUT_FOLDER}/optimals.csv"
 NB_RUNS =10
 NB_PROCESS = int(os.getenv("nb_proc", 60))
 # Hyperparameters
-Iter, episodes = 1000, 50
+Iter, episodes = 1000, 100
 # Iter, episodes = 300000, 100
 epsilon, alpha, gamma, des, tempmin = 0.6, 0.1, 0.95, 0.001, 0.001
 

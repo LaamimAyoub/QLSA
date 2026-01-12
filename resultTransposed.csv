@@ -1,0 +1,5 @@
+,Problem,Metric,Greedy,Greedy_state,Greedy_state_without_reset,Greedy_without_reset,QL-SA_softmax,QL-SA_softmax_state,QL-SA_softmax_state_without_reset,QL-SA_softmax_without_reset,SA,Uniform
+0,bayg29,Optimal,1692.9,1699.3,1629.0,1663.0,1693.5,1694.4,1657.0,1642.8,1826.0,1792.7
+1,bayg29,run,5.5,5.5,5.5,5.5,5.5,5.5,5.5,5.5,5.5,5.5
+2,bays29,Optimal,2160.0,2150.3,2050.0,2096.1,2132.5,2098.4,2069.0,2062.1,2335.8,2183.6
+3,bays29,run,5.5,5.5,5.5,5.5,5.5,5.5,5.5,5.5,5.5,5.5

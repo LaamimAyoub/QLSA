@@ -516,7 +516,7 @@ def runAlgo(params):
         temperature, cooling_rate, tempmin,
         epsilon, alpha, gamma, des, gamma1, rp
     )
-    Iter = 1  # 1000#sa_obj.nbrville * 500
+    Iter = 1000  # 1000#sa_obj.nbrville * 500
     print('problem_name,Iter', problem_name, Iter)
     # episodes = int(Iter * 0.1)
     episodes = 100
@@ -898,7 +898,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
 # ===============================
 if __name__ == "__main__":
     TestsFilePath = "inputs/"  # adjust path
-    runs = 1
+    runs = 10
     ListProb = ['eil101', 'kroB150']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
     # ListProb = ['bayg29','hk48','berlin52','eil101']#,'dantzig42','swiss42','gr48','hk48']  # add more instances
     # ListProb = ['st70','pr76','eil76','rat99']#,'kroA100','kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150','tsp225']  # add more instances

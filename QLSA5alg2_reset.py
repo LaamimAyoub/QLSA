@@ -544,7 +544,7 @@ def runAlgo(params):
         temperature, cooling_rate, tempmin,
         epsilon, alpha, gamma, des, gamma1, rp,best_known
     )
-    Iter = 1000  # 1000#sa_obj.nbrville * 500
+    Iter = 1  # 1000#sa_obj.nbrville * 500
     print('problem_name,Iter', problem_name, Iter)
     # episodes = int(Iter * 0.1)
     episodes = 100

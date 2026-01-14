@@ -576,7 +576,7 @@ def prepare_tasks(ListProb, TestsFilePath, runs, Iter, episodes, epsilon, alpha,
 # ===============================
 def parallel_run(tasks, max_workers=None):
     if max_workers is None:
-        max_workers = max(1, int(multiprocessing.cpu_count() * 0.8))
+        max_workers = int(os.getenv("nb_proc", 10))
     results = []
     with ProcessPoolExecutor(max_workers=max_workers) as executor:
         future_to_task = {executor.submit(runAlgo, t): t for t in tasks}
@@ -666,7 +666,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
                           for algo in MM} for prob in ListProb}
 
     # Output dirs
-    base_dir = "./New_Results_07_01_2026"
+    base_dir = "./New_Results_14_01_2026"
     os.makedirs(base_dir, exist_ok=True)
     plot_dir = f"{base_dir}/Plots"
     os.makedirs(plot_dir, exist_ok=True)
@@ -899,7 +899,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
 if __name__ == "__main__":
     TestsFilePath = "inputs/"  # adjust path
     runs = 10
-    ListProb = ['kroA100','eil101']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
+    ListProb = ['eil101', 'kroB150']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
     # ListProb = ['bayg29','hk48','berlin52','eil101']#,'dantzig42','swiss42','gr48','hk48']  # add more instances
     # ListProb = ['st70','pr76','eil76','rat99']#,'kroA100','kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150','tsp225']  # add more instances
     # ListProb = ['eil101']#,'kroA100']#,'kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150']#,'lin105','pr124','ch150','tsp225']

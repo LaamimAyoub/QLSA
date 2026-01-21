@@ -22,8 +22,8 @@ class SimulatedAnnealing_TSP_Logging:
         self.solution = deepcopy(initial_solution)
         self.gbest = deepcopy(initial_solution)
         self.Fbest = compute_distance(initial_solution, self.problem)
-        #self.pbest = deepcopy(initial_solution)
-        #self.Fpbest = compute_distance(initial_solution, self.problem)
+        self.pbest = deepcopy(initial_solution)
+        self.Fpbest = compute_distance(initial_solution, self.problem)
         ###print ('Fbest',self.Fbest)
         self.state = 0
         self.stateAlgo = 0
@@ -636,7 +636,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
     # Hyperparameters
     Iter, episodes = 1000, 50
     # Iter, episodes = 300000, 100
-    epsilon, alpha, gamma, des, tempmin = 0.6, 0.1, 0.95, 0.001, 0.001
+    epsilon, alpha, gamma, des, tempmin = 0.6, 0.05, 0.95, 0.001, 0.001
     date = datetime.now().strftime('%Y%m%d_%H%M%S')
 
     # Prepare all tasks
@@ -666,7 +666,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
                           for algo in MM} for prob in ListProb}
 
     # Output dirs
-    base_dir = "./New_Results_07_01_2026"
+    base_dir = "./New_Results_alpha_0.001"
     os.makedirs(base_dir, exist_ok=True)
     plot_dir = f"{base_dir}/Plots"
     os.makedirs(plot_dir, exist_ok=True)
@@ -897,9 +897,14 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
 # MAIN
 # ===============================
 if __name__ == "__main__":
+    # Fix seed for reproducibility
+    np.random.seed(42)
+    import random
+    random.seed(42)
+
     TestsFilePath = "inputs/"  # adjust path
     runs = 10
-    ListProb = ['kroA100','eil101']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
+    ListProb = ['berlin52']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
     # ListProb = ['bayg29','hk48','berlin52','eil101']#,'dantzig42','swiss42','gr48','hk48']  # add more instances
     # ListProb = ['st70','pr76','eil76','rat99']#,'kroA100','kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150','tsp225']  # add more instances
     # ListProb = ['eil101']#,'kroA100']#,'kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150']#,'lin105','pr124','ch150','tsp225']

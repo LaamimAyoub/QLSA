@@ -37,8 +37,8 @@ class SimulatedAnnealing_TSP_Logging:
         self.fitness_history = []
         random_sol = generate_tsp(1, len(self.solution), self.has_node_coords)[0]
         double_bridge_sol = double_bridge_kick_cy(np.array(self.solution, dtype=np.int32)).tolist()
-        self.setcandidat = [self.solution, self.gbest, self.pbest, random_sol, double_bridge_sol]  # ,random_sol
-        # self.setcandidat=[self.solution,self.gbest,self.pbest,random_sol]
+        #self.setcandidat = [self.solution, self.gbest, self.pbest, random_sol, double_bridge_sol]  # ,random_sol
+        self.setcandidat = [self.solution, self.gbest, random_sol, double_bridge_sol]  # ,random_sol
         self.q_table = np.zeros((2, (len(self.setcandidat))))
         self.leader_count = np.zeros((2, (len(self.setcandidat))), dtype=int)
         self.epsilon = epsilon
@@ -55,8 +55,8 @@ class SimulatedAnnealing_TSP_Logging:
     def update_setcandidat(self):
         random_sol = generate_tsp(1, len(self.solution), self.has_node_coords)[0]
         double_bridge_sol = double_bridge_kick_cy(np.array(self.solution, dtype=np.int32)).tolist()
-        self.setcandidat = [self.solution, self.gbest, self.pbest, random_sol, double_bridge_sol]  # ,random_sol
-        # self.setcandidat=[self.solution,self.gbest,self.pbest,random_sol]#,random_sol
+        #self.setcandidat = [self.solution, self.gbest, self.pbest, random_sol, double_bridge_sol]  # ,random_sol
+        self.setcandidat = [self.solution, self.gbest, random_sol, double_bridge_sol]#,random_sol
 
     def reset_q_table(self, nbr_states):
         self.q_table = np.zeros((nbr_states, (len(self.setcandidat))))
@@ -666,7 +666,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
                           for algo in MM} for prob in ListProb}
 
     # Output dirs
-    base_dir = "./New_Results_07_01_2026"
+    base_dir = "./New_Results_12_01_2026"
     os.makedirs(base_dir, exist_ok=True)
     plot_dir = f"{base_dir}/Plots"
     os.makedirs(plot_dir, exist_ok=True)
@@ -796,9 +796,9 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
                 fig1.add_trace(go.Scatter(x=iterations, y=mean_conv[algo], name=pretty_names[algo], mode='lines'))
 
             fig1.update_layout(
-                title=f"Convergence Plot (Mean Best-So-Far) - {prob}",
+                title=f"Convergence Plot (Mean Best Cost Per Iteration) - {prob}",
                 xaxis_title="Iteration",
-                yaxis_title="Fitness",
+                yaxis_title="Cost",
                 template="plotly_white",
                 legend=dict(x=0.01, y=0.99)
             )
@@ -821,12 +821,13 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
                     go.Scatter(x=iterations_acc, y=mean_accepted[algo], name=pretty_names[algo], mode='lines'))
 
             fig2.update_layout(
-                title=f"Accepted Fitness Plot (Mean Accepted Solutions) - {prob}",
+                title=f"Accepted Fitness Plot (Mean Accepted Solutions Per Iteration) - {prob}",
                 xaxis_title="Iteration",
-                yaxis_title="Fitness of Accepted Solutions",
+                yaxis_title="Cost",
                 template="plotly_white",
                 legend=dict(x=0.01, y=0.99)
             )
+
             pio.write_html(fig2, file=f"{plot_dir}/{prob}_accepted_fitness_{date}.html", auto_open=False)
             pio.write_image(fig2, f"{plot_dir}/{prob}_accepted_fitness_{date}.png")
 
@@ -899,7 +900,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
 if __name__ == "__main__":
     TestsFilePath = "inputs/"  # adjust path
     runs = 10
-    ListProb = ['kroA100','eil101']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
+    ListProb =['gr24','eil51']#,'eil76','rat99']# ['kroA100','eil101']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
     # ListProb = ['bayg29','hk48','berlin52','eil101']#,'dantzig42','swiss42','gr48','hk48']  # add more instances
     # ListProb = ['st70','pr76','eil76','rat99']#,'kroA100','kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150','tsp225']  # add more instances
     # ListProb = ['eil101']#,'kroA100']#,'kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150']#,'lin105','pr124','ch150','tsp225']

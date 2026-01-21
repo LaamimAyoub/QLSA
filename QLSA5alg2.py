@@ -22,8 +22,8 @@ class SimulatedAnnealing_TSP_Logging:
         self.solution = deepcopy(initial_solution)
         self.gbest = deepcopy(initial_solution)
         self.Fbest = compute_distance(initial_solution, self.problem)
-        #self.pbest = deepcopy(initial_solution)
-        #self.Fpbest = compute_distance(initial_solution, self.problem)
+        self.pbest = deepcopy(initial_solution)
+        self.Fpbest = compute_distance(initial_solution, self.problem)
         ###print ('Fbest',self.Fbest)
         self.state = 0
         self.stateAlgo = 0
@@ -636,7 +636,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
     # Hyperparameters
     Iter, episodes = 1000, 50
     # Iter, episodes = 300000, 100
-    epsilon, alpha, gamma, des, tempmin = 0.6, 0.1, 0.95, 0.001, 0.001
+    epsilon, alpha, gamma, des, tempmin = 0.6, 0.05, 0.04, 0.001, 0.001
     date = datetime.now().strftime('%Y%m%d_%H%M%S')
 
     # Prepare all tasks
@@ -666,7 +666,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
                           for algo in MM} for prob in ListProb}
 
     # Output dirs
-    base_dir = "./New_Results_07_01_2026"
+    base_dir = "./New_Results_gamma_0.04"
     os.makedirs(base_dir, exist_ok=True)
     plot_dir = f"{base_dir}/Plots"
     os.makedirs(plot_dir, exist_ok=True)
@@ -690,7 +690,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
         "Runs": runs,
         "Instances": ", ".join(ListProb)
     }
-    pd.DataFrame([params_data]).to_csv(f"{base_dir}/parameters_{date}.csv", index=False)
+    pd.DataFrame([params_data]).to_csv(f"{base_dir}/parameters_{date}.csv", sep=";", index=False)
 
     # Populate results
     for task, zres in results:
@@ -749,20 +749,20 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
     for prob in ListProb:
         # Save detailed Fbest runs
         file_path = f"{base_dir}/{prob}_runs_{date}.csv"
-        all_results[prob].to_csv(file_path, index=False)
+        all_results[prob].to_csv(file_path, sep=";", index=False)
 
         # Save descriptive stats for Fbest
         desc_path = f"{base_dir}/{prob}_stats_{date}.csv"
-        all_results[prob].describe().to_csv(desc_path)
+        all_results[prob].describe().to_csv(desc_path, sep=";")
 
         # Save runtime per algo (tidy, one column per algo + describe)
         print('runtime_per_algo', runtime_per_algo)
         runtime_df = pd.DataFrame({algo: np.asarray(runtime_per_algo[prob][algo], dtype=float) for algo in MM})
         runtime_runs_csv = f"{base_dir}/{prob}_runtime_runs_{date}.csv"
-        runtime_df.to_csv(runtime_runs_csv, index=False)
+        runtime_df.to_csv(runtime_runs_csv, sep=";", index=False)
 
         runtime_stats_csv = f"{base_dir}/{prob}_runtime_stats_{date}.csv"
-        runtime_df.describe().to_csv(runtime_stats_csv)
+        runtime_df.describe().to_csv(runtime_stats_csv, sep=";")
 
         # Save "best across runs" metadata + gbest text
         best_meta_rows = []
@@ -779,7 +779,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
                 "best_Fbest": b["Fbest"],
                 "best_gbest_path": best_gbest_path if b["gbest"] is not None else ""
             })
-        pd.DataFrame(best_meta_rows).to_csv(f"{base_dir}/{prob}_best_across_runs_{date}.csv", index=False)
+        pd.DataFrame(best_meta_rows).to_csv(f"{base_dir}/{prob}_best_across_runs_{date}.csv", sep=";" ,  index=False)
 
         # =======================
         # Convergence plot (mean)
@@ -897,9 +897,14 @@ def DF_results_parallel(ListProb, TestsFilePath, runs):
 # MAIN
 # ===============================
 if __name__ == "__main__":
+    # Fix seed for reproducibility
+    np.random.seed(42)
+    import random
+    random.seed(42)
+
     TestsFilePath = "inputs/"  # adjust path
     runs = 10
-    ListProb = ['kroA100','eil101']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
+    ListProb = ['berlin52']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
     # ListProb = ['bayg29','hk48','berlin52','eil101']#,'dantzig42','swiss42','gr48','hk48']  # add more instances
     # ListProb = ['st70','pr76','eil76','rat99']#,'kroA100','kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150','tsp225']  # add more instances
     # ListProb = ['eil101']#,'kroA100']#,'kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150']#,'lin105','pr124','ch150','tsp225']

@@ -544,7 +544,7 @@ def runAlgo(params):
         temperature, cooling_rate, tempmin,
         epsilon, alpha, gamma, des, gamma1, rp,best_known
     )
-    Iter = 1000  # 1000#sa_obj.nbrville * 500
+    Iter = 1  # 1000#sa_obj.nbrville * 500
     print('problem_name,Iter', problem_name, Iter)
     # episodes = int(Iter * 0.1)
     episodes = 100
@@ -606,7 +606,7 @@ def prepare_tasks(ListProb, TestsFilePath, runs, Iter, episodes, epsilon, alpha,
 # ===============================
 def parallel_run(tasks, max_workers=None):
     if max_workers is None:
-        max_workers = max(1, int(multiprocessing.cpu_count() * 0.1))
+        max_workers = int(os.getenv("nb_proc", 10))
     results = []
     with ProcessPoolExecutor(max_workers=max_workers) as executor:
         future_to_task = {executor.submit(runAlgo, t): t for t in tasks}

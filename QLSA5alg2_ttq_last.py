@@ -480,7 +480,7 @@ ALGO_NAMES = {
     3:"Greedy",
     4: "QL-SA_softmax_state",   
     5: "Greedy_state", 
-    6: "Uniform", 
+    #6: "Uniform", 
 }
 
 
@@ -561,26 +561,26 @@ def runAlgo(params):
 
     # if param == 1:
     #     res = sa_obj.run2(iterations=Iter, episodes=episodes)
-    if param == 1:
-        res = sa_obj.run_SA(iterations=Iter)
+    #if param == 1:
+        #res = sa_obj.run_SA(iterations=Iter)
     # elif param == 3:
     #     res = sa_obj.run_greedy2(iterations=Iter, episodes=episodes)
     # elif param == 4:
     #     res = sa_obj.run_uniform(iterations=Iter, episodes=episodes)
-    elif param == 2:
+    if param == 1:
         res = sa_obj.run2_sans_reset(iterations=Iter, episodes=episodes)
-    elif param == 3:
+    elif param == 2:
         res = sa_obj.run_greedy2_sans_reset(iterations=Iter, episodes=episodes)
     # elif param == 7:
     #     res = sa_obj.run2(iterations=Iter, episodes=episodes, stateAlgo=1)
     # elif param == 8:
     #     res = sa_obj.run_greedy2(iterations=Iter, episodes=episodes, stateAlgo=1)
-    elif param == 4:
+    elif param == 3:
         res = sa_obj.run2_sans_reset(iterations=Iter, episodes=episodes, stateAlgo=1)
-    elif param == 5:
+    elif param == 4:
         res = sa_obj.run_greedy2_sans_reset(iterations=Iter, episodes=episodes, stateAlgo=1)
-    elif param == 6:
-        res = sa_obj.run_uniform_sans_reset(iterations=Iter, episodes=episodes)
+    #elif param == 6:
+        #res = sa_obj.run_uniform_sans_reset(iterations=Iter, episodes=episodes)
     else:
         raise ValueError(f"Invalid param value: {param}")
 
@@ -603,7 +603,7 @@ def prepare_tasks(ListProb, TestsFilePath, runs, Iter, episodes, epsilon, alpha,
         has_node_coords = (problem.node_coords != {} or problem.display_data != {})
         for k in range(runs):
             initial_solution = generate_tsp(1, nbrville, has_node_coords)[0]
-            for p in range(1, 7):
+            for p in range(1, 5):
                 print('instance', PROB, 'run', k, 'algo', p)
                 tasks.append((
                     TestsFilePath, PROB, initial_solution, p, k,  # <-- run_id k is 5th element
@@ -677,7 +677,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
     # Hyperparameters
     Iter, episodes = 1000, 100
     # Iter, episodes = 300000, 100
-    epsilon, alpha, gamma, des, tempmin = 0.6, 0.1, 0.95, 0.001, 0.001
+    epsilon, alpha, gamma, des, tempmin = 0.6, 0.001, 0.95, 0.001, 0.001
     date = datetime.now().strftime('%Y%m%d_%H%M%S')
 
     # Prepare all tasks
@@ -687,12 +687,11 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
     results = parallel_run(tasks)
 
      # Algorithm names
-    MM = [ 'SA', 'QLSA_s_without_reset', 'QLSA_e_without_reset',  'QLSA_s_state_sans_reset',
-          'QLSA_e_state_sans_reset','QLSA_uniform']  # Internal names for CSVs
-    pretty_names = {'SA': 'SA', 
-                    'QLSA_s_without_reset': 'SQLSA_s', 'QLSA_e_without_reset': 'SQLSA_ε',
+    MM = [ 'QLSA_s_without_reset', 'QLSA_e_without_reset',  'QLSA_s_state_sans_reset',
+          'QLSA_e_state_sans_reset']  # Internal names for CSVs
+    pretty_names = { 'QLSA_s_without_reset': 'SQLSA_s', 'QLSA_e_without_reset': 'SQLSA_ε',
                     'QLSA_s_state_sans_reset': 'QLSA_s',
-                    'QLSA_e_state_sans_reset': 'QLSA_ε', 'QLSA_uniform':'QLSA_U'}  # For plots
+                    'QLSA_e_state_sans_reset': 'QLSA_ε'}  # For plots
 
     # Storage
     all_conv_data = {prob: {algo: [] for algo in MM} for prob in ListProb}
@@ -707,7 +706,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
                           for algo in MM} for prob in ListProb}
 
     # Output dirs
-    base_dir = "./New_Results_20_01_2026_ttq_alpha0.1"
+    base_dir = "./New_Results_24_01_2026_ttq_alpha0.001"
     os.makedirs(base_dir, exist_ok=True)
     plot_dir = f"{base_dir}/Plots"
     os.makedirs(plot_dir, exist_ok=True)
@@ -731,7 +730,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
         "Runs": runs,
         "Instances": ", ".join(ListProb)
     }
-    pd.DataFrame([params_data]).to_csv(f"{base_dir}/parameters_{date}.csv", index=False)
+    pd.DataFrame([params_data]).to_csv(f"{base_dir}/parameters_{date}.csv", sep=";", index=False)
 
     # Populate results
     for task, zres in results:
@@ -767,7 +766,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
         }
         mode = "a" if os.path.exists(runtime_master_csv) else "w"
         df_row = pd.DataFrame([row])
-        df_row.to_csv(runtime_master_csv, mode=mode, header=not os.path.exists(runtime_master_csv), index=False)
+        df_row.to_csv(runtime_master_csv, mode=mode, header=not os.path.exists(runtime_master_csv), sep=";", index=False)
 
         # 3) Update per-instance DataFrame of Fbest
         current_df = all_results[PROB]
@@ -796,20 +795,20 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
     for prob in ListProb:
         # Save detailed Fbest runs
         file_path = f"{base_dir}/{prob}_runs_{date}.csv"
-        all_results[prob].to_csv(file_path, index=False)
+        all_results[prob].to_csv(file_path, sep=";", index=False)
 
         # Save descriptive stats for Fbest
         desc_path = f"{base_dir}/{prob}_stats_{date}.csv"
-        all_results[prob].describe().to_csv(desc_path)
+        all_results[prob].describe().to_csv(desc_path, sep=";")
 
         # Save runtime per algo (tidy, one column per algo + describe)
         print('runtime_per_algo', runtime_per_algo)
         runtime_df = pd.DataFrame({algo: np.asarray(runtime_per_algo[prob][algo], dtype=float) for algo in MM})
         runtime_runs_csv = f"{base_dir}/{prob}_runtime_runs_{date}.csv"
-        runtime_df.to_csv(runtime_runs_csv, index=False)
+        runtime_df.to_csv(runtime_runs_csv, sep=";", index=False)
 
         runtime_stats_csv = f"{base_dir}/{prob}_runtime_stats_{date}.csv"
-        runtime_df.describe().to_csv(runtime_stats_csv)
+        runtime_df.describe().to_csv(runtime_stats_csv, sep=";")
 
         # Save "best across runs" metadata + gbest text
         best_meta_rows = []
@@ -826,7 +825,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
                 "best_Fbest": b["Fbest"],
                 "best_gbest_path": best_gbest_path if b["gbest"] is not None else ""
             })
-        pd.DataFrame(best_meta_rows).to_csv(f"{base_dir}/{prob}_best_across_runs_{date}.csv", index=False)
+        pd.DataFrame(best_meta_rows).to_csv(f"{base_dir}/{prob}_best_across_runs_{date}.csv", sep=";", index=False)
 
         # =======================
         # Convergence plot (mean)
@@ -944,9 +943,13 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
 # MAIN
 # ===============================
 if __name__ == "__main__":
+
+    np.random.seed(42)
+    import random
+    random.seed(42)
     TestsFilePath = "inputs/"  # adjust path
     runs = 10
-    ListProb = ['gr17','gr24','ulysses16','ulysses22','bayg29','bays29','dantzig42','swiss42','gr48','hk48','eil51','berlin52']#,'st70','eil76','pr76','rat99','kroA100','eil101']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
+    ListProb = ['berlin52']#,'st70','eil76','pr76','rat99','kroA100','eil101']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
     #ListProb = ['hk48','berlin52','eil101','kroA100']#,'dantzig42','swiss42','gr48','hk48']  # add more instances
     # ListProb = ['st70','pr76','eil76','rat99']#,'kroA100','kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150','tsp225']  # add more instances
     # ListProb = ['eil101']#,'kroA100']#,'kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150']#,'lin105','pr124','ch150','tsp225']

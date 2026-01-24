@@ -930,17 +930,23 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
 if __name__ == "__main__":
     TestsFilePath = "inputs/"  # adjust path
     runs = 10
-    ListProb = ['gr17','ulysses16','ulysses22','bayg29','bays29','dantzig42']#,'swiss42','gr48','hk48','eil51','berlin52','st70','eil76','pr76','rat99','kroA100','eil101']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
-    # ListProb = ['bayg29','hk48','berlin52','eil101']#,'dantzig42','swiss42','gr48','hk48']  # add more instances
+    #ListProb = ['gr17','ulysses16','ulysses22','bayg29','bays29','dantzig42']#,'swiss42','gr48','hk48','eil51','berlin52','st70','eil76','pr76','rat99','kroA100','eil101']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
+    ListProb = ['hk48','berlin52','eil101','kroA100']#,'dantzig42','swiss42','gr48','hk48']  # add more instances
     # ListProb = ['st70','pr76','eil76','rat99']#,'kroA100','kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150','tsp225']  # add more instances
     # ListProb = ['eil101']#,'kroA100']#,'kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150']#,'lin105','pr124','ch150','tsp225']
+#     best_known={
+#     "gr17": 2085,
+#     "ulysses16": 6859,
+#     "ulysses22": 7013,
+#     "bayg29": 1610,
+#     "bays29": 2020,
+#     "dantzig42": 699
+# }
     best_known={
-    "gr17": 2085,
-    "ulysses16": 6859,
-    "ulysses22": 7013,
-    "bayg29": 1610,
-    "bays29": 2020,
-    "dantzig42": 699
+    "hk48": 11461,
+    "berlin52": 7542,
+    "eil101": 629,
+    "kroA100": 21282
 }
     # gr17,bayg29,bays29,oliver30,swiss42,eil51,berlin52,st70,pr76,eil76,rat99,kroA100,kroB100,kroC100,kroD100,kroE100,eil101,lin105,pr124,ch150,tsp225
     results, plots = DF_results_parallel(ListProb, TestsFilePath, runs,best_known)

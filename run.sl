@@ -10,7 +10,116 @@ source activate qlsa
 unset PYTHONPATH
 echo $CONDA_PREFIX
 export nb_proc=50
+export ALPHA=0.05
 cd /home/$USER/QLSA
 conda run -n qlsa python  QLSA5alg2_ttq_last.py
 
 
+export CONDA_ENVS_PATH=/home/$USER/envs
+module load Anaconda3
+source activate qlsa
+unset PYTHONPATH
+echo $CONDA_PREFIX
+export nb_proc=50
+export ALPHA=0.1
+cd /home/$USER/QLSA
+conda run -n qlsa python  QLSA5alg2_ttq_last.py
+
+
+export CONDA_ENVS_PATH=/home/$USER/envs
+module load Anaconda3
+source activate qlsa
+unset PYTHONPATH
+echo $CONDA_PREFIX
+export nb_proc=50
+export ALPHA=0.2
+cd /home/$USER/QLSA
+conda run -n qlsa python  QLSA5alg2_ttq_last.py
+
+
+export CONDA_ENVS_PATH=/home/$USER/envs
+module load Anaconda3
+source activate qlsa
+unset PYTHONPATH
+echo $CONDA_PREFIX
+export nb_proc=50
+export ALPHA=0.3
+cd /home/$USER/QLSA
+conda run -n qlsa python  QLSA5alg2_ttq_last.py
+
+
+export CONDA_ENVS_PATH=/home/$USER/envs
+module load Anaconda3
+source activate qlsa
+unset PYTHONPATH
+echo $CONDA_PREFIX
+export nb_proc=50
+export ALPHA=0.4
+cd /home/$USER/QLSA
+conda run -n qlsa python  QLSA5alg2_ttq_last.py
+
+
+export CONDA_ENVS_PATH=/home/$USER/envs
+module load Anaconda3
+source activate qlsa
+unset PYTHONPATH
+echo $CONDA_PREFIX
+export nb_proc=50
+export ALPHA=0.5
+cd /home/$USER/QLSA
+conda run -n qlsa python  QLSA5alg2_ttq_last.py
+
+
+export CONDA_ENVS_PATH=/home/$USER/envs
+module load Anaconda3
+source activate qlsa
+unset PYTHONPATH
+echo $CONDA_PREFIX
+export nb_proc=50
+export ALPHA=0.6
+cd /home/$USER/QLSA
+conda run -n qlsa python  QLSA5alg2_ttq_last.py
+
+
+export CONDA_ENVS_PATH=/home/$USER/envs
+module load Anaconda3
+source activate qlsa
+unset PYTHONPATH
+echo $CONDA_PREFIX
+export nb_proc=50
+export ALPHA=0.7
+cd /home/$USER/QLSA
+conda run -n qlsa python  QLSA5alg2_ttq_last.py
+
+
+export CONDA_ENVS_PATH=/home/$USER/envs
+module load Anaconda3
+source activate qlsa
+unset PYTHONPATH
+echo $CONDA_PREFIX
+export nb_proc=50
+export ALPHA=0.8
+cd /home/$USER/QLSA
+conda run -n qlsa python  QLSA5alg2_ttq_last.py
+
+
+export CONDA_ENVS_PATH=/home/$USER/envs
+module load Anaconda3
+source activate qlsa
+unset PYTHONPATH
+echo $CONDA_PREFIX
+export nb_proc=50
+export ALPHA=0.9
+cd /home/$USER/QLSA
+conda run -n qlsa python  QLSA5alg2_ttq_last.py
+
+
+export CONDA_ENVS_PATH=/home/$USER/envs
+module load Anaconda3
+source activate qlsa
+unset PYTHONPATH
+echo $CONDA_PREFIX
+export nb_proc=50
+export ALPHA=1.0
+cd /home/$USER/QLSA
+conda run -n qlsa python  QLSA5alg2_ttq_last.py

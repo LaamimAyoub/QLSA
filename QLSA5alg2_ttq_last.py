@@ -564,7 +564,7 @@ def runAlgo(params):
         epsilon, alpha2, gamma, des, gamma1, rp,best_known=best_known
     )
 
-    Iter = 10  # 1000#sa_obj.nbrville * 500
+    Iter = 1000  # 1000#sa_obj.nbrville * 500
     print('problem_name,Iter', problem_name, Iter)
     # episodes = int(Iter * 0.1)
     episodes = 100
@@ -962,7 +962,7 @@ if __name__ == "__main__":
     import random
     random.seed(42)
     TestsFilePath = "inputs/"  # adjust path
-    runs = 5
+    runs = 10
     ListProb = ['berlin52']#,'st70','eil76','pr76','rat99','kroA100','eil101']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
     #ListProb = ['hk48','berlin52','eil101','kroA100']#,'dantzig42','swiss42','gr48','hk48']  # add more instances
     # ListProb = ['st70','pr76','eil76','rat99']#,'kroA100','kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150','tsp225']  # add more instances

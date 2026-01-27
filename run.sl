@@ -10,7 +10,7 @@ source activate qlsa
 unset PYTHONPATH
 echo $CONDA_PREFIX
 export nb_proc=50
-export ALPHA=0.05
+export GAMMA=0.05
 cd /home/$USER/QLSA
 conda run -n qlsa python  QLSA5alg2_ttq_last.py
 
@@ -21,7 +21,7 @@ source activate qlsa
 unset PYTHONPATH
 echo $CONDA_PREFIX
 export nb_proc=50
-export ALPHA=0.1
+export GAMMA=0.1
 cd /home/$USER/QLSA
 conda run -n qlsa python  QLSA5alg2_ttq_last.py
 
@@ -32,7 +32,7 @@ source activate qlsa
 unset PYTHONPATH
 echo $CONDA_PREFIX
 export nb_proc=50
-export ALPHA=0.2
+export GAMMA=0.2
 cd /home/$USER/QLSA
 conda run -n qlsa python  QLSA5alg2_ttq_last.py
 
@@ -43,7 +43,7 @@ source activate qlsa
 unset PYTHONPATH
 echo $CONDA_PREFIX
 export nb_proc=50
-export ALPHA=0.3
+export GAMMA=0.3
 cd /home/$USER/QLSA
 conda run -n qlsa python  QLSA5alg2_ttq_last.py
 
@@ -54,7 +54,7 @@ source activate qlsa
 unset PYTHONPATH
 echo $CONDA_PREFIX
 export nb_proc=50
-export ALPHA=0.4
+export GAMMA=0.4
 cd /home/$USER/QLSA
 conda run -n qlsa python  QLSA5alg2_ttq_last.py
 
@@ -65,7 +65,7 @@ source activate qlsa
 unset PYTHONPATH
 echo $CONDA_PREFIX
 export nb_proc=50
-export ALPHA=0.5
+export GAMMA=0.5
 cd /home/$USER/QLSA
 conda run -n qlsa python  QLSA5alg2_ttq_last.py
 
@@ -76,7 +76,7 @@ source activate qlsa
 unset PYTHONPATH
 echo $CONDA_PREFIX
 export nb_proc=50
-export ALPHA=0.6
+export GAMMA=0.6
 cd /home/$USER/QLSA
 conda run -n qlsa python  QLSA5alg2_ttq_last.py
 
@@ -87,7 +87,7 @@ source activate qlsa
 unset PYTHONPATH
 echo $CONDA_PREFIX
 export nb_proc=50
-export ALPHA=0.7
+export GAMMA=0.7
 cd /home/$USER/QLSA
 conda run -n qlsa python  QLSA5alg2_ttq_last.py
 
@@ -98,7 +98,7 @@ source activate qlsa
 unset PYTHONPATH
 echo $CONDA_PREFIX
 export nb_proc=50
-export ALPHA=0.8
+export GAMMA=0.8
 cd /home/$USER/QLSA
 conda run -n qlsa python  QLSA5alg2_ttq_last.py
 
@@ -109,7 +109,7 @@ source activate qlsa
 unset PYTHONPATH
 echo $CONDA_PREFIX
 export nb_proc=50
-export ALPHA=0.9
+export GAMMA=0.9
 cd /home/$USER/QLSA
 conda run -n qlsa python  QLSA5alg2_ttq_last.py
 
@@ -120,6 +120,6 @@ source activate qlsa
 unset PYTHONPATH
 echo $CONDA_PREFIX
 export nb_proc=50
-export ALPHA=1.0
+export GAMMA=1.0
 cd /home/$USER/QLSA
 conda run -n qlsa python  QLSA5alg2_ttq_last.py

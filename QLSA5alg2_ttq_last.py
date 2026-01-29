@@ -577,18 +577,18 @@ def runAlgo(params):
     #     res = sa_obj.run_greedy2(iterations=Iter, episodes=episodes)
     # elif param == 4:
     #     res = sa_obj.run_uniform(iterations=Iter, episodes=episodes)
+    #if param == 1:
+    #    res = sa_obj1.run2_sans_reset(iterations=Iter, episodes=episodes)
     if param == 1:
-        res = sa_obj1.run2_sans_reset(iterations=Iter, episodes=episodes)
-    #elif param == 2:
-        #res = sa_obj.run_greedy2_sans_reset(iterations=Iter, episodes=episodes)
+        res = sa_obj1.run_greedy2_sans_reset(iterations=Iter, episodes=episodes)
     # elif param == 7:
     #     res = sa_obj.run2(iterations=Iter, episodes=episodes, stateAlgo=1)
     # elif param == 8:
     #     res = sa_obj.run_greedy2(iterations=Iter, episodes=episodes, stateAlgo=1)
+    #elif param == 2:
+    #    res = sa_obj2.run2_sans_reset(iterations=Iter, episodes=episodes, stateAlgo=1)
     elif param == 2:
-        res = sa_obj2.run2_sans_reset(iterations=Iter, episodes=episodes, stateAlgo=1)
-    #elif param == 4:
-        #res = sa_obj.run_greedy2_sans_reset(iterations=Iter, episodes=episodes, stateAlgo=1)
+        res = sa_obj1.run_greedy2_sans_reset(iterations=Iter, episodes=episodes, stateAlgo=1)
     #elif param == 6:
         #res = sa_obj.run_uniform_sans_reset(iterations=Iter, episodes=episodes)
     else:
@@ -685,12 +685,12 @@ def _load_coords(prob, tests_path):
 
 def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
     # Hyperparameters
-    GAMMA=float(os.getenv("GAMMA"))
+    EPSILON=float(os.getenv("EPSILON"))
     Iter, episodes = 1000, 100
     # Iter, episodes = 300000, 100
-    epsilon, gamma, alpha1, alpha2, des, tempmin = 0.6, GAMMA, 0.3, 0.6, 0.001, 0.001
+    epsilon, gamma, alpha1, alpha2, des, tempmin = EPSILON, 0.9, 0.3, 0.6, 0.001, 0.001
     date = datetime.now().strftime('%Y%m%d_%H%M%S')
-    print(GAMMA)
+    print(EPSILON)
 
     # Prepare all tasks
     tasks = prepare_tasks(ListProb, TestsFilePath, runs, Iter, episodes, epsilon, gamma, des, tempmin,best_known)
@@ -701,11 +701,11 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
      # Algorithm names
     #MM = [ 'QLSA_s_without_reset', 'QLSA_e_without_reset',  'QLSA_s_state_sans_reset',
     #      'QLSA_e_state_sans_reset'] # Internal names for CSVs
-    MM = ['QLSA_s_without_reset', 'QLSA_s_state_sans_reset']
+    MM = ['QLSA_e_without_reset', 'QLSA_e_state_sans_reset']
     #pretty_names = { 'QLSA_s_without_reset': 'SQLSA_s', 'QLSA_e_without_reset': 'SQLSA_ε',
     #                'QLSA_s_state_sans_reset': 'QLSA_s',
     #                'QLSA_e_state_sans_reset': 'QLSA_ε'}  # For plots
-    pretty_names = { 'QLSA_s_without_reset': 'SQLSA_s', 'QLSA_s_state_sans_reset': 'QLSA_s'}
+    pretty_names = { 'QLSA_e_without_reset': 'SQLSA_ε', 'QLSA_e_state_sans_reset': 'QLSA_ε'}
     # Storage
     all_conv_data = {prob: {algo: [] for algo in MM} for prob in ListProb}
     all_accepted_data = {prob: {algo: [] for algo in MM} for prob in ListProb}
@@ -719,7 +719,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
                           for algo in MM} for prob in ListProb}
 
     # Output dirs
-    base_dir = f"./New_Results_27_01_2026_ttq_gamma{GAMMA}"
+    base_dir = f"./New_Results_2_01_2026_ttq_epsilon{EPSILON}"
     os.makedirs(base_dir, exist_ok=True)
     plot_dir = f"{base_dir}/Plots"
     os.makedirs(plot_dir, exist_ok=True)

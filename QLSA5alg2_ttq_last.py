@@ -571,23 +571,23 @@ def runAlgo(params):
 
     # if param == 1:
     #     res = sa_obj.run2(iterations=Iter, episodes=episodes)
-    #if param == 1:
-        #res = sa_obj.run_SA(iterations=Iter)
+    if param == 1:
+        res = sa_obj1.run_SA(iterations=Iter)
     # elif param == 3:
     #     res = sa_obj.run_greedy2(iterations=Iter, episodes=episodes)
     # elif param == 4:
     #     res = sa_obj.run_uniform(iterations=Iter, episodes=episodes)
-    #if param == 1:
-    #    res = sa_obj1.run2_sans_reset(iterations=Iter, episodes=episodes)
-    if param == 1:
+    if param == 2:
+        res = sa_obj1.run2_sans_reset(iterations=Iter, episodes=episodes)
+    if param == 3:
         res = sa_obj1.run_greedy2_sans_reset(iterations=Iter, episodes=episodes)
     # elif param == 7:
     #     res = sa_obj.run2(iterations=Iter, episodes=episodes, stateAlgo=1)
     # elif param == 8:
     #     res = sa_obj.run_greedy2(iterations=Iter, episodes=episodes, stateAlgo=1)
-    #elif param == 2:
-    #    res = sa_obj2.run2_sans_reset(iterations=Iter, episodes=episodes, stateAlgo=1)
-    elif param == 2:
+    elif param == 4:
+        res = sa_obj2.run2_sans_reset(iterations=Iter, episodes=episodes, stateAlgo=1)
+    elif param == 5:
         res = sa_obj1.run_greedy2_sans_reset(iterations=Iter, episodes=episodes, stateAlgo=1)
     #elif param == 6:
         #res = sa_obj.run_uniform_sans_reset(iterations=Iter, episodes=episodes)
@@ -613,7 +613,7 @@ def prepare_tasks(ListProb, TestsFilePath, runs, Iter, episodes, epsilon, gamma,
         has_node_coords = (problem.node_coords != {} or problem.display_data != {})
         for k in range(runs):
             initial_solution = generate_tsp(1, nbrville, has_node_coords)[0]
-            for p in range(1, 3):
+            for p in range(1, 6):
                 print('instance', PROB, 'run', k, 'algo', p)
                 tasks.append((
                     TestsFilePath, PROB, initial_solution, p, k,  # <-- run_id k is 5th element
@@ -685,12 +685,12 @@ def _load_coords(prob, tests_path):
 
 def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
     # Hyperparameters
-    DES=float(os.getenv("DES"))
+    #DES=float(os.getenv("DES"))
     Iter, episodes = 1000, 100
     # Iter, episodes = 300000, 100
-    epsilon, gamma, alpha1, alpha2, des, tempmin = 1, 0.9, 0.3, 0.6, DES, 0.001
+    epsilon, gamma, alpha1, alpha2, des, tempmin = 1, 0.9, 0.3, 0.6, 0.001, 0.001
     date = datetime.now().strftime('%Y%m%d_%H%M%S')
-    print(DES)
+
 
     # Prepare all tasks
     tasks = prepare_tasks(ListProb, TestsFilePath, runs, Iter, episodes, epsilon, gamma, des, tempmin,best_known)
@@ -699,13 +699,13 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
     results = parallel_run(tasks)
 
      # Algorithm names
-    #MM = [ 'QLSA_s_without_reset', 'QLSA_e_without_reset',  'QLSA_s_state_sans_reset',
-    #      'QLSA_e_state_sans_reset'] # Internal names for CSVs
-    MM = ['QLSA_e_without_reset', 'QLSA_e_state_sans_reset']
-    #pretty_names = { 'QLSA_s_without_reset': 'SQLSA_s', 'QLSA_e_without_reset': 'SQLSA_ε',
-    #                'QLSA_s_state_sans_reset': 'QLSA_s',
-    #                'QLSA_e_state_sans_reset': 'QLSA_ε'}  # For plots
-    pretty_names = { 'QLSA_e_without_reset': 'SQLSA_ε', 'QLSA_e_state_sans_reset': 'QLSA_ε'}
+    MM = [ 'SA', 'QLSA_s_without_reset', 'QLSA_e_without_reset',  'QLSA_s_state_sans_reset',
+          'QLSA_e_state_sans_reset'] # Internal names for CSVs
+    #MM = ['QLSA_e_without_reset', 'QLSA_e_state_sans_reset']
+    pretty_names = { 'QLSA_s_without_reset': 'SQLSA_s', 'QLSA_e_without_reset': 'SQLSA_ε',
+                   'QLSA_s_state_sans_reset': 'QLSA_s',
+                 'QLSA_e_state_sans_reset': 'QLSA_ε'}  # For plots
+    #pretty_names = { 'QLSA_e_without_reset': 'SQLSA_ε', 'QLSA_e_state_sans_reset': 'QLSA_ε'}
     # Storage
     all_conv_data = {prob: {algo: [] for algo in MM} for prob in ListProb}
     all_accepted_data = {prob: {algo: [] for algo in MM} for prob in ListProb}
@@ -719,7 +719,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
                           for algo in MM} for prob in ListProb}
 
     # Output dirs
-    base_dir = f"./New_Results_30_01_2026_ttq_des{DES}"
+    base_dir = f"./Last_results"
     os.makedirs(base_dir, exist_ok=True)
     plot_dir = f"{base_dir}/Plots"
     os.makedirs(plot_dir, exist_ok=True)
@@ -957,13 +957,9 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
 # MAIN
 # ===============================
 if __name__ == "__main__":
-
-    np.random.seed(42)
-    import random
-    random.seed(42)
     TestsFilePath = "inputs/"  # adjust path
     runs = 10
-    ListProb = ['berlin52']#,'st70','eil76','pr76','rat99','kroA100','eil101']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
+    ListProb = ["gr17", "gr24", "ulysses16", "ulysses22", "bayg29", "bays29", "dantzig42", "swiss42", "gr48", "hk48", "eil51", "berlin52" ]#,'st70','eil76','pr76','rat99','kroA100','eil101']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
     #ListProb = ['hk48','berlin52','eil101','kroA100']#,'dantzig42','swiss42','gr48','hk48']  # add more instances
     # ListProb = ['st70','pr76','eil76','rat99']#,'kroA100','kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150','tsp225']  # add more instances
     # ListProb = ['eil101']#,'kroA100']#,'kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150']#,'lin105','pr124','ch150','tsp225']

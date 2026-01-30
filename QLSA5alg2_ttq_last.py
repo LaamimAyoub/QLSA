@@ -685,12 +685,12 @@ def _load_coords(prob, tests_path):
 
 def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
     # Hyperparameters
-    EPSILON=float(os.getenv("EPSILON"))
+    DES=float(os.getenv("DES"))
     Iter, episodes = 1000, 100
     # Iter, episodes = 300000, 100
-    epsilon, gamma, alpha1, alpha2, des, tempmin = EPSILON, 0.9, 0.3, 0.6, 0.001, 0.001
+    epsilon, gamma, alpha1, alpha2, des, tempmin = 1, 0.9, 0.3, 0.6, DES, 0.001
     date = datetime.now().strftime('%Y%m%d_%H%M%S')
-    print(EPSILON)
+    print(DES)
 
     # Prepare all tasks
     tasks = prepare_tasks(ListProb, TestsFilePath, runs, Iter, episodes, epsilon, gamma, des, tempmin,best_known)
@@ -719,7 +719,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
                           for algo in MM} for prob in ListProb}
 
     # Output dirs
-    base_dir = f"./New_Results_2_01_2026_ttq_epsilon{EPSILON}"
+    base_dir = f"./New_Results_30_01_2026_ttq_des{DES}"
     os.makedirs(base_dir, exist_ok=True)
     plot_dir = f"{base_dir}/Plots"
     os.makedirs(plot_dir, exist_ok=True)

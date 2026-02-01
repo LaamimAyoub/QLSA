@@ -22,6 +22,9 @@ class SimulatedAnnealing_TSP_Logging:
         self.solution = deepcopy(initial_solution)
         self.gbest = deepcopy(initial_solution)
         self.Fbest = compute_distance(initial_solution, self.problem)
+        self.iter_log = []   # list of dicts
+        self.log_enabled = True
+
         #self.pbest = deepcopy(initial_solution)
         #self.Fpbest = compute_distance(initial_solution, self.problem)
         ###print ('Fbest',self.Fbest)
@@ -56,6 +59,71 @@ class SimulatedAnnealing_TSP_Logging:
         self.temperature_evolution = []
         self.des = des
         self.nbrville = len(self.solution)
+        self.i=0
+
+    def _log_iter_nostate(self, leader_idx, q_values, probs, reward):
+        """
+        Iteration-level logging for QLSA WITHOUT states.
+        Frozen schema – do not modify during experiments.
+        """
+
+        # Q-dispersion metrics
+        q_sorted = np.sort(q_values)
+        q_gap = float(q_sorted[-1] - q_sorted[0])
+        q_margin = float(q_sorted[-1] - q_sorted[-2]) if len(q_sorted) >= 2 else 0.0
+
+        # Policy entropy
+        entropy = float(-(probs * np.log(probs + 1e-12)).sum())
+
+        log = {
+            "iter": int(self.i),
+            "leader": int(leader_idx),
+            "reward": float(reward),
+            "entropy": entropy,
+            "p_selected": float(probs[leader_idx]),
+            "q_gap": q_gap,
+            "q_margin": q_margin,
+            #"iter_time_sec": float(iter_time_sec),
+        }
+
+        self.iter_log.append(log)
+
+    def _log_iter_state(self, leader_idx, q_values, probs, reward):
+            """
+            Iteration-level logging for QLSA WITH states.
+            Frozen schema – do not modify during experiments.
+            """
+
+            # Q-dispersion for active state
+            q_sorted = np.sort(q_values)
+            q_gap = float(q_sorted[-1] - q_sorted[0])
+            q_margin = float(q_sorted[-1] - q_sorted[-2]) if len(q_sorted) >= 2 else 0.0
+
+            # Policy entropy
+            entropy = float(-(probs * np.log(probs + 1e-12)).sum())
+
+            # Per-state Q-gaps (global diagnostic)
+            q_gap_state0 = float(np.max(self.q_table[0]) - np.min(self.q_table[0]))
+            q_gap_state1 = float(np.max(self.q_table[1]) - np.min(self.q_table[1]))
+
+            log = {
+                "iter": int(self.i),
+                "state": int(self.state),
+                "nextstate": int(self.nextstate),
+                "leader": int(leader_idx),
+                "reward": float(reward),
+                "entropy": entropy,
+                "p_selected": float(probs[leader_idx]),
+                "q_gap": q_gap,
+                "q_margin": q_margin,
+                "q_gap_state0": q_gap_state0,
+                "q_gap_state1": q_gap_state1,
+                #"iter_time_sec": float(iter_time_sec),
+            }
+
+            self.iter_log.append(log)
+
+
 
     def update_setcandidat(self):
         random_sol = generate_tsp(1, len(self.solution), self.has_node_coords)[0]
@@ -135,7 +203,7 @@ class SimulatedAnnealing_TSP_Logging:
         leader = np.random.choice(candidates, p=probs)
         # leader= epsilon_greedy(q_values,self.epsilon)
         self.leader_count[0][leader] += 1
-        return leader
+        return leader, q_values, probs
 
     def select_leader_epsilon(self):
         candidates = [j for j in range(len(self.setcandidat))]
@@ -153,7 +221,7 @@ class SimulatedAnnealing_TSP_Logging:
         leader = np.random.choice(candidates, p=probs)
         # leader= epsilon_greedy(q_values,self.epsilon)
         self.leader_count[self.state][leader] += 1
-        return leader
+        return leader, q_values, probs
 
     def select_leader_epsilon_states(self):
         candidates = [j for j in range(len(self.setcandidat))]
@@ -223,7 +291,7 @@ class SimulatedAnnealing_TSP_Logging:
 
     def step2(self):
         old_score = compute_distance(self.solution, self.problem)
-        leader_idx = self.select_leader()
+        leader_idx, q_values, probs = self.select_leader()
         leader = self.setcandidat[leader_idx]
         ##print('self.setcandidat,leader_idx,leader',self.setcandidat,leader_idx,leader)
         candidate = self.two_opt_metropolis(leader)
@@ -246,6 +314,7 @@ class SimulatedAnnealing_TSP_Logging:
 
         reward = (old_score - candidate_score) / old_score
         self.update_q_table2(0, leader_idx, reward)
+        self._log_iter_nostate( leader_idx, q_values, probs, reward)
         # self.update_setcandidat()
 
     def step_greedy2(self):
@@ -276,7 +345,7 @@ class SimulatedAnnealing_TSP_Logging:
 
     def step2_state(self):
         old_score = compute_distance(self.solution, self.problem)
-        leader_idx = self.select_leader_states()
+        leader_idx, q_values, probs = self.select_leader_states()
         leader = self.setcandidat[leader_idx]
         ##print('self.setcandidat,leader_idx,leader',self.setcandidat,leader_idx,leader)
         candidate = self.two_opt_metropolis(leader)
@@ -304,6 +373,7 @@ class SimulatedAnnealing_TSP_Logging:
 
         reward = (old_score - candidate_score) / old_score
         self.update_q_table(self.state, leader_idx, reward)
+        self._log_iter_state( leader_idx, q_values, probs, reward)
         # self.update_setcandidat()
 
     def step_greedy2_state(self):
@@ -359,7 +429,7 @@ class SimulatedAnnealing_TSP_Logging:
             # print(f"Iteration {i}, Temp: {self.temperature:.4f}, Best: {self.Fbest:.2f}")
         end_time = time.perf_counter()  # End timer
         execution_time = end_time - start_time
-        return self.gbest, self.Fbest, self.fitness_history, self.fitness_evolution, self.temperature_evolution, execution_time,self.reached,self.ittq,self.tttq,self.leader_count
+        return self.gbest, self.Fbest, self.fitness_history, self.fitness_evolution, self.temperature_evolution, execution_time,self.reached,self.ittq,self.tttq,self.leader_count,self.iter_log
 
     def run_SA(self, iterations=500):
         # print('sa ')
@@ -374,12 +444,13 @@ class SimulatedAnnealing_TSP_Logging:
             ###print(f"Iteration {i}, Temp: {self.temperature:.4f}, Best: {self.Fbest:.2f}")
         end_time = time.perf_counter()  # End timer
         execution_time = end_time - start_time
-        return self.gbest, self.Fbest, self.fitness_history, self.fitness_evolution, self.temperature_evolution, execution_time,self.reached,self.ittq,self.tttq,self.leader_count
+        return self.gbest, self.Fbest, self.fitness_history, self.fitness_evolution, self.temperature_evolution, execution_time,self.reached,self.ittq,self.tttq,self.leader_count,self.iter_log
 
     def run2(self, iterations=500, episodes=50, stateAlgo=0):
         # print('sa softmax')
         start_time = time.perf_counter()  # Start timer
         for i in range(iterations):
+            self.i=i
             self.temperature = (self.temperature_max - ((self.temperature_max - self.tempmin) * ((i + 1))) / iterations)
             if stateAlgo == 0:
                 self.step2()
@@ -397,7 +468,7 @@ class SimulatedAnnealing_TSP_Logging:
             ##print(f"Iteration {i}, Temp: {self.temperature:.4f}, Best: {self.Fbest:.2f}")
         end_time = time.perf_counter()  # End timer
         execution_time = end_time - start_time
-        return self.gbest, self.Fbest, self.fitness_history, self.fitness_evolution, self.temperature_evolution, execution_time,self.reached,self.ittq,self.tttq,self.leader_count
+        return self.gbest, self.Fbest, self.fitness_history, self.fitness_evolution, self.temperature_evolution, execution_time,self.reached,self.ittq,self.tttq,self.leader_count,self.iter_log
 
     def run_uniform(self, iterations=500, episodes=50):
         # print('sa softmax')
@@ -412,12 +483,13 @@ class SimulatedAnnealing_TSP_Logging:
 
         end_time = time.perf_counter()  # End timer
         execution_time = end_time - start_time
-        return self.gbest, self.Fbest, self.fitness_history, self.fitness_evolution, self.temperature_evolution, execution_time,self.reached,self.ittq,self.tttq,self.leader_count
+        return self.gbest, self.Fbest, self.fitness_history, self.fitness_evolution, self.temperature_evolution, execution_time,self.reached,self.ittq,self.tttq,self.leader_count,self.iter_log
 
     def run_greedy2_sans_reset(self, iterations=500, episodes=50, stateAlgo=0):
         # print('sa greedy')
         start_time = time.perf_counter()  # Start timer
         for i in range(iterations):
+            self.i=i
             self.temperature = (self.temperature_max - ((self.temperature_max - self.tempmin) * ((i + 1))) / iterations)
             if stateAlgo == 0:
                 self.step_greedy2()
@@ -433,13 +505,13 @@ class SimulatedAnnealing_TSP_Logging:
             # print(f"Iteration {i}, Temp: {self.temperature:.4f}, Best: {self.Fbest:.2f}")
         end_time = time.perf_counter()  # End timer
         execution_time = end_time - start_time
-        return self.gbest, self.Fbest, self.fitness_history, self.fitness_evolution, self.temperature_evolution, execution_time,self.reached,self.ittq,self.tttq,self.leader_count
+        return self.gbest, self.Fbest, self.fitness_history, self.fitness_evolution, self.temperature_evolution, execution_time,self.reached,self.ittq,self.tttq,self.leader_count,self.iter_log
 
     def run2_sans_reset(self, iterations=500, episodes=50, stateAlgo=0):
-
         # print('sa softmax')
         start_time = time.perf_counter()  # Start timer
         for i in range(iterations):
+            self.i=i
             self.temperature = (self.temperature_max - ((self.temperature_max - self.tempmin) * ((i + 1))) / iterations)
             if stateAlgo == 0:
                 self.step2()
@@ -455,7 +527,7 @@ class SimulatedAnnealing_TSP_Logging:
             ##print(f"Iteration {i}, Temp: {self.temperature:.4f}, Best: {self.Fbest:.2f}")
         end_time = time.perf_counter()  # End timer
         execution_time = end_time - start_time
-        return self.gbest, self.Fbest, self.fitness_history, self.fitness_evolution, self.temperature_evolution, execution_time,self.reached,self.ittq,self.tttq,self.leader_count
+        return self.gbest, self.Fbest, self.fitness_history, self.fitness_evolution, self.temperature_evolution, execution_time,self.reached,self.ittq,self.tttq,self.leader_count,self.iter_log
 
     def run_uniform_sans_reset(self, iterations=500, episodes=50):
         # print('sa softmax')
@@ -472,16 +544,16 @@ class SimulatedAnnealing_TSP_Logging:
                 self.tttq = time.perf_counter() - start_time
         end_time = time.perf_counter()  # End timer
         execution_time = end_time - start_time
-        return self.gbest, self.Fbest, self.fitness_history, self.fitness_evolution, self.temperature_evolution, execution_time,self.reached,self.ittq,self.tttq,self.leader_count
+        return self.gbest, self.Fbest, self.fitness_history, self.fitness_evolution, self.temperature_evolution, execution_time,self.reached,self.ittq,self.tttq,self.leader_count ,self.iter_log
 
 
 ALGO_NAMES = {
     1: "SA",
     2: "QL-SA_softmax",
     3:"Greedy",
-    4: "QL-SA_softmax_state",   
-    5: "Greedy_state", 
-    #6: "Uniform", 
+    4: "QL-SA_softmax_state",
+    5: "Greedy_state",
+    6: "Uniform",
 }
 
 
@@ -509,13 +581,14 @@ def save_result_csv_full(out_dir, problem_name, algo_id, run_id, iter_used, res)
     fname = f"{problem_name}_algo-{algo_name}_{run_id}.csv"
     fpath = Path(out_dir) / fname
 
-    gbest, Fbest, fitness_history, fitness_evolution, temperature_evolution, execution_time,reached,ittq,tttq,leader_count = res
+    gbest, Fbest, fitness_history, fitness_evolution, temperature_evolution, execution_time,reached,ittq,tttq,leader_count,iter_log = res
     gbest_j = json.dumps(_jsonify(gbest), ensure_ascii=False)
     fhist_j = json.dumps(_jsonify(fitness_history), ensure_ascii=False)
     fevol_j = json.dumps(_jsonify(fitness_evolution), ensure_ascii=False)
     tevol_j = json.dumps(_jsonify(temperature_evolution), ensure_ascii=False)
     tttq_j = json.dumps(_jsonify([reached,ittq,tttq]), ensure_ascii=False)
     leader_count_j = json.dumps(_jsonify(leader_count), ensure_ascii=False)
+    iter_log_j = json.dumps(_jsonify(iter_log), ensure_ascii=False)
 
     write_header = not fpath.exists()
     with open(fpath, "a", newline="", encoding="utf-8") as f:
@@ -525,12 +598,12 @@ def save_result_csv_full(out_dir, problem_name, algo_id, run_id, iter_used, res)
         if write_header:
             w.writerow([
                 "timestamp", "problem", "algorithm_id", "algorithm_name", "run_id", "iterations",
-                "gbest", "Fbest", "fitness_history", "fitness_evolution", "temperature_evolution", "execution_time", "tttq_j","leader_count_j"
+                "gbest", "Fbest", "fitness_history", "fitness_evolution", "temperature_evolution", "execution_time", "tttq_j","leader_count_j","iter_log_j"
             ])
         w.writerow([
             datetime.now().isoformat(timespec="seconds"),
             problem_name, algo_id, algo_name, run_id, iter_used,
-            gbest_j, Fbest, fhist_j, fevol_j, tevol_j, execution_time, tttq_j,leader_count_j
+            gbest_j, Fbest, fhist_j, fevol_j, tevol_j, execution_time, tttq_j,leader_count_j,iter_log_j
         ])
     return str(fpath)
 
@@ -543,7 +616,7 @@ def runAlgo(params):
     # ORDER changed to align with your DF_results_parallel unpack:
     # (TestsFilePath, problem_name, initial_solution, param, run_id, Iter, episodes, epsilon, alpha, gamma, des, tempmin)
     (TestsFilePath, problem_name, initial_solution, param, run_id, Iter, episodes,
-     epsilon, gamma, des, tempmin,best_known) = params
+     epsilon, des, tempmin,best_known) = params
 
     temperature = 1000.0
     cooling_rate = 0.99
@@ -551,17 +624,17 @@ def runAlgo(params):
     rp = 0.4
     alpha1 = 0.3
     alpha2 = 0.6
-
+    gamma_1 = 1
+    gamma_2 = 0.8
     sa_obj1 = SimulatedAnnealing_TSP_Logging(
         TestsFilePath, problem_name, initial_solution,
         temperature, cooling_rate, tempmin,
-        epsilon, alpha1, gamma, des, gamma1, rp,best_known=best_known
+        epsilon, alpha1, gamma_1, des, gamma1, rp,best_known=best_known
     )
-
-    sa_obj2 =  SimulatedAnnealing_TSP_Logging(
+    sa_obj2 = SimulatedAnnealing_TSP_Logging(
         TestsFilePath, problem_name, initial_solution,
         temperature, cooling_rate, tempmin,
-        epsilon, alpha2, gamma, des, gamma1, rp,best_known=best_known
+        epsilon, alpha2, gamma_2, des, gamma1, rp, best_known=best_known
     )
 
     Iter = 1000  # 1000#sa_obj.nbrville * 500
@@ -577,9 +650,9 @@ def runAlgo(params):
     #     res = sa_obj.run_greedy2(iterations=Iter, episodes=episodes)
     # elif param == 4:
     #     res = sa_obj.run_uniform(iterations=Iter, episodes=episodes)
-    if param == 2:
+    elif param == 2:
         res = sa_obj1.run2_sans_reset(iterations=Iter, episodes=episodes)
-    if param == 3:
+    elif param == 3:
         res = sa_obj1.run_greedy2_sans_reset(iterations=Iter, episodes=episodes)
     # elif param == 7:
     #     res = sa_obj.run2(iterations=Iter, episodes=episodes, stateAlgo=1)
@@ -588,14 +661,15 @@ def runAlgo(params):
     elif param == 4:
         res = sa_obj2.run2_sans_reset(iterations=Iter, episodes=episodes, stateAlgo=1)
     elif param == 5:
-        res = sa_obj1.run_greedy2_sans_reset(iterations=Iter, episodes=episodes, stateAlgo=1)
+        res = sa_obj2.run_greedy2_sans_reset(iterations=Iter, episodes=episodes, stateAlgo=1)
     #elif param == 6:
-        #res = sa_obj.run_uniform_sans_reset(iterations=Iter, episodes=episodes)
+    #    res = sa_obj.run_uniform_sans_reset(iterations=Iter, episodes=episodes)
     else:
         raise ValueError(f"Invalid param value: {param}")
 
     # Save full results as-is (CSV), but still return the tuple unchanged
-    out_dir = os.path.join(TestsFilePath, "results20012026")
+    base_dir = "./New_Results_30_01_2026_analysis/"
+    out_dir = os.path.join(base_dir, "resultsanalysis")
     save_result_csv_full(out_dir, problem_name, param, run_id, Iter, res)
 
     return res
@@ -604,7 +678,7 @@ def runAlgo(params):
 # ===============================
 # Task Preparation
 # ===============================
-def prepare_tasks(ListProb, TestsFilePath, runs, Iter, episodes, epsilon, gamma, des, tempmin,best_known):
+def prepare_tasks(ListProb, TestsFilePath, runs, Iter, episodes, epsilon, des, tempmin,best_known):
     tasks = []
     for PROB in ListProb:
         problem = tsplib95.load(TestsFilePath + PROB + '.tsp')
@@ -617,7 +691,7 @@ def prepare_tasks(ListProb, TestsFilePath, runs, Iter, episodes, epsilon, gamma,
                 print('instance', PROB, 'run', k, 'algo', p)
                 tasks.append((
                     TestsFilePath, PROB, initial_solution, p, k,  # <-- run_id k is 5th element
-                    Iter, episodes, epsilon, gamma, des, tempmin,best_known_prob
+                    Iter, episodes, epsilon, des, tempmin,best_known_prob
                 ))
     return tasks
 
@@ -685,27 +759,26 @@ def _load_coords(prob, tests_path):
 
 def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
     # Hyperparameters
-    #DES=float(os.getenv("DES"))
     Iter, episodes = 1000, 100
     # Iter, episodes = 300000, 100
-    epsilon, gamma, alpha1, alpha2, des, tempmin = 1, 0.9, 0.3, 0.6, 0.001, 0.001
+    epsilon, gamma_1, gamma_2, alpha1, alpha2, des, tempmin = 1, 1, 0.8, 0.3, 0.6, 0.001, 0.001
     date = datetime.now().strftime('%Y%m%d_%H%M%S')
 
-
     # Prepare all tasks
-    tasks = prepare_tasks(ListProb, TestsFilePath, runs, Iter, episodes, epsilon, gamma, des, tempmin,best_known)
+    tasks = prepare_tasks(ListProb, TestsFilePath, runs, Iter, episodes, epsilon,  des, tempmin,best_known)
 
     # Parallel execution
     results = parallel_run(tasks)
 
      # Algorithm names
     MM = [ 'SA', 'QLSA_s_without_reset', 'QLSA_e_without_reset',  'QLSA_s_state_sans_reset',
-          'QLSA_e_state_sans_reset'] # Internal names for CSVs
-    #MM = ['QLSA_e_without_reset', 'QLSA_e_state_sans_reset']
-    pretty_names = { 'QLSA_s_without_reset': 'SQLSA_s', 'QLSA_e_without_reset': 'SQLSA_ε',
-                   'QLSA_s_state_sans_reset': 'QLSA_s',
-                 'QLSA_e_state_sans_reset': 'QLSA_ε'}  # For plots
-    #pretty_names = { 'QLSA_e_without_reset': 'SQLSA_ε', 'QLSA_e_state_sans_reset': 'QLSA_ε'}
+          'QLSA_e_state_sans_reset']  # Internal names for CSVs
+    pretty_names = {'SA': 'SA',
+                    'QLSA_s_without_reset': 'SQLSA_s', 'QLSA_e_without_reset': 'SQLSA_ε',
+                    'QLSA_s_state_sans_reset': 'QLSA_s',
+                    'QLSA_e_state_sans_reset': 'QLSA_ε'}  # For plots
+      # For plots
+
     # Storage
     all_conv_data = {prob: {algo: [] for algo in MM} for prob in ListProb}
     all_accepted_data = {prob: {algo: [] for algo in MM} for prob in ListProb}
@@ -738,7 +811,8 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
         "Epsilon": epsilon,
         "Alpha1": alpha1,
         "Alpha2": alpha2,
-        "Gamma": gamma,
+        "Gamma1": gamma_1,
+        "Gamma2": gamma_2,
         "Decay": des,
         "TempMin": tempmin,
         "Runs": runs,
@@ -910,7 +984,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
                     continue
 
                 # If your saved indices are 1-based, uncomment:
-                # route = route - 1
+                route = route - 1
 
                 route = np.asarray(route, dtype=int).flatten()
                 loop = np.r_[route, route[0]]
@@ -996,7 +1070,13 @@ if __name__ == "__main__":
     "gr48": 5046,
     "hk48": 11461,
     "eil51": 426,
-    "berlin52": 7542
+    "berlin52": 7542,
+    "st70": 675,
+    "eil76": 538,
+    "pr76": 108159,
+    "rat99": 1211,
+    "kroA100": 21282,
+    "eil101": 629
 }
 
     # gr17,bayg29,bays29,oliver30,swiss42,eil51,berlin52,st70,pr76,eil76,rat99,kroA100,kroB100,kroC100,kroD100,kroE100,eil101,lin105,pr124,ch150,tsp225

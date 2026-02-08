@@ -5,13 +5,12 @@ from compute import compute_distance, softmax, generate_tsp, epsilon_greedy, dou
 from copy import deepcopy
 import tsplib95
 import multiprocessing
-import plotly.graph_objects as go
-import plotly.io as pio
+import matplotlib.pyplot as plt
+import seaborn as sns
 from concurrent.futures import ProcessPoolExecutor, as_completed
 import csv, json, os
 import time
 from pathlib import Path
-from plotly.subplots import make_subplots
 
 
 class SimulatedAnnealing_TSP_Logging:
@@ -768,12 +767,12 @@ def DF_results_parallel(ListProb, TestsFilePath, runs, best_known):
     MM = ['SA', 'QLSA_s_without_reset', 'QLSA_e_without_reset', 'QLSA_s_state_sans_reset',
           'QLSA_e_state_sans_reset']  # Internal names for CSVs
     pretty_names = {'SA': 'SA',
-                    'QLSA_s_without_reset': 'QLSA_s', 'QLSA_e_without_reset': 'QLSA_ε',
+                    'QLSA_s_without_reset': 'SQLSA_s', 'QLSA_e_without_reset': 'SQLSA_ε',
                     'QLSA_s_state_sans_reset': 'SB-QLSA_s',
                     'QLSA_e_state_sans_reset': 'SB-QLSA_ε'}  # For plots
 
     # Output dirs
-    base_dir = f"./Last_results"
+    base_dir = f"./Last_results_07_02_2026"
     os.makedirs(base_dir, exist_ok=True)
     plot_dir = f"{base_dir}/Plots"
     os.makedirs(plot_dir, exist_ok=True)
@@ -910,88 +909,83 @@ def DF_results_parallel(ListProb, TestsFilePath, runs, best_known):
             })
         pd.DataFrame(best_meta_rows).to_csv(f"{base_dir}/{prob}_best_across_runs_{date}.csv", sep=";", index=False)
 
-        # =======================
-        # Convergence plot (mean)
-        # =======================
-        if all(len(all_conv_data[a]) > 0 for a in MM):
-            min_len = min(min(len(c) for c in all_conv_data[algo]) for algo in MM if all_conv_data[algo])
-            mean_conv = {algo: np.mean([np.asarray(c)[:min_len] for c in all_conv_data[algo]], axis=0) for algo in MM}
-            iterations = list(range(min_len))
+        # # =======================
+        # # Convergence plot (mean)
+        # # =======================
+        # if all(len(all_conv_data[a]) > 0 for a in MM):
+        #     min_len = min(min(len(c) for c in all_conv_data[algo]) for algo in MM if all_conv_data[algo])
+        #     mean_conv = {algo: np.mean([np.asarray(c)[:min_len] for c in all_conv_data[algo]], axis=0) for algo in MM}
+        #     iterations = list(range(min_len))
 
-            fig1 = go.Figure()
-            for algo in MM:
-                fig1.add_trace(go.Scatter(x=iterations, y=mean_conv[algo], name=pretty_names[algo], mode='lines'))
+        #     plt.figure(figsize=(12, 7))
+        #     sns.set_theme(style="whitegrid")
+        #     for algo in MM:
+        #         plt.plot(iterations, mean_conv[algo], label=pretty_names[algo])
+            
+        #     plt.title(f"Convergence Plot (Mean Best Cost Per Iteration) - {prob}")
+        #     plt.xlabel("Iteration")
+        #     plt.ylabel("Cost")
+        #     plt.legend()
+        #     plt.savefig(f"{plot_dir}/{prob}_convergence_{date}.png")
+        #     plt.close()
 
-            fig1.update_layout(
-                title=f"Convergence Plot (Mean Best Cost Per Iteration) - {prob}",
-                xaxis_title="Iteration",
-                yaxis_title="Cost",
-                template="plotly_white",
-                legend=dict(x=0.01, y=0.99)
-            )
-            pio.write_html(fig1, file=f"{plot_dir}/{prob}_convergence_{date}.html", auto_open=False)
-            pio.write_image(fig1, f"{plot_dir}/{prob}_convergence_{date}.png")
+        # # =======================
+        # # Accepted Fitness Plot (mean)
+        # # =======================
+        # if all(len(all_accepted_data[a]) > 0 for a in MM):
+        #     min_len_acc = min(min(len(c) for c in all_accepted_data[algo]) for algo in MM if all_accepted_data[algo])
+        #     mean_accepted = {algo: np.mean([np.asarray(c)[:min_len_acc] for c in all_accepted_data[algo]], axis=0) for algo in MM}
+        #     iterations_acc = list(range(min_len_acc))
 
-        # =======================
-        # Accepted Fitness Plot (mean)
-        # =======================
-        if all(len(all_accepted_data[a]) > 0 for a in MM):
-            min_len_acc = min(min(len(c) for c in all_accepted_data[algo]) for algo in MM if all_accepted_data[algo])
-            mean_accepted = {algo: np.mean([np.asarray(c)[:min_len_acc] for c in all_accepted_data[algo]], axis=0) for algo in MM}
-            iterations_acc = list(range(min_len_acc))
+        #     plt.figure(figsize=(12, 7))
+        #     sns.set_theme(style="whitegrid")
+        #     for algo in MM:
+        #         plt.plot(iterations_acc, mean_accepted[algo], label=pretty_names[algo])
 
-            fig2 = go.Figure()
-            for algo in MM:
-                fig2.add_trace(go.Scatter(x=iterations_acc, y=mean_accepted[algo], name=pretty_names[algo], mode='lines'))
+        #     plt.title(f"Accepted Fitness Plot (Mean Accepted Solutions Per Iteration) - {prob}")
+        #     plt.xlabel("Iteration")
+        #     plt.ylabel("Cost")
+        #     plt.legend()
+        #     plt.savefig(f"{plot_dir}/{prob}_accepted_fitness_{date}.png")
+        #     plt.close()
 
-            fig2.update_layout(
-                title=f"Accepted Fitness Plot (Mean Accepted Solutions Per Iteration) - {prob}",
-                xaxis_title="Iteration",
-                yaxis_title="Cost",
-                template="plotly_white",
-                legend=dict(x=0.01, y=0.99)
-            )
-            pio.write_html(fig2, file=f"{plot_dir}/{prob}_accepted_fitness_{date}.html", auto_open=False)
-            pio.write_image(fig2, f"{plot_dir}/{prob}_accepted_fitness_{date}.png")
+        # # =======================
+        # # FIGURE 3: Best Routes (gbest)
+        # # =======================
+        # try:
+        #     coords = _load_coords(prob, TestsFilePath)
+        #     num_algos = len(MM)
+        #     fig, axes = plt.subplots(1, num_algos, figsize=(5 * num_algos, 5), squeeze=False)
+        #     fig.suptitle(f"Best Routes (gbest) — {prob}")
 
-        # =======================
-        # FIGURE 3: Best Routes (gbest)
-        # =======================
-        try:
-            coords = _load_coords(prob, TestsFilePath)
-            fig3 = make_subplots(rows=1, cols=len(MM), subplot_titles=[pretty_names[a] for a in MM])
+        #     for ax, algo in zip(axes[0], MM):
+        #         b = best_across[algo]
+        #         route = b["gbest"]
 
-            for i_col in range(1, len(MM) + 1):
-                fig3.update_xaxes(scaleanchor=f"y{i_col}", scaleratio=1, row=1, col=i_col)
+        #         ax.set_title(pretty_names[algo])
+        #         ax.set_aspect('equal')
 
-            for col, algo in enumerate(MM, start=1):
-                b = best_across[algo]
-                route = b["gbest"]
-                if route is None or len(route) == 0:
-                    fig3.add_annotation(row=1, col=col, text="No route", showarrow=False)
-                    continue
+        #         if route is None or len(route) == 0:
+        #             ax.text(0.5, 0.5, "No route found", ha='center', va='center', transform=ax.transAxes)
+        #             continue
                 
-                route = np.asarray(route, dtype=int).flatten()
-                loop = np.r_[route, route[0]]
-                xs = coords[loop, 0]
-                ys = coords[loop, 1]
+        #         route = np.asarray(route, dtype=int).flatten()
+        #         loop = np.r_[route, route[0]]
+                
+        #         tour_coords = coords[loop, :]
+                
+        #         ax.plot(tour_coords[:, 0], tour_coords[:, 1], 'r-')
+        #         ax.plot(coords[:, 0], coords[:, 1], 'bo', markersize=4)
+                
+        #         start_node_coords = coords[route[0], :]
+        #         ax.plot(start_node_coords[0], start_node_coords[1], 'g*', markersize=10)
 
-                fig3.add_trace(go.Scatter(x=xs, y=ys, mode="lines", showlegend=False), row=1, col=col)
-                fig3.add_trace(go.Scatter(x=coords[:, 0], y=coords[:, 1], mode="markers", marker=dict(size=6), showlegend=False), row=1, col=col)
-                fig3.add_trace(go.Scatter(x=[coords[route[0], 0]], y=[coords[route[0], 1]], mode="markers+text", text=["start"], textposition="top center", marker=dict(size=9, symbol="star"), showlegend=False), row=1, col=col)
+        #     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+        #     plt.savefig(f"{plot_dir}/{prob}_best_routes_{date}.png")
+        #     plt.close()
 
-            fig3.update_layout(
-                title=f"Best Routes (gbest) — {prob}",
-                template="plotly_white",
-                height=500,
-                width=1200,
-                margin=dict(l=30, r=30, t=60, b=30)
-            )
-            pio.write_html(fig3, file=f"{plot_dir}/{prob}_best_routes_{date}.html", auto_open=False)
-            pio.write_image(fig3, f"{plot_dir}/{prob}_best_routes_{date}.png")
-
-        except Exception as e:
-            print(f"[WARN] Could not plot best routes for {prob}: {e}")
+        # except Exception as e:
+        #     print(f"[WARN] Could not plot best routes for {prob}: {e}")
 
     return all_results_collection, plot_dir
 

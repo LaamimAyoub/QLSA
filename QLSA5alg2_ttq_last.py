@@ -1002,7 +1002,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs, best_known):
 if __name__ == "__main__":
     TestsFilePath = "inputs/"  # adjust path
     runs = 10
-    ListProb = ["gr17", "gr24", "ulysses16", "ulysses22", "bayg29", "bays29", "dantzig42", "swiss42", "gr48", "hk48", "eil51", "berlin52" ]#,'st70','eil76','pr76','rat99','kroA100','eil101']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
+    ListProb = [ "ulysses16", "ulysses22", "bayg29", "bays29", "swiss42", "gr48", "hk48", "eil51" ]#,'st70','eil76','pr76','rat99','kroA100','eil101']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
     #ListProb = ['hk48','berlin52','eil101','kroA100']#,'dantzig42','swiss42','gr48','hk48']  # add more instances
     #ListProb = ['st70','pr76','eil76','rat99']#,'kroA100','kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150','tsp225']  # add more instances
     #ListProb = ['kroA100']#,'kroA100']#,'kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150']#,'lin105','pr124','ch150','tsp225']

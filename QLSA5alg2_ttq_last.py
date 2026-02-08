@@ -757,39 +757,20 @@ def _load_coords(prob, tests_path):
     raise FileNotFoundError(f"No coords file found for {prob} in {tests_path}")
 
 
-def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
+def DF_results_parallel(ListProb, TestsFilePath, runs, best_known):
     # Hyperparameters
     Iter, episodes = 1000, 100
     # Iter, episodes = 300000, 100
     epsilon, gamma_1, gamma_2, alpha1, alpha2, des, tempmin = 1, 1, 0.8, 0.3, 0.6, 0.001, 0.001
     date = datetime.now().strftime('%Y%m%d_%H%M%S')
 
-    # Prepare all tasks
-    tasks = prepare_tasks(ListProb, TestsFilePath, runs, Iter, episodes, epsilon,  des, tempmin,best_known)
-
-    # Parallel execution
-    results = parallel_run(tasks)
-
-     # Algorithm names
-    MM = [ 'SA', 'QLSA_s_without_reset', 'QLSA_e_without_reset',  'QLSA_s_state_sans_reset',
+    # Algorithm names
+    MM = ['SA', 'QLSA_s_without_reset', 'QLSA_e_without_reset', 'QLSA_s_state_sans_reset',
           'QLSA_e_state_sans_reset']  # Internal names for CSVs
     pretty_names = {'SA': 'SA',
-                    'QLSA_s_without_reset': 'SQLSA_s', 'QLSA_e_without_reset': 'SQLSA_ε',
-                    'QLSA_s_state_sans_reset': 'QLSA_s',
-                    'QLSA_e_state_sans_reset': 'QLSA_ε'}  # For plots
-      # For plots
-
-    # Storage
-    all_conv_data = {prob: {algo: [] for algo in MM} for prob in ListProb}
-    all_accepted_data = {prob: {algo: [] for algo in MM} for prob in ListProb}
-    all_results = {prob: pd.DataFrame({algo: pd.Series(dtype=float) for algo in MM})
-                   for prob in ListProb}  # Fbest per run
-
-    runtime_per_algo = {prob: {algo: [] for algo in MM} for prob in ListProb}  # seconds per run
-
-    # Track best across runs (per prob x algo)
-    best_across = {prob: {algo: {"Fbest": float("inf"), "run": None, "gbest": None}
-                          for algo in MM} for prob in ListProb}
+                    'QLSA_s_without_reset': 'QLSA_s', 'QLSA_e_without_reset': 'QLSA_ε',
+                    'QLSA_s_state_sans_reset': 'SB-QLSA_s',
+                    'QLSA_e_state_sans_reset': 'SB-QLSA_ε'}  # For plots
 
     # Output dirs
     base_dir = f"./Last_results"
@@ -801,7 +782,6 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
 
     # Master runtime CSV (append)
     runtime_master_csv = f"{base_dir}/runtime_master_{date}.csv"
-    runtime_header_written = False
 
     # Save parameters for reproducibility
     params_data = {
@@ -820,78 +800,94 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
     }
     pd.DataFrame([params_data]).to_csv(f"{base_dir}/parameters_{date}.csv", sep=";", index=False)
 
-    # Populate results
-    for task, zres in results:
-        TestsFilePath, PROB, initial_solution, param, run_id, *_ = task  # ensure prepare_tasks sets run_id (1..runs)
-        algo_name = MM[param - 1]
+    all_results_collection = {}
 
-        # --- Unpack from zres (adjust indices if your worker returns a different shape)
-        gbest_route = zres[0]
-        run_Fbest = float(zres[1])
-        conv_curve = zres[2]
-        accepted_curve = zres[3]  # THIRD RESULT: accepted fitness values
-        # zres[4] could be temperature curve (unused here)
-        exec_time_s = float(zres[5])  # <-- requires worker to return exec time
-        reached,ittq,tttq=zres[6:9]
-        leader_count=zres[9:]
-
-        # 1) Save per-run gbest (for later plotting/analysis)
-        gbest_path = os.path.join(gbest_dir, f"{PROB}_{algo_name}_run{run_id}_gbest.txt")
-        np.savetxt(gbest_path, np.asarray(gbest_route, dtype=int), fmt="%d")
-
-        # 2) Append per-run runtime row into a master CSV
-        row = {
-            "timestamp": datetime.now().isoformat(timespec="seconds"),
-            "instance": PROB,
-            "algorithm": algo_name,
-            "run": run_id,
-            "exec_time_s": exec_time_s,
-            "Fbest": run_Fbest,
-            "reached":reached,
-            "ittq":ittq,
-            "tttq":tttq,
-            "leadercount":leader_count
-        }
-        mode = "a" if os.path.exists(runtime_master_csv) else "w"
-        df_row = pd.DataFrame([row])
-        df_row.to_csv(runtime_master_csv, mode=mode, header=not os.path.exists(runtime_master_csv), sep=";", index=False)
-
-        # 3) Update per-instance DataFrame of Fbest
-        current_df = all_results[PROB]
-        # ensure column exists
-        if algo_name not in current_df.columns:
-            current_df[algo_name] = np.nan
-        current_df.loc[len(current_df), algo_name] = run_Fbest
-        all_results[PROB] = current_df
-
-        # 4) Store convergence & accepted solution curves (for mean plots)
-        all_conv_data[PROB][algo_name].append(conv_curve)
-        all_accepted_data[PROB][algo_name].append(accepted_curve)
-
-        # 5) Store runtimes for stats
-        runtime_per_algo[PROB][algo_name].append(exec_time_s)
-
-        # 6) Track best across runs (per prob x algo)
-        if run_Fbest < best_across[PROB][algo_name]["Fbest"]:
-            best_across[PROB][algo_name] = {
-                "Fbest": run_Fbest,
-                "run": run_id,
-                "gbest": np.asarray(gbest_route, dtype=int)
-            }
-
-    # Save per-instance results, runtime stats & plots
+    # Main loop over each problem instance
     for prob in ListProb:
+        print(f"--- Running instance: {prob} ---")
+        
+        # Prepare tasks for THIS problem only
+        tasks = prepare_tasks([prob], TestsFilePath, runs, Iter, episodes, epsilon,  des, tempmin,best_known)
+
+        # Parallel execution for this problem
+        results = parallel_run(tasks)
+
+        # Storage for the current problem
+        all_conv_data = {algo: [] for algo in MM}
+        all_accepted_data = {algo: [] for algo in MM}
+        all_results_df = pd.DataFrame({algo: pd.Series(dtype=float) for algo in MM})
+        runtime_per_algo = {algo: [] for algo in MM}
+        best_across = {algo: {"Fbest": float("inf"), "run": None, "gbest": None} for algo in MM}
+
+        # Populate results for the current problem
+        for task, zres in results:
+            TestsFilePath, PROB, initial_solution, param, run_id, *_ = task
+            algo_name = MM[param - 1]
+
+            gbest_route = zres[0]
+            run_Fbest = float(zres[1])
+            conv_curve = zres[2]
+            accepted_curve = zres[3]
+            exec_time_s = float(zres[5])
+            reached,ittq,tttq=zres[6:9]
+            leader_count=zres[9:]
+
+            # 1) Save per-run gbest (for later plotting/analysis)
+            gbest_path = os.path.join(gbest_dir, f"{PROB}_{algo_name}_run{run_id}_gbest.txt")
+            np.savetxt(gbest_path, np.asarray(gbest_route, dtype=int), fmt="%d")
+
+            # 2) Append per-run runtime row into a master CSV
+            row = {
+                "timestamp": datetime.now().isoformat(timespec="seconds"),
+                "instance": PROB,
+                "algorithm": algo_name,
+                "run": run_id,
+                "exec_time_s": exec_time_s,
+                "Fbest": run_Fbest,
+                "reached":reached,
+                "ittq":ittq,
+                "tttq":tttq,
+                "leadercount":leader_count
+            }
+            mode = "a" if os.path.exists(runtime_master_csv) else "w"
+            df_row = pd.DataFrame([row])
+            df_row.to_csv(runtime_master_csv, mode=mode, header=not os.path.exists(runtime_master_csv), sep=";", index=False)
+
+            # 3) Update per-instance DataFrame of Fbest
+            current_df = all_results_df
+            if algo_name not in current_df.columns:
+                current_df[algo_name] = np.nan
+            current_df.loc[run_id, algo_name] = run_Fbest # Use run_id as index
+            all_results_df = current_df
+
+            # 4) Store convergence & accepted solution curves (for mean plots)
+            all_conv_data[algo_name].append(conv_curve)
+            all_accepted_data[algo_name].append(accepted_curve)
+
+            # 5) Store runtimes for stats
+            runtime_per_algo[algo_name].append(exec_time_s)
+
+            # 6) Track best across runs (per prob x algo)
+            if run_Fbest < best_across[algo_name]["Fbest"]:
+                best_across[algo_name] = {
+                    "Fbest": run_Fbest,
+                    "run": run_id,
+                    "gbest": np.asarray(gbest_route, dtype=int)
+                }
+
+        all_results_collection[prob] = all_results_df
+        
+        # Save per-instance results, runtime stats & plots for the CURRENT problem
         # Save detailed Fbest runs
         file_path = f"{base_dir}/{prob}_runs_{date}.csv"
-        all_results[prob].to_csv(file_path, sep=";", index=False)
+        all_results_df.to_csv(file_path, sep=";", index_label="run")
 
         # Save descriptive stats for Fbest
         desc_path = f"{base_dir}/{prob}_stats_{date}.csv"
-        all_results[prob].describe().to_csv(desc_path, sep=";")
+        all_results_df.describe().to_csv(desc_path, sep=";")
 
-        # Save runtime per algo (tidy, one column per algo + describe)
-        print('runtime_per_algo', runtime_per_algo)
-        runtime_df = pd.DataFrame({algo: np.asarray(runtime_per_algo[prob][algo], dtype=float) for algo in MM})
+        # Save runtime per algo
+        runtime_df = pd.DataFrame({algo: pd.Series(runtime_per_algo[algo]) for algo in MM})
         runtime_runs_csv = f"{base_dir}/{prob}_runtime_runs_{date}.csv"
         runtime_df.to_csv(runtime_runs_csv, sep=";", index=False)
 
@@ -901,8 +897,7 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
         # Save "best across runs" metadata + gbest text
         best_meta_rows = []
         for algo in MM:
-            b = best_across[prob][algo]
-            # Save the best gbest as a separate file
+            b = best_across[algo]
             best_gbest_path = os.path.join(gbest_dir, f"{prob}_{algo}_BEST_run{b['run']}_gbest.txt")
             if b["gbest"] is not None:
                 np.savetxt(best_gbest_path, b["gbest"], fmt="%d")
@@ -918,11 +913,9 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
         # =======================
         # Convergence plot (mean)
         # =======================
-        # guard against empty lists
-        if all(len(all_conv_data[prob][a]) > 0 for a in MM):
-            min_len = min(min(len(c) for c in all_conv_data[prob][algo]) for algo in MM if all_conv_data[prob][algo])
-            mean_conv = {algo: np.mean([np.asarray(c)[:min_len] for c in all_conv_data[prob][algo]], axis=0) for algo in
-                         MM}
+        if all(len(all_conv_data[a]) > 0 for a in MM):
+            min_len = min(min(len(c) for c in all_conv_data[algo]) for algo in MM if all_conv_data[algo])
+            mean_conv = {algo: np.mean([np.asarray(c)[:min_len] for c in all_conv_data[algo]], axis=0) for algo in MM}
             iterations = list(range(min_len))
 
             fig1 = go.Figure()
@@ -942,17 +935,14 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
         # =======================
         # Accepted Fitness Plot (mean)
         # =======================
-        if all(len(all_accepted_data[prob][a]) > 0 for a in MM):
-            min_len_acc = min(
-                min(len(c) for c in all_accepted_data[prob][algo]) for algo in MM if all_accepted_data[prob][algo])
-            mean_accepted = {algo: np.mean([np.asarray(c)[:min_len_acc] for c in all_accepted_data[prob][algo]], axis=0)
-                             for algo in MM}
+        if all(len(all_accepted_data[a]) > 0 for a in MM):
+            min_len_acc = min(min(len(c) for c in all_accepted_data[algo]) for algo in MM if all_accepted_data[algo])
+            mean_accepted = {algo: np.mean([np.asarray(c)[:min_len_acc] for c in all_accepted_data[algo]], axis=0) for algo in MM}
             iterations_acc = list(range(min_len_acc))
 
             fig2 = go.Figure()
             for algo in MM:
-                fig2.add_trace(
-                    go.Scatter(x=iterations_acc, y=mean_accepted[algo], name=pretty_names[algo], mode='lines'))
+                fig2.add_trace(go.Scatter(x=iterations_acc, y=mean_accepted[algo], name=pretty_names[algo], mode='lines'))
 
             fig2.update_layout(
                 title=f"Accepted Fitness Plot (Mean Accepted Solutions Per Iteration) - {prob}",
@@ -964,51 +954,31 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
             pio.write_html(fig2, file=f"{plot_dir}/{prob}_accepted_fitness_{date}.html", auto_open=False)
             pio.write_image(fig2, f"{plot_dir}/{prob}_accepted_fitness_{date}.png")
 
-            # =======================
-        # FIGURE 3: Best Routes (gbest) — 3 subplots
+        # =======================
+        # FIGURE 3: Best Routes (gbest)
         # =======================
         try:
-            coords = _load_coords(prob, TestsFilePath)  # shape (n,2)
+            coords = _load_coords(prob, TestsFilePath)
+            fig3 = make_subplots(rows=1, cols=len(MM), subplot_titles=[pretty_names[a] for a in MM])
 
-            fig3 = make_subplots(rows=1, cols=3, subplot_titles=[pretty_names[a] for a in MM])
-
-            # lock aspect ratio per subplot
-            for i_col in range(1, 4):
+            for i_col in range(1, len(MM) + 1):
                 fig3.update_xaxes(scaleanchor=f"y{i_col}", scaleratio=1, row=1, col=i_col)
 
             for col, algo in enumerate(MM, start=1):
-                b = best_across[prob][algo]  # {"Fbest": .., "run": .., "gbest": np.array or None}
+                b = best_across[algo]
                 route = b["gbest"]
                 if route is None or len(route) == 0:
-                    fig3.add_annotation(row=1, col=col, text="No best route found", showarrow=False)
+                    fig3.add_annotation(row=1, col=col, text="No route", showarrow=False)
                     continue
-
-                # If your saved indices are 1-based, uncomment:
-                route = route - 1
-
+                
                 route = np.asarray(route, dtype=int).flatten()
                 loop = np.r_[route, route[0]]
                 xs = coords[loop, 0]
                 ys = coords[loop, 1]
 
-                # edges
-                fig3.add_trace(
-                    go.Scatter(x=xs, y=ys, mode="lines", name=f"{pretty_names[algo]} edges", showlegend=False),
-                    row=1, col=col
-                )
-                # nodes
-                fig3.add_trace(
-                    go.Scatter(x=coords[:, 0], y=coords[:, 1], mode="markers",
-                               marker=dict(size=6), name=f"{pretty_names[algo]} nodes", showlegend=False),
-                    row=1, col=col
-                )
-                # start node
-                fig3.add_trace(
-                    go.Scatter(x=[coords[route[0], 0]], y=[coords[route[0], 1]],
-                               mode="markers+text", text=["start"], textposition="top center",
-                               marker=dict(size=9, symbol="star"), showlegend=False),
-                    row=1, col=col
-                )
+                fig3.add_trace(go.Scatter(x=xs, y=ys, mode="lines", showlegend=False), row=1, col=col)
+                fig3.add_trace(go.Scatter(x=coords[:, 0], y=coords[:, 1], mode="markers", marker=dict(size=6), showlegend=False), row=1, col=col)
+                fig3.add_trace(go.Scatter(x=[coords[route[0], 0]], y=[coords[route[0], 1]], mode="markers+text", text=["start"], textposition="top center", marker=dict(size=9, symbol="star"), showlegend=False), row=1, col=col)
 
             fig3.update_layout(
                 title=f"Best Routes (gbest) — {prob}",
@@ -1017,14 +987,13 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
                 width=1200,
                 margin=dict(l=30, r=30, t=60, b=30)
             )
-
             pio.write_html(fig3, file=f"{plot_dir}/{prob}_best_routes_{date}.html", auto_open=False)
             pio.write_image(fig3, f"{plot_dir}/{prob}_best_routes_{date}.png")
 
         except Exception as e:
             print(f"[WARN] Could not plot best routes for {prob}: {e}")
 
-    return all_results, plot_dir
+    return all_results_collection, plot_dir
 
 
 # ===============================
@@ -1033,10 +1002,10 @@ def DF_results_parallel(ListProb, TestsFilePath, runs,best_known):
 if __name__ == "__main__":
     TestsFilePath = "inputs/"  # adjust path
     runs = 10
-    #ListProb = ["gr17", "gr24", "ulysses16", "ulysses22", "bayg29", "bays29", "dantzig42", "swiss42", "gr48", "hk48", "eil51", "berlin52" ]#,'st70','eil76','pr76','rat99','kroA100','eil101']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
+    ListProb = ["gr17", "gr24", "ulysses16", "ulysses22", "bayg29", "bays29", "dantzig42", "swiss42", "gr48", "hk48", "eil51", "berlin52" ]#,'st70','eil76','pr76','rat99','kroA100','eil101']  # ,'dantzig42','swiss42','gr48','hk48']  # add more instances
     #ListProb = ['hk48','berlin52','eil101','kroA100']#,'dantzig42','swiss42','gr48','hk48']  # add more instances
     #ListProb = ['st70','pr76','eil76','rat99']#,'kroA100','kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150','tsp225']  # add more instances
-    ListProb = ['eil101']#,'kroA100']#,'kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150']#,'lin105','pr124','ch150','tsp225']
+    #ListProb = ['kroA100']#,'kroA100']#,'kroB100','kroC100','kroD100','kroE100','eil101','lin105','pr124','ch150']#,'lin105','pr124','ch150','tsp225']
 #     best_known={
 #     "gr17": 2085,
 #     "ulysses16": 6859,
